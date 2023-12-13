@@ -14,8 +14,8 @@ export const RemotionRoot: React.FC = () => {
 				height={720}
 				schema={myCompSchema}
 				defaultProps={{
-					titleText: 'First programmatic video, alhamdulillah',
-					titleColor: '#000000',
+					titleText: 'من اگرچہ تیرہ خاکم دلکیست برگ و سازم',
+					titleColor: '#FF0000',
 					logoColor: '#00bfff',
 				}}
 			/>

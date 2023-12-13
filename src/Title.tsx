@@ -13,7 +13,7 @@ export const Title: React.FC<{
 	});
 	return (
 		<div
-			style={{opacity, color: titleColor}}
+			style={{ opacity, color: titleColor, fontFamily: '"Noto Nastaliq Urdu", sans-serif', direction: 'rtl' }}
 			className="text-5xl font-bold leading-relaxed"
 		>
 			{' '}
