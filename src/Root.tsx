@@ -26,7 +26,7 @@ export const RemotionRoot: React.FC = () => {
 					return {
 						props: {
 							...props,
-							data: await processPoemDocument('6.txt'),
+							data: await processPoemDocument('poems/zabur/hissa-e-awal/6 - man agarche tera khakam/poem.txt'),
 						},
 					};
 				}}

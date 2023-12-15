@@ -24,7 +24,7 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 	return (
 		<AbsoluteFill className="bg-gray-100 items-center justify-center">
 			<Persian
-				titleText={data.poemName}
+				titleText={data.bookName}
 				titleColor='#FF0000'
 			/>
 		</AbsoluteFill>
