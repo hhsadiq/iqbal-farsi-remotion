@@ -7,14 +7,14 @@ import { z } from 'zod';
 
 // Infer the type for the poem data from the schema
 type PoemDataType = z.infer<typeof myCompSchema>['data'];
-
+const poemPath = 'poems/zabur/hissa-e-awal/6 - man agarche tera khakam/';
 export const RemotionRoot: React.FC = () => {
 	// Initialize state with the inferred type
 	const [data, setData] = useState<PoemDataType | null>(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const poemData: PoemDataType = await processPoemDocument('poems/zabur/hissa-e-awal/6 - man agarche tera khakam/poem.txt');
+			const poemData: PoemDataType = await processPoemDocument(poemPath + 'poem.txt');
 			setData(poemData);
 		};
 
@@ -41,8 +41,9 @@ export const RemotionRoot: React.FC = () => {
 				width={1280}
 				height={720}
 				defaultProps={{
-					framesPerCouplet,
 					data,
+					framesPerCouplet,
+					poemPath
 				}}
 			/>
 		</>

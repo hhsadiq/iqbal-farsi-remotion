@@ -18,13 +18,16 @@ export async function processPoemDocument(path:string) {
 
   for (let i = 0; i < totalCouplets; i++) {
     const lines = coupletMatches[i].trim().split('\n').map(line => line.trim());
-    if (lines.length >= 4) {
-      const persian = lines[0] + "\n" + lines[1];
-      const urdu = lines[2];
-      const english = lines[3];
+    // Extract start time (first line)
+    const startTime = parseFloat(lines[0]);
+    if (lines.length >= 5) {
+      const persian = lines[1] + "\n" + lines[2];
+      const urdu = lines[3];
+      const english = lines[4];
 
       couplets.push({
         number: i + 1,
+        startTime: startTime,
         persian: persian,
         urdu: urdu,
         english: english
