@@ -1,12 +1,9 @@
-import {Composition} from 'remotion';
+import {Composition, staticFile} from 'remotion';
 import {MyComposition, myCompSchema} from './components/Composition';
 import './style.css';
-// import Profile from './entries.json';
-// import { processPoemDocument } from './utils/process-input';
+import { processPoemDocument } from './utils/process-input';
 
 export const RemotionRoot: React.FC = () => {
-	console.log('testing');
-	// processPoemDocument('public/poems/zabur/hissa-e-awal/6 - man agarche tera khakam/6 - man agarche tera khakam.txt');
 	return (
 		<>
 			<Composition
@@ -21,16 +18,20 @@ export const RemotionRoot: React.FC = () => {
 					titleText: 'من اگرچہ تیرہ خاکم دلکیست برگ و سازم',
 					titleColor: '#FF0000',
 					logoColor: '#00bfff',
-					data: {}
+					data: {
+						poemName: '',
+						bookName: '',
+						poemType: '',
+						couplets: []
+					}
 				}}
 				calculateMetadata={async ({ props }) => {
-					const data = await fetch('assets/6.txt');
-					const json = await data.text();
-					console.log(json);
+					const data = await fetch(staticFile('6.txt'));
+					const text = await data.text();
 					return {
 						props: {
 							...props,
-							data: json,
+							data: processPoemDocument(text),
 						},
 					};
 				}}

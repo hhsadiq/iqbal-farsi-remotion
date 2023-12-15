@@ -1,9 +1,4 @@
-import fs from 'fs';
-import path from 'path';
-
-export function processPoemDocument(fileRelPath:string) {
-  const filePath = path.join(__dirname, fileRelPath);
-  const inputText = fs.readFileSync(filePath, 'utf-8');
+export function processPoemDocument(inputText:string) {
 
   const bookNameMatch = inputText.match(/#BookName:\s*([\s\S]*?)\n/);
   const poemNameMatch = inputText.match(/#PoemName:\s*([\s\S]*?)\n/);
@@ -33,5 +28,6 @@ export function processPoemDocument(fileRelPath:string) {
     }
   }
 
-  console.log({ bookName, poemName, poemType, couplets });
+  const poemData = { bookName, poemName, poemType, couplets };
+  return poemData;
 }
