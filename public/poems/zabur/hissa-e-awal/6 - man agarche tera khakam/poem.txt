@@ -10,31 +10,31 @@
 غزل
 
 #v
-5.215501
+5.215501	15.498894	1
 من اگرچہ تیرہ خاکم دلکیست برگ و سازم
 بہ نظارۂ جمالی چو ستارہ دیدہ بازم
 اگرچہ میں تاریک مٹی سے بنا ہوں، مگر میرا دل میری متاع خاص ہے؛ اس کے سبب میں کسی ستارے کی مانند آنکھیں وا کیے، (حق تعالیٰ کے) حسن و جمال کو دیکھنے کے لیے منتظر رہتا ہوں۔
 Although I am but darkened dust, my heart remains my prized possession; like a star, it keenly watches, awaiting the splendor of Your presence.
 #v
-15.498894
+15.498894	25.487070	2
 بہوای زخمہ تو ہمہ نالۂ خموشم
 تو باین گمان کہ شاید ز نوا فتادہ سازم
 میں اس لیے نالہ ء خاموش ہوں کہ آپ کے مضراب کا خواہاں ہوں؛ اور آپ سمجھتے ہیں کہ میں ایسا ساز ہوں جو راگ کے قابل نہیں رہا۔
 I am silent in my wailing, longing your touch upon my strings; Yet You assume I am an instrument that has lost its ability to sing.
 #v
-25.487070
+25.487070	35.524448	3
 بہ ضمیرم آنچنان کن کہ ز شعلۂ نوائی
 دل خاکیان فروزم دل نوریان گدازم
 میرے اندرون کو اس طرح کر دیں کہ اپنی نوا کے شعلہ سے خاکیوں کے دلوں میں موجود عشق کو گرما دوں اور نوریوں کے دلوں میں (عشق کا) گداز پیدا کر دوں۔
 Kindle within me such a fervor that through the fire of my melodies, I may enliven the hearts of the earthly and melt those of the celestial.
 #v
-35.524448
+35.524448	45.807841	4
 تب و تاب فطرت ما ز نیازمندی ما
 تو خدای بی نیازی نرسی بسوز و سازم
 ہماری فطرت میں جو تب و تاب ہے؛ اس کا سبب ہماری نیازمندی ہے؛ آپ خدائے بے نیاز ہیں، آپ میرے سوز و ساز کو نہیں پا سکتے۔
 The fervor in our essence arises from our profound neediness; As the Self-Sufficient God, you cannot fathom my burning and melody.
 #v
-45.807841
+45.807841	57.124494	5
 بہ کسی عیان نکردم ز کسی نھان نکردم
 غزل آنچنان سرودم کہ برون فتاد رازم
 میں نے اپنا راز (محبت) نہ کسی پر عیاں کیا اور نہ کسی سے چھپایا؛ صرف غزل کہی ، مگر اس انداز سے کہ میرا راز میرے سینے سے باہر آ گیا۔

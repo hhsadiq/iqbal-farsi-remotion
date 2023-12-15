@@ -13,27 +13,24 @@ export async function processPoemDocument(path:string) {
   const poemType = poemTypeMatch ? poemTypeMatch[1].trim() : "Poem Type Not Found";
 
   const coupletMatches = inputText.split('#v').slice(1);
-  const totalCouplets = coupletMatches.length;
-  const couplets = [];
+  const couplets = coupletMatches.map((coupletMatch, index) => {
+    const lines = coupletMatch.trim().split('\n').map(line => line.trim());
+    const [startTimeStr, endTimeStr] = lines[0].split(/\s+/); // Split by whitespace or tab
+    const startTime = parseFloat(startTimeStr);
+    const endTime = parseFloat(endTimeStr);
+    const persian = lines[1] + "\n" + lines[2];
+    const urdu = lines[3];
+    const english = lines[4];
 
-  for (let i = 0; i < totalCouplets; i++) {
-    const lines = coupletMatches[i].trim().split('\n').map(line => line.trim());
-    // Extract start time (first line)
-    const startTime = parseFloat(lines[0]);
-    if (lines.length >= 5) {
-      const persian = lines[1] + "\n" + lines[2];
-      const urdu = lines[3];
-      const english = lines[4];
-
-      couplets.push({
-        number: i + 1,
-        startTime: startTime,
-        persian: persian,
-        urdu: urdu,
-        english: english
-      });
-    }
-  }
+    return {
+        number: index + 1, // Calculate the couplet number based on the index
+        startTime,
+        endTime,
+        persian,
+        urdu,
+        english
+    };
+});
 
   const poemData = { bookName, poemName, poemType, couplets };
   return poemData;

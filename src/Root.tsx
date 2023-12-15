@@ -25,12 +25,12 @@ export const RemotionRoot: React.FC = () => {
 		return <div>Loading...</div>;
 	}
 
-	// Calculate the total duration of the video
-	const perCoupletDuration = 2;
+	// Calculate the total duration based on the last couplet's start time
 	const fps = 30;
-	const framesPerCouplet = perCoupletDuration * fps;
-	const totalDurationInFrames = data.couplets.length * framesPerCouplet;
+	const lastCouplet = data.couplets[data.couplets.length - 1];
+	const totalDurationInFrames = Math.ceil(lastCouplet.endTime * fps);
 
+	
 	return (
 		<>
 			<Composition
@@ -42,8 +42,7 @@ export const RemotionRoot: React.FC = () => {
 				height={720}
 				defaultProps={{
 					data,
-					framesPerCouplet,
-					poemPath
+					poemPath,
 				}}
 			/>
 		</>
