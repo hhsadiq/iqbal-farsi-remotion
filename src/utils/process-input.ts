@@ -1,4 +1,8 @@
-export function processPoemDocument(inputText:string) {
+import {staticFile} from 'remotion';
+
+export async function processPoemDocument(path:string) {
+  const data = await fetch(staticFile(path));
+  const inputText = await data.text();
 
   const bookNameMatch = inputText.match(/#BookName:\s*([\s\S]*?)\n/);
   const poemNameMatch = inputText.match(/#PoemName:\s*([\s\S]*?)\n/);

@@ -1,4 +1,4 @@
-import {Composition, staticFile} from 'remotion';
+import {Composition} from 'remotion';
 import {MyComposition, myCompSchema} from './components/Composition';
 import './style.css';
 import { processPoemDocument } from './utils/process-input';
@@ -15,9 +15,6 @@ export const RemotionRoot: React.FC = () => {
 				height={720}
 				schema={myCompSchema}
 				defaultProps={{
-					titleText: 'من اگرچہ تیرہ خاکم دلکیست برگ و سازم',
-					titleColor: '#FF0000',
-					logoColor: '#00bfff',
 					data: {
 						poemName: '',
 						bookName: '',
@@ -26,12 +23,10 @@ export const RemotionRoot: React.FC = () => {
 					}
 				}}
 				calculateMetadata={async ({ props }) => {
-					const data = await fetch(staticFile('6.txt'));
-					const text = await data.text();
 					return {
 						props: {
 							...props,
-							data: processPoemDocument(text),
+							data: await processPoemDocument('6.txt'),
 						},
 					};
 				}}
