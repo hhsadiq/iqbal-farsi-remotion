@@ -1,6 +1,6 @@
-import {staticFile} from 'remotion';
+import { staticFile } from 'remotion';
 
-export async function processPoemDocument(path:string) {
+export async function processPoemDocument(path: string) {
   const data = await fetch(staticFile(path));
   const inputText = await data.text();
 
@@ -18,19 +18,21 @@ export async function processPoemDocument(path:string) {
     const [startTimeStr, endTimeStr] = lines[0].split(/\s+/); // Split by whitespace or tab
     const startTime = parseFloat(startTimeStr);
     const endTime = parseFloat(endTimeStr);
-    const persian = lines[1] + "\n" + lines[2];
+    const persian1 = lines[1];
+    const persian2 = lines[2]
     const urdu = lines[3];
     const english = lines[4];
 
     return {
-        number: index + 1, // Calculate the couplet number based on the index
-        startTime,
-        endTime,
-        persian,
-        urdu,
-        english
+      number: index + 1, // Calculate the couplet number based on the index
+      startTime,
+      endTime,
+      persian1,
+      persian2,
+      urdu,
+      english
     };
-});
+  });
 
   const poemData = { bookName, poemName, poemType, couplets };
   return poemData;

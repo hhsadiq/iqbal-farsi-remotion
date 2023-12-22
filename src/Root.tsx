@@ -30,7 +30,7 @@ export const RemotionRoot: React.FC = () => {
 	const lastCouplet = data.couplets[data.couplets.length - 1];
 	const totalDurationInFrames = Math.ceil(lastCouplet.endTime * fps);
 
-	
+
 	return (
 		<>
 			<Composition
@@ -38,8 +38,8 @@ export const RemotionRoot: React.FC = () => {
 				component={MyComposition}
 				durationInFrames={totalDurationInFrames}
 				fps={fps}
-				width={1280}
-				height={720}
+				width={1920}
+				height={1080}
 				defaultProps={{
 					data,
 					poemPath,
