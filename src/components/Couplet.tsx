@@ -7,45 +7,42 @@ type coupletCompSchema = {
   couplet: z.infer<typeof coupletSchema>;
   bookName: string;
 };
+
 export const Couplet: React.FC<coupletCompSchema> = ({
   couplet,
   bookName
 }) => {
   return (
-    <div className="bg-white flex flex-row justify-center w-full">
-      <div className="bg-white w-[1920px] h-[1080px] relative">
-        <p className="w-[1086px] top-[35px] left-[250px] text-[#ff0000] text-[48px] absolute [font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica] font-normal text-center tracking-[0] leading-[normal] [direction:rtl]">
+    <div className="bg-white flex flex-row justify-center w-full h-full">
+      <div className="flex flex-col justify-start items-center w-full max-w-[1544px] h-full py-4 px-16">
+        {/* Left side main content */}
+        <p className="mt-8 text-[#ff0000] text-[48px] [font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica] font-normal text-center tracking-[0] leading-[normal] [direction:rtl]">
           {couplet.persian1}
           <br />
           {couplet.persian2}
         </p>
-        <p className="w-[1353px] top-[373px] left-[111px] text-black text-[36px] absolute [font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica] font-normal text-center tracking-[0] leading-[normal] [direction:rtl]">
+        <p className="mt-8 text-black text-[36px] [font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica] font-normal text-center tracking-[0] leading-[normal] [direction:rtl]">
           {couplet.urdu}
         </p>
-        <p className="absolute w-[1353px] top-[565px] left-[116px] [font-family:'Noto_Sans-Regular',Helvetica] font-normal text-black text-[40px] text-center tracking-[0] leading-[normal]">
-          <span className="[font-family:'Noto_Sans-Regular',Helvetica] font-normal text-black text-[40px] tracking-[0]">
-            {couplet.english}
-            <br />
-          </span>
-          <span className="[font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica]">
-            <br />
-          </span>
+        <p className="mt-16 [font-family:'Noto_Sans-Regular',Helvetica] font-normal text-black text-[42px] text-center tracking-[0] leading-[normal]">
+          {couplet.english}
         </p>
-        <img
-          className="absolute w-[307px] h-[352px] top-0 left-[1599px] object-cover"
-          alt="Rectangle"
-          src={staticFile('img/rectangle-1.png')}
-        />
-        <img className="absolute w-[11px] h-[959px] top-0 left-[1544px]" alt="Line" src={staticFile('img/line-1.svg')} />
-        <p className="top-[491px] left-[1669px] text-transparent text-[24px] absolute [font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica] font-normal text-center tracking-[0] leading-[normal] [direction:rtl]">
-          <span className="text-[#ff0000]">آواز:</span>
-          <span className="text-black"> حسان لاھوری</span>
-        </p>
-        <p className="top-[394px] left-[1596px] text-transparent text-[24px] absolute [font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica] font-normal text-center tracking-[0] leading-[normal] [direction:rtl]">
+        <img className="mt-48" alt="Frame" src={staticFile('img/frame-1.svg')} />
+      </div>
+      <div className="flex flex-col justify-start items-center h-full">
+        <img className=" h-[1000px]" alt="Line" src={staticFile('img/line-1.svg')} />
+      </div>
+      <div className="flex flex-col justify-start items-center w-[372px] h-full">
+        {/* Right side reference content */}
+        <img className="mt-4 w-[307px] h-[352px]" alt="Rectangle" src={staticFile('img/rectangle-1.png')} />
+        <p className="mt-4 text-transparent text-[24px] [font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica] font-normal text-center tracking-[0] leading-[normal] [direction:rtl]">
           <span className="text-[#ff0000]">بحوالہ:&nbsp;&nbsp;</span>
           <span className="text-black"> {bookName} </span>
         </p>
-        <img className="absolute w-[1353px] h-[140px] top-[814px] left-[111px]" alt="Frame" src={staticFile('img/frame-1.svg')} />
+        <p className="mt-4 text-transparent text-[24px] [font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica] font-normal text-center tracking-[0] leading-[normal] [direction:rtl]">
+          <span className="text-[#ff0000]">آواز:</span>
+          <span className="text-black"> حسان لاھوری</span>
+        </p>
       </div>
     </div>
   );
