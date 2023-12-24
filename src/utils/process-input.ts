@@ -34,6 +34,6 @@ export async function processPoemDocument(path: string) {
     };
   });
 
-  const poemData = { bookName, poemName, poemType, couplets };
+  const poemData = { bookName, poemName, poemType, couplets, totalCouplets: couplets.length };
   return poemData;
 }

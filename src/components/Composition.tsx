@@ -18,6 +18,7 @@ export const poemDataSchema =
 		bookName: z.string(),
 		poemName: z.string(),
 		poemType: z.string(),
+		totalCouplets: z.number(),
 		couplets: z.array(coupletSchema),
 	});
 
@@ -47,7 +48,7 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 						durationInFrames={durationInFrames}
 						layout="none"
 					>
-						<Couplet couplet={couplet} bookName={data.bookName} />
+						<Couplet couplet={couplet} data={data}/>
 					</Sequence>
 				);
 			})}

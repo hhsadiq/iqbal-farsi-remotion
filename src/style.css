@@ -36,6 +36,18 @@
   font-weight: 100 900;
 }
 
-.direction-rtl {
+.rtl {
   direction: rtl;
+}
+
+.leading-loose-urdu {
+  line-height: 4rem; /* Adjust this value as needed */
+}
+
+.leading-loose-persian {
+  line-height: 5rem; /* Adjust this value as needed */
+}
+
+.leading-loose-english {
+  line-height: 5rem; /* Adjust this value as needed */
 }
