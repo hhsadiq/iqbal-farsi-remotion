@@ -12,7 +12,6 @@ export const Couplet: React.FC<coupletCompSchema> = ({
   couplet,
   data,
 }) => {
-  console.log(data);
   return (
     <div className="flex flex-col w-full h-full bg-white">
       {/* Row 1 with two columns */}
@@ -46,20 +45,17 @@ export const Couplet: React.FC<coupletCompSchema> = ({
       </div>
       {/* Row 3 */}
       <div className="flex items-top justify-center w-full h-1/5 px-12 font-nastaliq rtl -mt-8">
-        <p className="text-[30px] text-center leading-loose-urdu">
+        <p className="text-[26px] text-center leading-loose-urdu">
           {couplet.urdu}
         </p>
       </div>
       {/* Row 4 */}
       <div className="flex items-top justify-center w-full h-1/5 px-12">
-        <p className="text-[32px] text-center font-[Noto Sans] leading-relaxed">
+        <p className="text-[30px] text-center font-[Noto Sans] leading-relaxed">
           {couplet.english}
         </p>
       </div>
       {/* Row 5 */}
-      <div className="flex items-center justify-center w-full h-1/5 bg-white">
-        <img alt="audiograms" src={staticFile('img/audiograms.jpeg')} />
-      </div>
     </div>
   );
 };

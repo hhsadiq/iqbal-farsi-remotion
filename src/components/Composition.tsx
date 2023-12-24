@@ -1,7 +1,8 @@
-import { AbsoluteFill, Sequence, Audio, staticFile } from 'remotion';
+import { AbsoluteFill, Sequence, Audio, staticFile, useVideoConfig } from 'remotion';
 import React from 'react';
 import { z } from 'zod';
 import { Couplet } from './Couplet';
+import { Audiograms } from './Audiograms';
 
 export const coupletSchema = z.object({
 	number: z.number(),
@@ -33,6 +34,7 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 }) => {
 	const fps = 30;
 	const audioPath = poemPath + 'audio.m4a';
+	const { durationInFrames } = useVideoConfig();
 
 	return (
 		<AbsoluteFill className="bg-gray-100 flex flex-col items-center justify-center">
@@ -52,6 +54,13 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 					</Sequence>
 				);
 			})}
+
+
+			{/* Dynamic Audio Visualization */}
+			<Sequence from={0} durationInFrames={durationInFrames} layout="none">
+				<Audiograms fps={fps} audioPath={audioPath} />
+			</Sequence>
+
 		</AbsoluteFill>
 	);
 };

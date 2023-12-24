@@ -47,3 +47,18 @@
 .leading-loose-persian {
   line-height: 5rem; /* Adjust this value as needed */
 }
+
+.audio-viz {
+	display: flex;
+	flex-direction: row;
+	height: calc(var(--base-size) * 4);
+	align-items: center;
+	justify-content: center;
+	gap: calc(var(--base-size) * 0.25);
+	margin-top: var(--base-size);
+}
+
+.bar {
+	border-radius: calc(var(--base-size) * 0.25);
+	width: calc(var(--base-size) * 0.25);
+}
