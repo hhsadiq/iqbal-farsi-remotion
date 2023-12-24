@@ -1,4 +1,4 @@
-import { AbsoluteFill, Sequence, Audio, staticFile, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Sequence, Audio, Series, staticFile, useVideoConfig } from 'remotion';
 import React from 'react';
 import { z } from 'zod';
 import { Couplet } from './Couplet';
@@ -35,25 +35,35 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 	const fps = 30;
 	const audioPath = poemPath + 'audio.m4a';
 	const { durationInFrames } = useVideoConfig();
+	let time: number = 0;
+
+	if (data.couplets && data.couplets.length > 0 && data.couplets[0].startTime !== undefined) {
+		time = data.couplets[0].startTime;
+	}
+
+
+	let firstCoupletStartTime = Math.ceil((time) * fps);
 
 	return (
 		<AbsoluteFill className="bg-gray-100 flex flex-col items-center justify-center">
 			<Audio src={staticFile(audioPath)} placeholder='persian-recitation' />
-			{data.couplets.map((couplet) => {
-				const from = Math.ceil(couplet.startTime * fps);
-				const durationInFrames = Math.ceil((couplet.endTime - couplet.startTime) * fps);
+			<Series>
+				{data.couplets.map((couplet, i) => {
+					const durationInFrames = Math.ceil((couplet.endTime - couplet.startTime) * fps);
+					firstCoupletStartTime = i == 0 ? firstCoupletStartTime : 0;
 
-				return (
-					<Sequence
-						key={couplet.number}
-						from={from}
-						durationInFrames={durationInFrames}
-						layout="none"
-					>
-						<Couplet couplet={couplet} data={data} />
-					</Sequence>
-				);
-			})}
+					return (
+						<Series.Sequence
+							key={couplet.number}
+							offset={firstCoupletStartTime}
+							durationInFrames={durationInFrames}
+							layout="none"
+						>
+							<Couplet couplet={couplet} data={data} />
+						</Series.Sequence>
+					);
+				})}
+			</Series>
 
 
 			{/* Dynamic Audio Visualization */}
