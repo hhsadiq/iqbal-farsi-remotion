@@ -38,8 +38,8 @@ export const RemotionRoot: React.FC = () => {
 				component={MyComposition}
 				durationInFrames={totalDurationInFrames}
 				fps={fps}
-				width={1920}
-				height={1080}
+				width={720}
+				height={1280}
 				defaultProps={{
 					data,
 					poemPath,

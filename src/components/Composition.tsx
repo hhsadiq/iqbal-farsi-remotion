@@ -13,14 +13,17 @@ export const coupletSchema = z.object({
 	english: z.string(),
 });
 
-export const myCompSchema = z.object({
-	poemPath: z.string(),
-	data: z.object({
+export const poemDataSchema =
+	z.object({
 		bookName: z.string(),
 		poemName: z.string(),
 		poemType: z.string(),
 		couplets: z.array(coupletSchema),
-	}),
+	});
+
+export const myCompSchema = z.object({
+	poemPath: z.string(),
+	data: poemDataSchema,
 });
 
 export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
