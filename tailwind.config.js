@@ -3,6 +3,7 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
+        'jameel': ['Jameel Noori Nastaleeq', 'sans-serif'],
         'nastaliq': ['Noto Nastaliq Urdu', 'sans-serif'],
         'nastaliq-medium': ['Noto Nastaliq Urdu Medium', 'sans-serif'],
         'nastaliq-semibold': ['Noto Nastaliq Urdu SemiBold', 'sans-serif'],

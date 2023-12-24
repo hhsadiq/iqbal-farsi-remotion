@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+  font-family: 'Jameel Noori Nastaleeq';
+  src: url('../public/fonts/JameelNooriNastaleeqRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 @font-face {
   font-family: 'Noto Nastaliq Urdu';
   src: url('../public/fonts/NotoNastaliqUrdu-Regular.ttf') format('truetype');
@@ -40,29 +49,30 @@
   direction: rtl;
 }
 
-.leading-loose-urdu {
-  line-height: 4rem; /* Adjust this value as needed */
+.urdu-small {
+  letter-spacing: 0.025em;
+  direction: rtl;
+  font-family: 'Jameel Noori Nastaleeq', 'sans-serif';
 }
 
-.leading-loose-persian {
-  line-height: 5rem; /* Adjust this value as needed */
+
+.urdu {
+  line-height: 4.5rem; /* Adjust this value as needed */
+  letter-spacing: 0.045em;
+  direction: rtl;
+  font-family: 'Jameel Noori Nastaleeq', 'sans-serif';
+  font-size: 40px;
 }
 
-.audio-viz {
-	display: flex;
-	flex-direction: row;
-	height: calc(var(--base-size) * 4);
-	align-items: center;
-	justify-content: center;
-	gap: calc(var(--base-size) * 0.25);
-	margin-top: var(--base-size);
+.persian {
+  line-height: 6rem; /* Adjust this value as needed */
+  letter-spacing: 0.03em;
+  direction: rtl;
+  font-family: 'Noto Nastaliq Urdu', 'sans-serif';
+  font-size: 40px;
 }
 
-.bar {
-	border-radius: calc(var(--base-size) * 0.25);
-	width: calc(var(--base-size) * 0.25);
-}
-
-.nnone {
-  display: none;
+.persian-small {
+  direction: rtl;
+  font-family: 'Noto Nastaliq Urdu', 'sans-serif';
 }
