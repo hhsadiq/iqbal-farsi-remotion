@@ -13,25 +13,49 @@ export const Couplet: React.FC<coupletCompSchema> = ({
   bookName
 }) => {
   return (
-    <div className="bg-white flex flex-row justify-center w-full h-full">
-      <div className="flex flex-col justify-start items-center w-full max-w-[1544px] h-full py-4 px-16">
-        {/* Left side main content */}
-        <p className="mt-8 text-[#ff0000] text-[48px] [font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica] font-normal text-center tracking-[0] leading-[normal] [direction:rtl]">
+    <div className="flex flex-col w-full h-full">
+      {/* Row 1 with two columns */}
+      <div className="flex flex-row w-full h-1/5">
+        {/* Left Column 60% with two child rows */}
+        <div className="flex flex-col flex-grow p-4 bg-gray-200 [direction:rtl]">
+          <div className="flex items-end justify-center flex-grow p-2 bg-gray-300">
+            <span className="text-red-600">شعر:</span> (1/2)
+            &nbsp;
+            <span className="text-red-600">غزل:</span>  شہید ناز او بزم وجود است
+          </div>
+          <div className="flex items-start justify-center flex-grow p-2 bg-gray-400">
+            <span className="text-red-600">بحوالہ:</span>
+            پیام مشرق، لالۂ طور، رباعی1
+          </div>
+        </div>
+        {/* Right Column 40% */}
+        <div className="w-1/3 p-4 bg-gray-500">
+          <img alt="Rectangle" src={staticFile('img/logo.png')} />
+        </div>
+      </div>
+      {/* Row 2 */}
+      <div className="flex items-start justify-center w-full h-1/5 p-4 bg-gray-300">
+        <p>
           {couplet.persian1}
           <br />
           {couplet.persian2}
         </p>
-        <p className="mt-8 text-black text-[36px] [font-family:'Noto_Nastaliq_Urdu-Regular',Helvetica] font-normal text-center tracking-[0] leading-[normal] [direction:rtl]">
+      </div>
+      {/* Row 3 */}
+      <div className="flex items-center justify-center w-full h-1/5 p-4 bg-gray-500">
+        <p>
           {couplet.urdu}
         </p>
-        <p className="mt-16 [font-family:'Noto_Sans-Regular',Helvetica] font-normal text-black text-[42px] text-center tracking-[0] leading-[normal]">
+      </div>
+      {/* Row 4 */}
+      <div className="flex items-center justify-center w-full h-1/5 p-4 bg-gray-600">
+        <p>
           {couplet.english}
         </p>
-        <img className="mt-48" alt="Frame" src={staticFile('img/audiograms.svg')} />
       </div>
-      <div className="flex flex-col justify-start items-center w-[372px] h-full">
-        {/* Right side reference content */}
-        <img className="mt-4 w-[307px] h-[352px]" alt="Rectangle" src={staticFile('img/logo.png')} />
+      {/* Row 5 */}
+      <div className="flex items-center justify-center w-full h-1/5 p-4 bg-gray-700">
+        <img alt="audiograms" src={staticFile('img/audiograms.jpeg')} />
       </div>
     </div>
   );

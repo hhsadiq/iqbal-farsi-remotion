@@ -35,3 +35,7 @@
   src: url('../public/fonts/NotoNastaliqUrdu-VariableFont_wght.ttf') format('truetype');
   font-weight: 100 900;
 }
+
+.direction-rtl {
+  direction: rtl;
+}

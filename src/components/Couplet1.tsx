@@ -27,7 +27,7 @@ export const Couplet1: React.FC<coupletCompSchema> = ({
         <p className="mt-16 [font-family:'Noto_Sans-Regular',Helvetica] font-normal text-black text-[42px] text-center tracking-[0] leading-[normal]">
           {couplet.english}
         </p>
-        <img className="mt-48" alt="Frame" src={staticFile('img/audiograms.svg')} />
+        <img className="mt-48" alt="audiograms" src={staticFile('img/audiograms.svg')} />
       </div>
       <div className="flex flex-col justify-start items-center w-[372px] h-full">
         {/* Right side reference content */}
