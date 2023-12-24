@@ -4,7 +4,6 @@ import { z } from 'zod';
 import { Couplet } from './Couplet';
 import { Audiograms } from './Audiograms';
 import {
-	linearTiming,
 	springTiming,
 	TransitionSeries,
 } from "@remotion/transitions";
