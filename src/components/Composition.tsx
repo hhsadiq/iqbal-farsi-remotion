@@ -48,7 +48,7 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 						durationInFrames={durationInFrames}
 						layout="none"
 					>
-						<Couplet couplet={couplet} data={data}/>
+						<Couplet couplet={couplet} data={data} />
 					</Sequence>
 				);
 			})}
