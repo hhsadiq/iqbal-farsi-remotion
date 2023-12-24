@@ -62,3 +62,7 @@
 	border-radius: calc(var(--base-size) * 0.25);
 	width: calc(var(--base-size) * 0.25);
 }
+
+.nnone {
+  display: none;
+}

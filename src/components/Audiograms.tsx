@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAudioData, visualizeAudio } from "@remotion/media-utils";
-import { staticFile, useVideoConfig, useCurrentFrame } from 'remotion';
+import { staticFile, useCurrentFrame } from 'remotion';
 
 
 type audiogramSchema = {
@@ -13,7 +13,6 @@ export const Audiograms: React.FC<audiogramSchema> = ({
   audioPath,
 }) => {
 
-  const { durationInFrames } = useVideoConfig();
   const currentFrame = useCurrentFrame(); // Get the current frame
   const audioData = useAudioData(staticFile(audioPath));
   if (!audioData) {
@@ -22,25 +21,36 @@ export const Audiograms: React.FC<audiogramSchema> = ({
 
   const visualization = visualizeAudio({
     fps,
-    frame: durationInFrames, // Assuming you want to visualize the entire duration
+    frame: currentFrame, // Assuming you want to visualize the entire duration
     audioData,
-    numberOfSamples: 64, // Use a power of two here
+    numberOfSamples: 256, // Use a power of two here
   });
 
-  console.log(visualization);
+
+  // Apply transformation to emphasize middle values
+  const transformedVisualization = visualization.map((v, i, arr) => {
+    const middleIndex = arr.length / 2;
+    // Mirror the index calculation around the middle
+    const mirroredIndex = i > middleIndex ? arr.length - i : i;
+    const distanceFromMiddle = Math.abs(mirroredIndex - middleIndex);
+    // Gaussian-like transformation
+    const scaleFactor = Math.exp(-Math.pow(distanceFromMiddle / middleIndex, 2) * 4);
+    return v * scaleFactor;
+  });
+  
   return (
-    <div style={{ position: 'absolute', bottom: '0', width: '100%', height: '400px', display: 'flex', alignItems: 'center' }}>
-      {visualization.map((v, i) => {
-        const barHeight = Math.max(10, v * 4000); // Height calculation
+    <div className="absolute bottom-0 w-full h-[400px] flex flex-row items-center justify-center ml-16 pr-16">
+      {transformedVisualization.map((v, i) => {
+        let barHeight = Math.max(10, v * 120000); // Height calculation
+        barHeight = Math.min(barHeight, 400);
 
         return (
           <div
             key={i}
             style={{
-              width: '2px', // Fixed width for each bar
+              width: '4px', // Fixed width for each bar
               height: `${barHeight}px`, // Dynamic height based on audio data
-              backgroundColor: "red",
-              margin: '0 1px', // Margin to separate the bars
+              backgroundColor: "#f08686",
               display: 'inline-block' // Align bars next to each other horizontally
             }}
           />
