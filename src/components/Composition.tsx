@@ -6,9 +6,11 @@ import { Audiograms } from './Audiograms';
 import {
 	springTiming,
 	TransitionSeries,
+	linearTiming,
 } from "@remotion/transitions";
 import { SlideDirection } from "@remotion/transitions/slide";
 import { slide } from "@remotion/transitions/slide";
+import { fade } from "@remotion/transitions/fade";
 
 
 const slideDirection: SlideDirection = "from-right";
@@ -43,7 +45,7 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 }) => {
 	const fps = 30;
 	const audioPath = poemPath + 'audio.m4a';
-	const { durationInFrames, width, height } = useVideoConfig();
+	const { durationInFrames } = useVideoConfig();
 	let time: number = 0;
 
 	if (data.couplets && data.couplets.length > 0 && data.couplets[0].startTime !== undefined) {
@@ -52,26 +54,37 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 
 	let firstCoupletStartTime = Math.ceil((time) * fps);
 
+	const transitionSpringTime = springTiming({
+		config: {
+			damping: 10,
+			stiffness: 20,
+		}
+	});
+
+	const transitionTimings = transitionSpringTime.getDurationInFrames({ fps });
+
 	return (
 		<AbsoluteFill className="bg-gray-100 flex flex-col items-center justify-center">
-			<Audio src={staticFile(audioPath)} placeholder='persian-recitation' />
+			<Audio src={staticFile(audioPath)} placeholder='persian-recitation' startFrom={firstCoupletStartTime} />
 			<TransitionSeries>
+				<TransitionSeries.Transition
+					timing={linearTiming({ durationInFrames: 100 })}
+					presentation={fade()}
+				/>
 				{data.couplets.map((couplet, i) => {
-					const durationInFrames = Math.ceil((couplet.endTime - couplet.startTime) * fps);
+					const durationInFrames = Math.ceil((couplet.endTime - couplet.startTime) * fps) + transitionTimings;
 					firstCoupletStartTime = i == 0 ? firstCoupletStartTime : 0;
-
 					return (
 						<React.Fragment key={couplet.number}>
 							<TransitionSeries.Sequence
-								offset={firstCoupletStartTime}
 								durationInFrames={durationInFrames}
 								layout="none"
 							>
 								<Couplet couplet={couplet} data={data} />
 							</TransitionSeries.Sequence>
 							<TransitionSeries.Transition
-								timing={springTiming({ config: { damping: 33 } })}
-								presentation={slide({direction: slideDirection})}
+								timing={transitionSpringTime}
+								presentation={slide({ direction: slideDirection })}
 							/>
 						</React.Fragment>
 					);
