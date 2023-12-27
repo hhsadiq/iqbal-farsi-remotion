@@ -1,24 +1,21 @@
-import { AbsoluteFill, Sequence, Audio, Series, staticFile, useVideoConfig } from 'remotion';
-import React from 'react';
-import { z } from 'zod';
-import { Couplet } from './Couplet';
-import { Audiograms } from './Audiograms';
 import {
-	springTiming,
 	TransitionSeries,
 	linearTiming,
+	springTiming,
 } from "@remotion/transitions";
-import { SlideDirection } from "@remotion/transitions/slide";
-import { slide } from "@remotion/transitions/slide";
 import { fade } from "@remotion/transitions/fade";
-
-
-const slideDirection: SlideDirection = "from-right";
+import React from 'react';
+import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from 'remotion';
+import { z } from 'zod';
+import { Audiograms } from './Audiograms';
+import { Couplet } from './Couplet';
 
 export const coupletSchema = z.object({
 	number: z.number(),
-	startTime: z.number(),
-	endTime: z.number(),
+	coupletStartTime: z.number(),
+	coupletEndTime: z.number(),
+	verseStartTime: z.number(),
+	verseEndTime: z.number(),
 	persian1: z.string(),
 	persian2: z.string(),
 	urdu: z.string(),
@@ -39,17 +36,19 @@ export const myCompSchema = z.object({
 	data: poemDataSchema,
 });
 
+export const fps = 30;
+
 export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 	data,
 	poemPath
 }) => {
-	const fps = 30;
 	const audioPath = poemPath + 'audio.m4a';
 	const { durationInFrames } = useVideoConfig();
 	let time: number = 0;
 
-	if (data.couplets && data.couplets.length > 0 && data.couplets[0].startTime !== undefined) {
-		time = data.couplets[0].startTime;
+	console.log(data);
+	if (data.couplets && data.couplets.length > 0 && data.couplets[0].coupletStartTime !== undefined) {
+		time = data.couplets[0].coupletStartTime;
 	}
 
 	let firstCoupletStartTime = Math.ceil((time) * fps);
@@ -72,19 +71,22 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 					presentation={fade()}
 				/>
 				{data.couplets.map((couplet, i) => {
-					const durationInFrames = Math.ceil((couplet.endTime - couplet.startTime) * fps) + transitionTimings;
+					const durationInFrames = Math.ceil((couplet.coupletEndTime - couplet.coupletStartTime) * fps) + transitionTimings;
 					firstCoupletStartTime = i == 0 ? firstCoupletStartTime : 0;
+					console.log(transitionTimings, fps);
 					return (
-						<React.Fragment key={couplet.number}>
+						<React.Fragment key={i}>
 							<TransitionSeries.Sequence
 								durationInFrames={durationInFrames}
 								layout="none"
+								key={i + 1}
 							>
-								<Couplet couplet={couplet} data={data} />
+								<Couplet couplet={couplet} data={data} fps={fps} />
 							</TransitionSeries.Sequence>
 							<TransitionSeries.Transition
 								timing={transitionSpringTime}
 								presentation={fade()}
+								key={i + 2}
 							/>
 						</React.Fragment>
 					);

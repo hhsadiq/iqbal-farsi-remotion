@@ -1,13 +1,14 @@
 import React from 'react';
 import { z } from 'zod';
 import { coupletSchema, poemDataSchema } from './Composition';
-import { staticFile } from 'remotion';
+import { staticFile, useCurrentFrame } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
 
 
 type coupletCompSchema = {
   couplet: z.infer<typeof coupletSchema>;
   data: z.infer<typeof poemDataSchema>;
+  fps: number;
 };
 
 const { fontFamily } = loadFont();
@@ -15,8 +16,27 @@ const { fontFamily } = loadFont();
 export const Couplet: React.FC<coupletCompSchema> = ({
   couplet,
   data,
+  fps,
 }) => {
+  const frame = useCurrentFrame();
+  const coupletStartFrame = couplet.coupletStartTime * fps;
 
+  // Adjust verse start and end frames relative to the start of the couplet
+  const verseStartFrame = (couplet.verseStartTime * fps) - coupletStartFrame;
+  const verseEndFrame = (couplet.verseEndTime * fps) - coupletStartFrame;
+
+  // Start typewriter effect for persian2 after midTimeFrame
+  const charsShownPersian1 = frame > verseStartFrame ? Math.floor((frame - verseStartFrame) / 3) : 0;
+  const textToShowPersian1 = couplet.persian1.slice(0, charsShownPersian1);
+
+  // Start typewriter effect for persian2 after midTimeFrame
+  const charsShownPersian2 = frame > verseEndFrame ? Math.floor((frame - verseEndFrame) / 3) : 0;
+  const textToShowPersian2 = couplet.persian2.slice(0, charsShownPersian2);
+
+  // Determine cursor state
+  const isBeforeFirstVerse = frame < verseStartFrame;
+  const isTypingFirstVerse = frame >= verseStartFrame && frame <= verseEndFrame;
+  const isTypingSecondVerse = frame > verseEndFrame && charsShownPersian2 < couplet.persian2.length;
 
   return (
     <div className="flex flex-col w-full h-full bg-white">
@@ -42,11 +62,14 @@ export const Couplet: React.FC<coupletCompSchema> = ({
         </div>
       </div>
       {/* Row 2 */}
-      <div className="flex items-top justify-center w-full px-8 persian">
+      {/* Verse display with cursor */}
+      <div className="flex items-top justify-center w-full px-8 persian h-1/6">
         <p className="text-red-600 text-center">
-          {couplet.persian1}
+          {textToShowPersian1}
+          {(isBeforeFirstVerse || isTypingFirstVerse) && <span className={`typing-cursor${isBeforeFirstVerse ? '' : '-static'}`}></span>}
           <br />
-          <span>{couplet.persian2}</span>
+          {textToShowPersian2}
+          {isTypingSecondVerse && <span className="typing-cursor-static"></span>}
         </p>
       </div>
       {/* Row 3 */}

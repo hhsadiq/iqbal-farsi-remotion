@@ -28,7 +28,7 @@ export const RemotionRoot: React.FC = () => {
 	// Calculate the total duration based on the last couplet's start time
 	const fps = 30;
 	const lastCouplet = data.couplets[data.couplets.length - 1];
-	const totalDurationInFrames = Math.ceil(lastCouplet.endTime * fps);
+	const totalDurationInFrames = Math.ceil(lastCouplet.coupletEndTime * fps);
 
 
 	return (

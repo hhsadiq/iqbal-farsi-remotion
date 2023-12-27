@@ -57,7 +57,8 @@
 
 
 .urdu {
-  line-height: 4.5rem; /* Adjust this value as needed */
+  line-height: 4.5rem;
+ /* Adjust this value as needed */
   letter-spacing: 0.045em;
   direction: rtl;
   font-family: 'Jameel Noori Nastaleeq', 'sans-serif';
@@ -65,7 +66,8 @@
 }
 
 .persian {
-  line-height: 6rem; /* Adjust this value as needed */
+  line-height: 6rem;
+  /* Adjust this value as needed */
   letter-spacing: 0.03em;
   direction: rtl;
   font-family: 'Noto Nastaliq Urdu', 'sans-serif';
@@ -75,4 +77,47 @@
 .persian-small {
   direction: rtl;
   font-family: 'Noto Nastaliq Urdu', 'sans-serif';
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 4px;  /* Width of the cursor */
+  height: 1.5em; /* Height of the cursor */
+  background-color: #333333; /* Dark gray color */
+  margin-right: 12px;
+  margin-bottom: -16px;
+  position: relative; /* Needed for positioning pseudo-elements */
+  animation: blink 1s step-end infinite;
+}
+
+.typing-cursor-static {
+  @apply inline-block bg-black;
+  width: 4px;  /* Width of the cursor */
+  height: 1.5em; /* Height of the cursor */
+  margin-right: 12px;
+  margin-bottom: -16px;
+  background-color: #333333;
+}
+
+.typing-cursor::before,
+.typing-cursor::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px; /* Height of the top and bottom lines */
+  background-color: #333333; /* Same dark gray color */
+}
+
+.typing-cursor::before {
+  top: -2px; /* Positioning the top line */
+}
+
+.typing-cursor::after {
+  bottom: -2px; /* Positioning the bottom line */
 }
