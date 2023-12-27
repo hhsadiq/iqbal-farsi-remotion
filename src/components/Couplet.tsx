@@ -50,14 +50,14 @@ export const Couplet: React.FC<coupletCompSchema> = ({
         </p>
       </div>
       {/* Row 3 */}
-      <div className="flex items-top justify-center w-full px-8 rtl -mt-8 pt-20 urdu">
+      <div className="flex items-top justify-center w-full px-16 rtl -mt-8 pt-20 urdu">
         <p className="text-center">
           {couplet.urdu}
         </p>
       </div>
       {/* Row 4 */}
-      <div className="flex items-top justify-center w-full px-8 pt-12">
-        <p className="text-[32px] text-center leading-relaxed"
+      <div className="flex items-top justify-center w-full px-16 pt-12">
+        <p className="text-[30px] text-center leading-relaxed"
           style={{
             fontFamily,
           }}

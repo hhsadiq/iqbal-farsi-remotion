@@ -84,7 +84,7 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 							</TransitionSeries.Sequence>
 							<TransitionSeries.Transition
 								timing={transitionSpringTime}
-								presentation={slide({ direction: slideDirection })}
+								presentation={fade()}
 							/>
 						</React.Fragment>
 					);
