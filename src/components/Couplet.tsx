@@ -36,13 +36,12 @@ export const Couplet: React.FC<coupletCompSchema> = ({
 
   // Determine if the first verse is completely typed
   const isFirstVerseComplete = charsShownPersian1 >= couplet.persian1.length;
+  const isSecondVerseComplete = charsShownPersian2 >= couplet.persian2.length;
 
   // Determine cursor state
   const isBeforeFirstVerse = frame < verseStartFrame;
-  const isTypingFirstVerse = frame >= verseStartFrame && !isFirstVerseComplete;
-
-  const isBeforeSecondVerse = isFirstVerseComplete;
-  const isTypingSecondVerse = frame > verseEndFrame;
+  
+  const isTypingSecondVerse = frame > verseEndFrame && !isSecondVerseComplete;
 
   return (
     <div className="flex flex-col w-full h-full bg-white">
@@ -72,10 +71,10 @@ export const Couplet: React.FC<coupletCompSchema> = ({
       <div className="flex items-top justify-center w-full px-8 persian h-1/6">
         <p className="text-red-600 text-center">
           {textToShowPersian1}
-          {(isBeforeFirstVerse || isTypingFirstVerse) && <span className={`typing-cursor${isBeforeFirstVerse ? '' : '-static'}`}></span>}
+          {(!isTypingSecondVerse && !isSecondVerseComplete) && <span className={`typing-cursor${(isBeforeFirstVerse || isFirstVerseComplete) ? '' : '-static'}`}></span>}
           <br />
           {textToShowPersian2}
-          {(isBeforeSecondVerse || isTypingSecondVerse) && <span className={`typing-cursor${isBeforeSecondVerse ? '' : '-static'}`}></span>}
+          {(isTypingSecondVerse || isSecondVerseComplete) && <span className={`typing-cursor${isSecondVerseComplete ? '' : '-static'}`}></span>}
         </p>
       </div>
       {/* Row 3 */}
