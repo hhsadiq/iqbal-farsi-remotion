@@ -9,6 +9,7 @@ import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from 'remot
 import { z } from 'zod';
 import { Audiograms } from './Audiograms';
 import { Couplet } from './Couplet';
+import { ChannelInro } from "./ChannelIntro";
 
 export const coupletSchema = z.object({
 	number: z.number(),
@@ -46,7 +47,6 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 	const { durationInFrames } = useVideoConfig();
 	let time: number = 0;
 
-	console.log(data);
 	if (data.couplets && data.couplets.length > 0 && data.couplets[0].coupletStartTime !== undefined) {
 		time = data.couplets[0].coupletStartTime;
 	}
@@ -73,7 +73,6 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 				{data.couplets.map((couplet, i) => {
 					const durationInFrames = Math.ceil((couplet.coupletEndTime - couplet.coupletStartTime) * fps) + transitionTimings;
 					firstCoupletStartTime = i == 0 ? firstCoupletStartTime : 0;
-					console.log(transitionTimings, fps);
 					return (
 						<React.Fragment key={i}>
 							<TransitionSeries.Sequence
@@ -91,6 +90,20 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 						</React.Fragment>
 					);
 				})}
+
+				<TransitionSeries.Sequence
+					durationInFrames={600}
+					layout="none"
+					key={343}
+				>
+					<ChannelInro />
+				</TransitionSeries.Sequence>
+				<TransitionSeries.Transition
+					timing={linearTiming({ durationInFrames: 100 })}
+					presentation={fade()}
+				/>
+
+
 			</TransitionSeries>
 
 
