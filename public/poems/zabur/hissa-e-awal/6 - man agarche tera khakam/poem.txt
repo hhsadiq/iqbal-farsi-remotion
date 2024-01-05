@@ -3,7 +3,7 @@
 
 
 #PoemName: 
-من اگرچہ تیرہ خاکم دلکیست برگ و سازم
+من اگرچہ تیرہ خاکم دلکیست ...
 
 
 #PoemType:
@@ -34,7 +34,7 @@ Kindle within me such a fervor that through the fire of my melodies, I may enliv
 ہماری فطرت میں جو تب و تاب ہے؛ اس کا سبب ہماری نیازمندی ہے؛ آپ خدائے بے نیاز ہیں، آپ میرے سوز و ساز کو نہیں پا سکتے۔
 The fervor in our essence arises from our profound neediness; As the Self-Sufficient God, you cannot fathom my burning and melody.
 #v
-48.914605	65.657777	50.008363	55.223250	5
+48.914605	61.593367	50.008363	55.223250	5
 بہ کسی عیان نکردم ز کسی نھان نکردم
 غزل آنچنان سرودم کہ برون فتاد رازم
 میں نے اپنا راز (محبت) نہ کسی پر عیاں کیا اور نہ کسی سے چھپایا؛ صرف غزل کہی ، مگر اس انداز سے کہ میرا راز میرے سینے سے باہر آ گیا۔

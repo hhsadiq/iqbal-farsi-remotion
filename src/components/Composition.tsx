@@ -10,6 +10,8 @@ import { z } from 'zod';
 import { Audiograms } from './Audiograms';
 import { Couplet } from './Couplet';
 import { ChannelInro } from "./ChannelIntro";
+import { Intro } from "./Intro";
+import { globalSettings } from "../global-settings";
 
 export const coupletSchema = z.object({
 	number: z.number(),
@@ -37,7 +39,7 @@ export const myCompSchema = z.object({
 	data: poemDataSchema,
 });
 
-export const fps = 30;
+const fps = globalSettings.video.fps;
 
 export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 	data,
@@ -51,7 +53,7 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 		time = data.couplets[0].coupletStartTime;
 	}
 
-	let firstCoupletStartTime = Math.ceil((time) * fps);
+	let firstCoupletStartTime = Math.ceil(((time) * fps) + globalSettings.introDurationFPS);
 
 	const transitionSpringTime = springTiming({
 		config: {
@@ -66,6 +68,17 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 		<AbsoluteFill className="bg-gray-100 flex flex-col items-center justify-center">
 			<Audio src={staticFile(audioPath)} placeholder='persian-recitation' startFrom={firstCoupletStartTime} />
 			<TransitionSeries>
+				<TransitionSeries.Transition
+					timing={linearTiming({ durationInFrames: 100 })}
+					presentation={fade()}
+				/>
+				<TransitionSeries.Sequence
+					durationInFrames={globalSettings.introDurationFPS}
+					layout="none"
+					key={344}
+				>
+					<Intro data={data} />
+				</TransitionSeries.Sequence>
 				<TransitionSeries.Transition
 					timing={linearTiming({ durationInFrames: 100 })}
 					presentation={fade()}
