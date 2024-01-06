@@ -1,4 +1,5 @@
 import { staticFile } from 'remotion';
+import { globalSettings } from '../global-settings';
 
 export async function processPoemDocument(path: string) {
   const data = await fetch(staticFile(path));
@@ -12,14 +13,15 @@ export async function processPoemDocument(path: string) {
   const poemName = poemNameMatch ? poemNameMatch[1].trim() : "Poem Name Not Found";
   const poemType = poemTypeMatch ? poemTypeMatch[1].trim() : "Poem Type Not Found";
 
+  const introSlideTime = globalSettings.introDurationFPS / globalSettings.video.fps;
   const coupletMatches = inputText.split('#v').slice(1);
   const couplets = coupletMatches.map((coupletMatch, index) => {
     const lines = coupletMatch.trim().split('\n').map(line => line.trim());
     const [coupletStartTimeStr, coupletEndTimeStr, verseStartTimeStr, verseEndTimeStr] = lines[0].split(/\s+/); // Split by whitespace or tab
-    const coupletStartTime = parseFloat(coupletStartTimeStr);
-    const coupletEndTime = parseFloat(coupletEndTimeStr);
-    const verseStartTime = parseFloat(verseStartTimeStr);
-    const verseEndTime = parseFloat(verseEndTimeStr);
+    const coupletStartTime = parseFloat(coupletStartTimeStr) + introSlideTime;
+    const coupletEndTime = parseFloat(coupletEndTimeStr) + introSlideTime;
+    const verseStartTime = parseFloat(verseStartTimeStr) + introSlideTime;
+    const verseEndTime = parseFloat(verseEndTimeStr) + introSlideTime;
     const persian1 = lines[1];
     const persian2 = lines[2]
     const urdu = lines[3];
@@ -45,5 +47,7 @@ export async function processPoemDocument(path: string) {
     couplets,
     totalCouplets: couplets.length
   };
+
+  console.log(poemData);
   return poemData;
 }

@@ -4,10 +4,13 @@ export const globalSettings = {
     height: 1280,
     fps: 30,  
   },
+  mood: {
+    sad: 'background-audio/sad.mp3'
+  },
   introDurationFPS: 300,
   outroDurationFPS: 300,
   poem: {
-    audioFileName: 'audio.m4a',
+    audioFileName: 'audio.mp3',
     textFileName: 'poem.txt',
     path: 'poems/zabur/hissa-e-awal/6 - man agarche tera khakam/',
   }

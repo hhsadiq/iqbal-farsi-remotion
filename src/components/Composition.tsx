@@ -45,7 +45,10 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 	data,
 	poemPath
 }) => {
-	const audioPath = poemPath + 'audio.m4a';
+
+	const introDurationFPS = globalSettings.introDurationFPS;
+
+	const audioPath = poemPath + globalSettings.poem.audioFileName;
 	const { durationInFrames } = useVideoConfig();
 	let time: number = 0;
 
@@ -53,7 +56,7 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 		time = data.couplets[0].coupletStartTime;
 	}
 
-	let firstCoupletStartTime = Math.ceil(((time) * fps) + globalSettings.introDurationFPS);
+	let firstCoupletStartTime = Math.ceil(((time) * fps) + introDurationFPS);
 
 	const transitionSpringTime = springTiming({
 		config: {
@@ -66,16 +69,19 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 
 	return (
 		<AbsoluteFill className="bg-gray-100 flex flex-col items-center justify-center">
-			<Audio src={staticFile(audioPath)} placeholder='persian-recitation' startFrom={firstCoupletStartTime} />
+			<Audio
+				src={staticFile(globalSettings.mood.sad)}
+				placeholder='background'
+				volume={0.3}
+			/>
+			<Sequence from={introDurationFPS}>
+				<Audio src={staticFile(audioPath)} placeholder='persian-recitation' />
+			</Sequence>
 			<TransitionSeries>
-				<TransitionSeries.Transition
-					timing={linearTiming({ durationInFrames: 100 })}
-					presentation={fade()}
-				/>
 				<TransitionSeries.Sequence
-					durationInFrames={globalSettings.introDurationFPS}
+					durationInFrames={introDurationFPS}
 					layout="none"
-					key={344}
+					key={200}
 				>
 					<Intro data={data} />
 				</TransitionSeries.Sequence>
