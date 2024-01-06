@@ -5,17 +5,20 @@ import { fade } from "@remotion/transitions/fade";
 import React from 'react';
 import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from 'remotion';
 import { Audiograms } from './Audiograms';
-import { Couplet } from './Couplet';
 import { ChannelInro } from "./ChannelIntro";
 import { Intro } from "./Intro";
 import { globalSettings } from "../global-settings";
 import { PoemDataSingleObjType } from "../utils/process-inputv2";
+import { Couplet } from "./Couplet";
 
 const fps = globalSettings.video.fps;
 
 export const MyComposition: React.FC<PoemDataSingleObjType> = ({
 	data
 }) => {
+	if (!data) {
+		return <div>Error or no data available.</div>;
+	}
 
 	const audioPath = globalSettings.poem.audioFile;
 	const { durationInFrames } = useVideoConfig();
@@ -57,7 +60,7 @@ export const MyComposition: React.FC<PoemDataSingleObjType> = ({
 								layout="none"
 								key={i + 1}
 							>
-								<Couplet couplet={couplet} data={data} fps={fps} />
+								<Couplet couplet={couplet} fps={fps} />
 							</TransitionSeries.Sequence>
 							<TransitionSeries.Transition
 								timing={springTransition}

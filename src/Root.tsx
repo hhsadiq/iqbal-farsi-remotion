@@ -1,44 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import { Composition } from 'remotion';
+import React from 'react';
+import { Composition, CalculateMetadataFunction } from 'remotion';
 import { MyComposition } from './components/Composition';
 import './style.css';
 import { globalSettings } from './global-settings';
-import { PoemDataType, processPoemDocumentv2 } from './utils/process-inputv2';
+import { PoemDataType, processPoemDocumentv2, PoemDataSingleObjType } from './utils/process-inputv2';
+
+const calculateMetadata: CalculateMetadataFunction<PoemDataSingleObjType> = async () => {
+	const fps = globalSettings.video.fps;
+
+	try {
+		const poemData: PoemDataType = await processPoemDocumentv2();
+		const durationInFrames = Math.ceil(poemData.outroEnd * fps);
+
+		return {
+			durationInFrames,
+			fps,
+			width: globalSettings.video.width,
+			height: globalSettings.video.height,
+			props: {
+				data: poemData,
+			},
+		};
+	} catch (error) {
+		console.error("Error fetching poem data:", error);
+		// Fallback values if data fetching fails
+		return {
+			durationInFrames: 300, // default duration
+			fps,
+			width: globalSettings.video.width,
+			height: globalSettings.video.height,
+			props: {
+				data: null,
+			},
+		};
+	}
+};
 
 export const RemotionRoot: React.FC = () => {
-	const [data, setData] = useState<PoemDataType | null>(null);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			const poemData: PoemDataType = await processPoemDocumentv2(globalSettings.poem.textFile);
-			setData(poemData);
-		};
-
-		fetchData();
-	}, []);
-
-	if (!data) {
-		return <div>Loading...</div>;
-	}
-
-	const fps = globalSettings.video.fps;
-	// Calculate the total duration based on the last couplet's start time
-	const totalDurationInFrames = Math.ceil(data.outroEnd * fps);
-
-
 	return (
-		<>
-			<Composition
-				id="MyComp"
-				component={MyComposition}
-				durationInFrames={totalDurationInFrames}
-				fps={fps}
-				width={globalSettings.video.width}
-				height={globalSettings.video.height}
-				defaultProps={{
-					data
-				}}
-			/>
-		</>
+		<Composition
+			id="MyComp"
+			component={MyComposition}
+			defaultProps={{
+				data: null
+			}}
+			calculateMetadata={calculateMetadata}
+		/>
 	);
 };

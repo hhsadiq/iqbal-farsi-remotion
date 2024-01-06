@@ -6,6 +6,10 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
   data,
 }) => {
 
+  if (!data) {
+    return <div>Error or no data available.</div>;
+	}
+
   return (
     <div className="flex flex-col w-full h-full bg-white">
       {/* Row 1 with two columns */}

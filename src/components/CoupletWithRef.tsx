@@ -1,17 +1,19 @@
 import React from 'react';
 import { staticFile, useCurrentFrame } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
-import { CoupletType } from '../utils/process-inputv2';
+import { CoupletType, PoemDataType } from '../utils/process-inputv2';
 
 type coupletCompSchema = {
   couplet: CoupletType;
+  data: PoemDataType;
   fps: number;
 };
 
 const { fontFamily } = loadFont();
 
-export const Couplet: React.FC<coupletCompSchema> = ({
+export const CoupletWithRef: React.FC<coupletCompSchema> = ({
   couplet,
+  data,
   fps,
 }) => {
   const frame = useCurrentFrame();
@@ -35,15 +37,29 @@ export const Couplet: React.FC<coupletCompSchema> = ({
 
   // Determine cursor state
   const isBeforeFirstVerse = frame < verseRelativeStartFrame;
-
+  
   const isTypingSecondVerse = frame > verseRelativeEndFrame && !isSecondVerseComplete;
 
   return (
     <div className="flex flex-col w-full h-full bg-white">
       {/* Row 1 with two columns */}
-      <div className="flex items-center justify-center w-full pt-4">
+      <div className="flex flex-row w-full h-1/5">
+        {/* Left Column 60% with two child rows */}
+        <div className="flex flex-col flex-grow p-4 persian-small text-[22px] -mr-16 z-10 mt-2">
+          <div className="flex items-end justify-start flex-grow p-2">
+            <span className="text-red-600">شعر:&nbsp;</span> ({couplet.number}/{data.totalCouplets})
+            &nbsp;
+            <span className="text-red-600">{data.poemType}:&nbsp;</span> {data.poemName}
+          </div>
+          <div className="flex justify-start flex-grow p-2">
+            <span className='pr-12'>
+              <span className="text-red-600 text-center">بحوالہ:&nbsp;&nbsp;&nbsp;</span>
+              {data.bookName}
+            </span>
+          </div>
+        </div>
         {/* Right Column 40% */}
-        <div className="w-[35%]">
+        <div className="w-1/3">
           <img alt="Rectangle" src={staticFile('img/logo.png')} />
         </div>
       </div>

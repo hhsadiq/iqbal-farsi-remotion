@@ -30,11 +30,11 @@ export type PoemDataType = {
 };
 
 export type PoemDataSingleObjType = {
-  data: PoemDataType,
+  data?: PoemDataType | null,
 };
 
-export async function processPoemDocumentv2(path: string): Promise<PoemDataType> {
-  const data = await fetch(staticFile(path));
+export async function processPoemDocumentv2(): Promise<PoemDataType> {
+  const data = await fetch(staticFile(globalSettings.poem.textFile));
   const inputText = await data.text();
 
   // Process the markers file
