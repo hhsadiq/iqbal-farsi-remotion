@@ -98,7 +98,7 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 				})}
 
 				<TransitionSeries.Sequence
-					durationInFrames={data. + transitionTimings}
+					durationInFrames={globalSettings.outroDurationFPS + transitionTimings}
 					layout="none"
 					key={343}
 				>
