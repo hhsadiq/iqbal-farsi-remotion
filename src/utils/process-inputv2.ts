@@ -7,7 +7,7 @@ type Marker = {
   timeFormat: string;
 };
 
-export type Couplet = {
+export type CoupletType = {
   number: number;
   coupletStartTime: number;
   coupletEndTime: number;
@@ -19,17 +19,21 @@ export type Couplet = {
   english: string;
 };
 
-export type PoemData = {
+export type PoemDataType = {
   bookName: string;
   poemName: string;
   poemType: string;
-  couplets: Couplet[];
+  couplets: CoupletType[];
   totalCouplets: number;
   outroStart: number;
   outroEnd: number;
 };
 
-export async function processPoemDocumentv2(path: string): Promise<PoemData> {
+export type PoemDataSingleObjType = {
+  data: PoemDataType,
+};
+
+export async function processPoemDocumentv2(path: string): Promise<PoemDataType> {
   const data = await fetch(staticFile(path));
   const inputText = await data.text();
 
@@ -63,7 +67,7 @@ export async function processPoemDocumentv2(path: string): Promise<PoemData> {
 
   // Processing couplets
   const coupletMatches = inputText.split('#v').slice(1);
-  const couplets: Couplet[] = coupletMatches.map((coupletMatch, index) => {
+  const couplets: CoupletType[] = coupletMatches.map((coupletMatch, index) => {
     const lines = coupletMatch.trim().split('\n').map(line => line.trim());
     const persian1 = lines[1];
     const persian2 = lines[2];
@@ -84,7 +88,7 @@ export async function processPoemDocumentv2(path: string): Promise<PoemData> {
   });
 
   // Constructing the final poem data
-  const poemData: PoemData = {
+  const poemData: PoemDataType = {
     bookName,
     poemName,
     poemType,

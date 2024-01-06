@@ -8,7 +8,7 @@ import React from 'react';
 import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from 'remotion';
 import { z } from 'zod';
 import { Audiograms } from './Audiograms';
-import { Couplet } from './Couplet';
+import { CoupletType } from './Couplet';
 import { ChannelInro } from "./ChannelIntro";
 import { Intro } from "./Intro";
 import { globalSettings } from "../global-settings";

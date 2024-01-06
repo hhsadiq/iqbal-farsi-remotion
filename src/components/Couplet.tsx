@@ -1,13 +1,12 @@
 import React from 'react';
 import { z } from 'zod';
-import { coupletSchema, poemDataSchema } from './Composition';
 import { staticFile, useCurrentFrame } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
-
+import { CoupletType, PoemDataSingleObjType } from '../utils/process-inputv2';
 
 type coupletCompSchema = {
-  couplet: z.infer<typeof coupletSchema>;
-  data: z.infer<typeof poemDataSchema>;
+  couplet: CoupletType;
+  data: PoemDataSingleObjType;
   fps: number;
 };
 

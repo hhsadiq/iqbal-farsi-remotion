@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Composition } from 'remotion';
-import { MyComposition, myCompSchema } from './components/Composition';
+import { MyComposition } from './components/Composition';
 import './style.css';
-import { z } from 'zod';
 import { globalSettings } from './global-settings';
-import { processPoemDocumentv2 } from './utils/process-inputv2';
+import { PoemDataType, processPoemDocumentv2 } from './utils/process-inputv2';
 
-// Infer the type for the poem data from the schema
-type PoemDataType = z.infer<typeof myCompSchema>['data'];
 export const RemotionRoot: React.FC = () => {
-	// Initialize state with the inferred type
 	const [data, setData] = useState<PoemDataType | null>(null);
 
 	useEffect(() => {

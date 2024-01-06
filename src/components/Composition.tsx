@@ -5,41 +5,16 @@ import {
 import { fade } from "@remotion/transitions/fade";
 import React from 'react';
 import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from 'remotion';
-import { z } from 'zod';
 import { Audiograms } from './Audiograms';
 import { Couplet } from './Couplet';
 import { ChannelInro } from "./ChannelIntro";
 import { Intro } from "./Intro";
 import { globalSettings } from "../global-settings";
-
-export const coupletSchema = z.object({
-	number: z.number(),
-	coupletStartTime: z.number(),
-	coupletEndTime: z.number(),
-	verseStartTime: z.number(),
-	verseEndTime: z.number(),
-	persian1: z.string(),
-	persian2: z.string(),
-	urdu: z.string(),
-	english: z.string(),
-});
-
-export const poemDataSchema =
-	z.object({
-		bookName: z.string(),
-		poemName: z.string(),
-		poemType: z.string(),
-		totalCouplets: z.number(),
-		couplets: z.array(coupletSchema),
-	});
-
-export const myCompSchema = z.object({
-	data: poemDataSchema,
-});
+import { PoemDataSingleObjType } from "../utils/process-inputv2";
 
 const fps = globalSettings.video.fps;
 
-export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
+export const MyComposition: React.FC<PoemDataSingleObjType> = ({
 	data
 }) => {
 
