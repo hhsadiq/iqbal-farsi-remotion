@@ -1,6 +1,5 @@
 import {
-	TransitionSeries,
-	springTiming,
+	TransitionSeries
 } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 import React from 'react';

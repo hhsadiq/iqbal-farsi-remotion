@@ -1,11 +1,11 @@
 import React from 'react';
 import { staticFile, useCurrentFrame } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
-import { CoupletType, PoemDataSingleObjType } from '../utils/process-inputv2';
+import { CoupletType, PoemDataType } from '../utils/process-inputv2';
 
 type coupletCompSchema = {
   couplet: CoupletType;
-  data: PoemDataSingleObjType;
+  data: PoemDataType;
   fps: number;
 };
 
@@ -19,15 +19,15 @@ export const Couplet: React.FC<coupletCompSchema> = ({
   const frame = useCurrentFrame();
 
   // Adjust verse start and end frames relative to the start of the couplet
-  const verseStartFrame = (couplet.verseStartTime - couplet.coupletStartTime) * fps;
-  const verseEndFrame = (couplet.verseEndTime - couplet.coupletStartTime) * fps;
+  const verseRelativeStartFrame = (couplet.verseStartTime - couplet.coupletStartTime) * fps;
+  const verseRelativeEndFrame = (couplet.verseEndTime - couplet.coupletStartTime) * fps;
 
   // Start typewriter effect for persian1 after midTimeFrame
-  const charsShownPersian1 = frame > verseStartFrame ? Math.floor((frame - verseStartFrame) / 3) : 0;
+  const charsShownPersian1 = frame > verseRelativeStartFrame ? Math.floor((frame - verseRelativeStartFrame) / 3) : 0;
   const textToShowPersian1 = couplet.persian1.slice(0, charsShownPersian1);
 
   // Start typewriter effect for persian2 after midTimeFrame
-  const charsShownPersian2 = frame > verseEndFrame ? Math.floor((frame - verseEndFrame) / 3) : 0;
+  const charsShownPersian2 = frame > verseRelativeEndFrame ? Math.floor((frame - verseRelativeEndFrame) / 3) : 0;
   const textToShowPersian2 = couplet.persian2.slice(0, charsShownPersian2);
 
 
@@ -36,9 +36,9 @@ export const Couplet: React.FC<coupletCompSchema> = ({
   const isSecondVerseComplete = charsShownPersian2 >= couplet.persian2.length;
 
   // Determine cursor state
-  const isBeforeFirstVerse = frame < verseStartFrame;
+  const isBeforeFirstVerse = frame < verseRelativeStartFrame;
   
-  const isTypingSecondVerse = frame > verseEndFrame && !isSecondVerseComplete;
+  const isTypingSecondVerse = frame > verseRelativeEndFrame && !isSecondVerseComplete;
 
   return (
     <div className="flex flex-col w-full h-full bg-white">
