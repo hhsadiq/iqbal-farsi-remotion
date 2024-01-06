@@ -28,32 +28,29 @@ export const MyComposition: React.FC<PoemDataSingleObjType> = ({
 
 	let firstCoupletStartFrame = Math.ceil(((time) * fps));
 
-	const transitionSpringTime = springTiming({
-		config: {
-			damping: 10,
-			stiffness: 20,
-		}
-	});
 
-	const transitionTimings = transitionSpringTime.getDurationInFrames({ fps });
+	const springTransition = globalSettings.video.springTransition
+	const transitionDurationFrames = globalSettings.video.transitionDurationFrames;
+
+	const outroDurationFrames = (data.outroEnd - data.outroStart) * fps + transitionDurationFrames;
 
 	return (
 		<AbsoluteFill className="bg-gray-100 flex flex-col items-center justify-center">
 			<Audio src={staticFile(audioPath)} placeholder='persian-recitation' />
 			<TransitionSeries>
 				<TransitionSeries.Sequence
-					durationInFrames={firstCoupletStartFrame + transitionTimings}
+					durationInFrames={firstCoupletStartFrame + transitionDurationFrames}
 					layout="none"
 					key={200}
 				>
 					<Intro data={data} />
 				</TransitionSeries.Sequence>
 				<TransitionSeries.Transition
-					timing={transitionSpringTime}
+					timing={springTransition}
 					presentation={fade()}
 				/>
 				{data.couplets.map((couplet, i) => {
-					const durationInFrames = Math.ceil((couplet.coupletEndTime - couplet.coupletStartTime) * fps) + transitionTimings;
+					const durationInFrames = Math.ceil((couplet.coupletEndTime - couplet.coupletStartTime) * fps) + transitionDurationFrames;
 					return (
 						<React.Fragment key={i}>
 							<TransitionSeries.Sequence
@@ -64,7 +61,7 @@ export const MyComposition: React.FC<PoemDataSingleObjType> = ({
 								<Couplet couplet={couplet} data={data} fps={fps} />
 							</TransitionSeries.Sequence>
 							<TransitionSeries.Transition
-								timing={transitionSpringTime}
+								timing={springTransition}
 								presentation={fade()}
 								key={i + 2}
 							/>
@@ -73,14 +70,14 @@ export const MyComposition: React.FC<PoemDataSingleObjType> = ({
 				})}
 
 				<TransitionSeries.Sequence
-					durationInFrames={globalSettings.outroDurationFPS + transitionTimings}
+					durationInFrames={outroDurationFrames}
 					layout="none"
 					key={343}
 				>
 					<ChannelInro />
 				</TransitionSeries.Sequence>
 				<TransitionSeries.Transition
-					timing={transitionSpringTime}
+					timing={springTransition}
 					presentation={fade()}
 				/>
 

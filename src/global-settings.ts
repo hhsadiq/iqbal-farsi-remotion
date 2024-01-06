@@ -1,10 +1,25 @@
+import { springTiming } from "@remotion/transitions";
+
 const poemBasePath = 'poems/zabur/hissa-e-awal/6 - man agarche tera khakam/';
+
+const transitionSpringTime = springTiming({
+  config: {
+    damping: 10,
+    stiffness: 20,
+  }
+});
+
+const fps = 30;
+
+const transitionDurationFrames = transitionSpringTime.getDurationInFrames({ fps });
 
 export const globalSettings = {
   video: {
     width: 720,
     height: 1280,
-    fps: 30,  
+    fps: fps,
+    springTransition: transitionSpringTime,
+    transitionDurationFrames: transitionDurationFrames
   },
   introDurationFPS: 200,
   outroDurationFPS: 250,

@@ -23,8 +23,7 @@ export const RemotionRoot: React.FC = () => {
 
 	const fps = globalSettings.video.fps;
 	// Calculate the total duration based on the last couplet's start time
-	const lastCouplet = data.couplets[data.couplets.length - 1];
-	const totalDurationInFrames = Math.ceil(lastCouplet.coupletEndTime * fps) + globalSettings.outroDurationFPS;
+	const totalDurationInFrames = Math.ceil(data.outroEnd * fps);
 
 
 	return (
