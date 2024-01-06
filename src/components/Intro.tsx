@@ -1,14 +1,8 @@
 import React from 'react';
 import { staticFile } from 'remotion';
-import { poemDataSchema } from './Composition';
-import { z } from 'zod';
+import { PoemDataSingleObjType } from '../utils/process-inputv2';
 
-type introCompSchema = {
-  data: z.infer<typeof poemDataSchema>;
-};
-
-
-export const Intro: React.FC<introCompSchema> = ({
+export const Intro: React.FC<PoemDataSingleObjType> = ({
   data,
 }) => {
 

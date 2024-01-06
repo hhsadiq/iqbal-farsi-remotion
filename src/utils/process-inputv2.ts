@@ -69,10 +69,10 @@ export async function processPoemDocumentv2(path: string): Promise<PoemDataType>
   const coupletMatches = inputText.split('#v').slice(1);
   const couplets: CoupletType[] = coupletMatches.map((coupletMatch, index) => {
     const lines = coupletMatch.trim().split('\n').map(line => line.trim());
-    const persian1 = lines[1];
-    const persian2 = lines[2];
-    const urdu = lines[3];
-    const english = lines[4];
+    const persian1 = lines[0];
+    const persian2 = lines[1];
+    const urdu = lines[2];
+    const english = lines[3];
 
     return {
       number: index + 1,
