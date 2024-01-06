@@ -19,13 +19,12 @@ export const Couplet: React.FC<coupletCompSchema> = ({
   fps,
 }) => {
   const frame = useCurrentFrame();
-  const coupletStartFrame = couplet.coupletStartTime * fps;
 
   // Adjust verse start and end frames relative to the start of the couplet
-  const verseStartFrame = (couplet.verseStartTime * fps) - coupletStartFrame;
-  const verseEndFrame = (couplet.verseEndTime * fps) - coupletStartFrame;
+  const verseStartFrame = (couplet.verseStartTime - couplet.coupletStartTime) * fps;
+  const verseEndFrame = (couplet.verseEndTime - couplet.coupletStartTime) * fps;
 
-  // Start typewriter effect for persian2 after midTimeFrame
+  // Start typewriter effect for persian1 after midTimeFrame
   const charsShownPersian1 = frame > verseStartFrame ? Math.floor((frame - verseStartFrame) / 3) : 0;
   const textToShowPersian1 = couplet.persian1.slice(0, charsShownPersian1);
 

@@ -1,7 +1,7 @@
 import { staticFile } from 'remotion';
 import { globalSettings } from '../global-settings';
 
-export async function processPoemDocument(path: string) {
+export async function processPoemDocument2(path: string) {
   const data = await fetch(staticFile(path));
   const inputText = await data.text();
 

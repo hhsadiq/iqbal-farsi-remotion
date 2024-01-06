@@ -1,5 +1,6 @@
 import {
 	TransitionSeries,
+	linearTiming,
 	springTiming,
 } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
@@ -39,9 +40,11 @@ export const myCompSchema = z.object({
 
 const fps = globalSettings.video.fps;
 
-export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
+export const MyCompositionv2: React.FC<z.infer<typeof myCompSchema>> = ({
 	data
 }) => {
+
+	const introDurationFPS = globalSettings.introDurationFPS;
 
 	const audioPath = globalSettings.poem.audioFile;
 	const { durationInFrames } = useVideoConfig();
@@ -51,7 +54,7 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 		time = data.couplets[0].coupletStartTime;
 	}
 
-	let firstCoupletStartFrame = Math.ceil(((time) * fps));
+	let firstCoupletStartTime = Math.ceil(((time) * fps) + introDurationFPS);
 
 	const transitionSpringTime = springTiming({
 		config: {
@@ -67,18 +70,19 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 			<Audio src={staticFile(audioPath)} placeholder='persian-recitation' />
 			<TransitionSeries>
 				<TransitionSeries.Sequence
-					durationInFrames={firstCoupletStartFrame + transitionTimings}
+					durationInFrames={introDurationFPS}
 					layout="none"
 					key={200}
 				>
 					<Intro data={data} />
 				</TransitionSeries.Sequence>
 				<TransitionSeries.Transition
-					timing={transitionSpringTime}
+					timing={linearTiming({ durationInFrames: 100 })}
 					presentation={fade()}
 				/>
 				{data.couplets.map((couplet, i) => {
 					const durationInFrames = Math.ceil((couplet.coupletEndTime - couplet.coupletStartTime) * fps) + transitionTimings;
+					firstCoupletStartTime = i == 0 ? firstCoupletStartTime : 0;
 					return (
 						<React.Fragment key={i}>
 							<TransitionSeries.Sequence
@@ -98,14 +102,14 @@ export const MyComposition: React.FC<z.infer<typeof myCompSchema>> = ({
 				})}
 
 				<TransitionSeries.Sequence
-					durationInFrames={data. + transitionTimings}
+					durationInFrames={600}
 					layout="none"
 					key={343}
 				>
 					<ChannelInro />
 				</TransitionSeries.Sequence>
 				<TransitionSeries.Transition
-					timing={transitionSpringTime}
+					timing={linearTiming({ durationInFrames: 100 })}
 					presentation={fade()}
 				/>
 
