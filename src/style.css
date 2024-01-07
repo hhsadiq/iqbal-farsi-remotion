@@ -92,7 +92,7 @@
   margin-right: 16px;
   margin-bottom: -16px;
   position: relative; /* Needed for positioning pseudo-elements */
-  animation: blink 1s step-end infinite;
+  animation: blink 1s step-end 1;
 }
 
 .typing-cursor-static {
