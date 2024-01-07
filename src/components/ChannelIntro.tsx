@@ -16,7 +16,7 @@ export const ChannelInro: React.FC<{}> = () => {
         </div>
       </div>
       {/* Row 2 */}
-      <div className="flex items-top justify-center w-full px-20 rtl -mt-8 pt-16 urdu">
+      <div className="flex items-top justify-center w-full px-20 rtl -mt-8 pt-16 urdu-jameel">
         <p className="text-center text-[48px]">
           آئیے اقبال کا ایک فارسی شعر روزانہ سیکھیں
         </p>

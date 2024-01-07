@@ -26,13 +26,13 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
       </div>
       {/* Row 4 */}
       <div className="flex items-top justify-center w-full px-16 -mt-8 pt-16 urdu">
-        <p className="text-center text-[40px]">
-          بحوالہ: {data.bookName}
+        <p className="text-center">
+          بحوالہ:&nbsp;&nbsp; {data.bookName}
         </p>
       </div>
       {/* Row 5 */}
       <div className="flex items-top justify-center w-full px-16 -mt-8 pt-12 urdu">
-        <p className="text-center text-[40px]">
+        <p className="text-center">
           صدا: حسان لاھوری
         </p>
       </div>

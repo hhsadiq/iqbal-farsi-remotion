@@ -56,13 +56,22 @@
 }
 
 
-.urdu {
+.urdu-jameel {
   line-height: 4.5rem;
  /* Adjust this value as needed */
   letter-spacing: 0.045em;
   direction: rtl;
   font-family: 'Jameel Noori Nastaleeq', 'sans-serif';
-  font-size: 36px;
+  font-size: 28px;
+}
+
+.urdu {
+  line-height: 4.5rem;
+ /* Adjust this value as needed */
+  letter-spacing: 0.045em;
+  direction: rtl;
+  font-family: 'Noto Nastaliq Urdu', 'sans-serif';
+  font-size: 28px;
 }
 
 .persian {
@@ -120,4 +129,13 @@
 
 .typing-cursor::after {
   bottom: -2px; /* Positioning the bottom line */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.2s ease-in;
 }

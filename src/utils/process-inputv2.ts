@@ -42,8 +42,6 @@ export async function processPoemDocumentv2(): Promise<PoemDataType> {
     const markersData = await fetch(staticFile(globalSettings.poem.markersFile));
     const markersText = await markersData.text();
 
-    console.log(markersText);
-
     const markers: Marker[] = markersText.trim().split('\n').slice(1).map(line => {
       const separator = line.includes('\t') ? '\t' : ',';
       const [marker, start, , timeFormat] = line.split(separator);
