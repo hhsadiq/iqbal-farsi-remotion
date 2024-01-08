@@ -139,3 +139,7 @@
 .fade-in {
   animation: fadeIn 0.2s ease-in;
 }
+
+.hidden-text {
+  opacity: 0;
+}

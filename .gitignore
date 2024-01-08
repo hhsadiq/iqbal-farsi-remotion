@@ -6,3 +6,7 @@ dist
 # Ignore the output video from Git but not videos you import into src/.
 out
 public/poems
+*.mp4
+*.m4a
+*.mp3
+*.wav
