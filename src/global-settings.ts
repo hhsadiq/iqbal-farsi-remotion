@@ -24,6 +24,11 @@ export const globalSettings = {
   },
   introDurationFPS: 200,
   outroDurationFPS: 250,
+  logo: {
+    videoComplete: 'videos/full-logo-with-intro.mp4',
+    videoTrimmed: 'videos/logo.mp4',
+    img: 'img/logo.png',
+  },
   poem: {
     audioFile: poemBasePath + 'audio.wav',
     textFile: poemBasePath + 'poem.txt',

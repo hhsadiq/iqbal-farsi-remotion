@@ -23,7 +23,7 @@ export const Audiograms: React.FC<audiogramSchema> = ({
     fps,
     frame: currentFrame, // Assuming you want to visualize the entire duration
     audioData,
-    numberOfSamples: 256, // Use a power of two here
+    numberOfSamples: 512, // Use a power of two here
   });
 
 
@@ -41,8 +41,8 @@ export const Audiograms: React.FC<audiogramSchema> = ({
   return (
     <div className="absolute -bottom-8 index w-full h-[400px] flex flex-row items-center justify-center ml-16 pr-16">
       {transformedVisualization.map((v, i) => {
-        let barHeight = Math.max(10, v * 120000); // Height calculation
-        barHeight = Math.min(barHeight, 400);
+        let barHeight = Math.max(4, v * 50000); // Height calculation
+        barHeight = Math.min(barHeight, 300);
 
         return (
           <div

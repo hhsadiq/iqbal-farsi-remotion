@@ -1,6 +1,7 @@
 import React from 'react';
-import { staticFile } from 'remotion';
+import { OffthreadVideo, staticFile } from 'remotion';
 import { PoemDataSingleObjType } from '../utils/process-inputv2';
+import { globalSettings } from '../global-settings';
 
 export const Intro: React.FC<PoemDataSingleObjType> = ({
   data,
@@ -8,14 +9,14 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
 
   if (!data) {
     return <div>Error or no data available.</div>;
-	}
+  }
 
   return (
     <div className="flex flex-col w-full h-full bg-white">
       {/* Row 1 with two columns */}
       <div className="flex items-center justify-center w-full pt-12">
-        <div className="w-[55%]">
-          <img alt="Rectangle" src={staticFile('img/logo.png')} />
+        <div className="w-full">
+          <OffthreadVideo muted src={staticFile(globalSettings.logo.videoComplete)} />
         </div>
       </div>
       {/* Row 2 */}

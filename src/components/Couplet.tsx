@@ -1,5 +1,5 @@
 import React from 'react';
-import { staticFile, useCurrentFrame } from 'remotion';
+import { Img, staticFile, useCurrentFrame } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
 import { CoupletType } from '../utils/process-inputv2';
 
@@ -44,7 +44,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({
       <div className="flex items-center justify-center w-full pt-4">
         {/* Right Column 40% */}
         <div className="w-[35%]">
-          <img alt="Rectangle" src={staticFile('img/logo.png')} />
+          <Img src={staticFile('img/logo.png')} placeholder={'logo'}/>
         </div>
       </div>
       {/* Row 2 */}
