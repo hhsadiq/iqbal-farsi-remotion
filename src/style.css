@@ -88,11 +88,6 @@
   font-family: 'Noto Nastaliq Urdu', 'sans-serif';
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
 .typing-cursor {
   display: inline-block;
   width: 4px;
@@ -100,8 +95,6 @@
   background-color: rgba(220, 38, 38, var(--tw-text-opacity));
   margin-right: 16px;
   margin-bottom: -16px;
-  position: relative; /* Needed for positioning pseudo-elements */
-  animation: blink 1s step-end 1;
 }
 
 .typing-cursor-static {
@@ -111,35 +104,4 @@
   margin-right: 16px;
   margin-bottom: -16px;
   background-color: rgba(220, 38, 38, var(--tw-text-opacity));
-}
-
-.typing-cursor::before,
-.typing-cursor::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 2px; /* Height of the top and bottom lines */
-  background-color: rgba(220, 38, 38, var(--tw-text-opacity));
-}
-
-.typing-cursor::before {
-  top: -2px; /* Positioning the top line */
-}
-
-.typing-cursor::after {
-  bottom: -2px; /* Positioning the bottom line */
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.fade-in {
-  animation: fadeIn 0.2s ease-in;
-}
-
-.hidden-text {
-  opacity: 0;
 }

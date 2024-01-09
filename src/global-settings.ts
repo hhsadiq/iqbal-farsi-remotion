@@ -40,6 +40,7 @@ export const globalSettings = {
     img: 'img/logo.png',
   },
   poem: {
+    cursorBlinkCycleFrames: 30,
     audioFile: poemBasePath + 'audio.wav',
     textFile: poemBasePath + 'poem.txt',
     markersFile: poemBasePath + 'markers.csv',
