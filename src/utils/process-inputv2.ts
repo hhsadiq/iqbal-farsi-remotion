@@ -79,10 +79,10 @@ export async function processPoemDocumentv2(): Promise<PoemDataType> {
 
       return {
         number: index + 1,
-        coupletStartTime: markerTimes[`${index + 1}s`],
-        coupletEndTime: markerTimes[`${index + 2}s`] || markerTimes['es'], // Use next couplet's start time or end slide start time
-        verseStartTime: markerTimes[`${index + 1}v`],
-        verseEndTime: markerTimes[`${index + 1}m`],
+        coupletStartTime: markerTimes[`${index + 1}a`],
+        coupletEndTime: markerTimes[`${index + 2}a`] || markerTimes['ea'], // Use next couplet's start time or end slide start time
+        verseStartTime: markerTimes[`${index + 1}b`],
+        verseEndTime: markerTimes[`${index + 1}c`],
         persian1,
         persian2,
         urdu,
@@ -97,8 +97,8 @@ export async function processPoemDocumentv2(): Promise<PoemDataType> {
       poemType,
       couplets,
       totalCouplets: couplets.length,
-      outroStart: markerTimes['es'],
-      outroEnd: markerTimes['e']
+      outroStart: markerTimes['ea'],
+      outroEnd: markerTimes['eb']
     };
 
     return poemData;
