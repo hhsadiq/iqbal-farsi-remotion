@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Img, staticFile, useCurrentFrame } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
 import { CoupletType } from '../utils/process-inputv2';
@@ -38,13 +38,25 @@ export const Couplet: React.FC<coupletCompSchema> = ({
 
   const isTypingSecondVerse = frame > verseRelativeEndFrame && !isSecondVerseComplete;
 
+  const [showTanslation, setShowTanslation] = useState(false);
+
+  useEffect(() => {
+    if (isSecondVerseComplete) {
+      setTimeout(() => {
+        setShowTanslation(true);
+      }, 300);
+    } else {
+      setShowTanslation(false);
+    }
+  }, [isSecondVerseComplete]);
+
   return (
     <div className="flex flex-col w-full h-full bg-white">
       {/* Row 1 with two columns */}
       <div className="flex items-center justify-center w-full pt-4">
         {/* Right Column 40% */}
         <div className="w-[35%]">
-          <Img src={staticFile('img/logo.png')} placeholder={'logo'}/>
+          <Img src={staticFile('img/logo.png')} placeholder={'logo'} />
         </div>
       </div>
       {/* Row 2 */}
@@ -59,13 +71,13 @@ export const Couplet: React.FC<coupletCompSchema> = ({
         </p>
       </div>
       {/* Row 3 */}
-      <div className="flex items-top justify-center w-full px-16 rtl -mt-8 pt-20 urdu">
+      <div className={`flex items-top justify-center w-full px-16 rtl -mt-8 pt-20 urdu transition-all duration-[2000ms] ${showTanslation ? 'opacity-100' : 'opacity-0'}`}>
         <p className="text-center">
           {couplet.urdu}
         </p>
       </div>
       {/* Row 4 */}
-      <div className="flex items-top justify-center w-full px-16 pt-12">
+      <div className={`flex items-top justify-center w-full px-16 pt-12 transition-all duration-[2000ms] ${showTanslation ? 'opacity-100' : 'opacity-0'}`}>
         <p className="text-[30px] text-center leading-relaxed"
           style={{
             fontFamily,
