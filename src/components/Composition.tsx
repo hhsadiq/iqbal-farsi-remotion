@@ -41,14 +41,14 @@ export const MyComposition: React.FC<PoemDataSingleObjType> = ({
 			<Audio src={staticFile(audioPath)} placeholder='persian-recitation' />
 			<TransitionSeries>
 				<TransitionSeries.Sequence
-					durationInFrames={firstCoupletStartFrame + transitionDurationFrames}
+					durationInFrames={firstCoupletStartFrame + globalSettings.video.transitionDurationFramesFirst}
 					layout="none"
 					key={200}
 				>
 					<Intro data={data} />
 				</TransitionSeries.Sequence>
 				<TransitionSeries.Transition
-					timing={springTransition}
+					timing={globalSettings.video.springTransitionFirst}
 					presentation={fade()}
 				/>
 				{data.couplets.map((couplet, i) => {

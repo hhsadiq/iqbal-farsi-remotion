@@ -2,6 +2,7 @@ import { springTiming } from "@remotion/transitions";
 
 // const poemBasePath = 'poems/zabur/hissa-e-awal/6 - man agarche tera khakam/';
 const poemBasePath = 'poems/payam-e-mashriq/lala-e-toor/rubai-1/';
+const fps = 30;
 
 const transitionSpringTime = springTiming({
   config: {
@@ -9,10 +10,17 @@ const transitionSpringTime = springTiming({
     stiffness: 20,
   }
 });
-
-const fps = 30;
-
 const transitionDurationFrames = transitionSpringTime.getDurationInFrames({ fps });
+
+const transitionSpringTimeFirst = springTiming({
+  config: {
+    damping: 40,
+    stiffness: 5,
+  }
+});
+
+const transitionDurationFramesFirst = transitionSpringTimeFirst.getDurationInFrames({ fps });
+
 
 export const globalSettings = {
   video: {
@@ -20,7 +28,9 @@ export const globalSettings = {
     height: 1280,
     fps: fps,
     springTransition: transitionSpringTime,
-    transitionDurationFrames: transitionDurationFrames
+    transitionDurationFrames: transitionDurationFrames,
+    springTransitionFirst: transitionSpringTimeFirst,
+    transitionDurationFramesFirst: transitionDurationFramesFirst
   },
   introDurationFPS: 200,
   outroDurationFPS: 250,
