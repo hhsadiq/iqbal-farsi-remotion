@@ -19,9 +19,9 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
   const verseRelativeEndFrame = (couplet.verseEndTime - couplet.coupletStartTime) * fps;
 
   // Typewriter effect for Persian verses
-  const charsShownPersian1 = frame > verseRelativeStartFrame ? Math.floor((frame - verseRelativeStartFrame) / 3) : 0;
+  const charsShownPersian1 = frame > verseRelativeStartFrame ? Math.floor((frame - verseRelativeStartFrame) / 6) : 0;
   const textToShowPersian1 = couplet.persian1.slice(0, charsShownPersian1);
-  const charsShownPersian2 = frame > verseRelativeEndFrame ? Math.floor((frame - verseRelativeEndFrame) / 3) : 0;
+  const charsShownPersian2 = frame > verseRelativeEndFrame ? Math.floor((frame - verseRelativeEndFrame) / 6) : 0;
   const textToShowPersian2 = couplet.persian2.slice(0, charsShownPersian2);
 
   // Determine if the verse is completely typed
@@ -56,7 +56,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
   // Create a spring animation value for translation reveal
 
   const { fps: fpsV } = useVideoConfig();
-  const fadeStartFrame = verseRelativeEndFrame + couplet.persian2.length * 3;
+  const fadeStartFrame = verseRelativeEndFrame + couplet.persian2.length * 7;
   const driver = spring({
     frame: frame - fadeStartFrame, // Delaying the start of the spring
     fps: fpsV,

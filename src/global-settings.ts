@@ -2,7 +2,7 @@ import { springTiming } from "@remotion/transitions";
 
 // const poemBasePath = 'poems/zabur/hissa-e-awal/6 - man agarche tera khakam/';
 const poemBasePath = 'poems/payam-e-mashriq/lala-e-toor/rubai-1/';
-const fps = 30;
+const fps = 60;
 
 const transitionSpringTime = springTiming({
   config: {
@@ -40,7 +40,7 @@ export const globalSettings = {
     img: 'img/logo.png',
   },
   poem: {
-    cursorBlinkCycleFrames: 30,
+    cursorBlinkCycleFrames: fps,
     audioFile: poemBasePath + 'audio.wav',
     textFile: poemBasePath + 'poem.txt',
     markersFile: poemBasePath + 'markers.csv',
