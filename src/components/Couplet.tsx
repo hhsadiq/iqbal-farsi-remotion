@@ -1,5 +1,5 @@
 import React from 'react';
-import { Img, staticFile, useCurrentFrame } from 'remotion';
+import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
 import { CoupletType } from '../utils/process-inputv2';
 import { globalSettings } from '../global-settings';
@@ -53,11 +53,22 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
     }
   }
 
-  // Translation Reveal
-  const translationDelayFrames = 300 / (1000 / fps); // Calculate delay in terms of frames
-  const translationStartFrame = isSecondVerseComplete ? (verseRelativeEndFrame + couplet.persian2.length * 3 + translationDelayFrames) : Infinity;
-  const translationOpacity = frame >= translationStartFrame ? 1 : 0;
-  
+  // Create a spring animation value for translation reveal
+
+  const { fps: fpsV } = useVideoConfig();
+  const fadeStartFrame = verseRelativeEndFrame + couplet.persian2.length * 3;
+  const driver = spring({
+    frame: frame - fadeStartFrame, // Delaying the start of the spring
+    fps: fpsV,
+    config: {
+      damping: 10,
+      stiffness: 5,
+    },
+  });
+
+  // Calculate the current opacity using interpolate
+  const translationOpacity = interpolate(driver, [0, 1], [0, 1]);
+
   return (
     <div className="flex flex-col w-full h-full bg-white">
       {/* Row 1 with two columns */}
@@ -91,8 +102,8 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
 
       {/* Row 3: Urdu Translation */}
       <div
-        className="flex items-top justify-center w-full px-16 rtl -mt-8 pt-20 urdu"
-        style={{ opacity: translationOpacity, transition: 'opacity 2000ms' }}
+        className="flex items-top justify-center w-full px-20 rtl -mt-8 pt-16 urdu"
+        style={{ opacity: translationOpacity }}
       >
         <p className="text-center">
           {couplet.urdu}
@@ -101,8 +112,8 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
 
       {/* Row 4: English Translation */}
       <div
-        className="flex items-top justify-center w-full px-16 pt-12"
-        style={{ opacity: translationOpacity, transition: 'opacity 2000ms', fontFamily }}
+        className="flex items-top justify-center w-full px-20 pt-12"
+        style={{ opacity: translationOpacity, fontFamily }}
       >
         <p className="text-[30px] text-center leading-relaxed">
           {couplet.english}
