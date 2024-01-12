@@ -105,3 +105,8 @@
   margin-bottom: -16px;
   background-color: rgba(220, 38, 38, var(--tw-text-opacity));
 }
+
+.text-stroke {
+  -webkit-text-stroke: 1.5px black; /* For WebKit browsers */
+  text-stroke: 1.5px black; /* Standard syntax; currently only supported in Chrome */
+}

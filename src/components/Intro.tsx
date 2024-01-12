@@ -15,7 +15,7 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
     <div className="flex flex-col w-full h-full bg-white">
       {/* Row 1 with two columns */}
       <div className="flex items-center justify-center w-full pt-12">
-        <div className="w-full">
+        <div className="w-full h-full">
           <OffthreadVideo muted src={staticFile(globalSettings.logo.videoComplete)} />
         </div>
       </div>
@@ -35,6 +35,16 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
       <div className="flex items-top justify-center w-full px-16 -mt-8 pt-12 urdu">
         <p className="text-center">
           صدا: حسان لاھوری
+        </p>
+      </div>
+
+      {/* Horizontal Line */}
+      <div className="w-[60%] border-t border-black mt-24 mb-4 mx-auto"></div>
+
+      {/* Row 6 */}
+      <div className="flex items-top justify-center w-full px-16 urdu">
+        <p className="text-center font-bold text-black text-stroke">
+          فارسی کلامِ اقبال - اردو / Eng
         </p>
       </div>
     </div>
