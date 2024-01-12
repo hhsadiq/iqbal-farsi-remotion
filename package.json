@@ -7,6 +7,7 @@
   ],
   "scripts": {
     "start": "remotion studio",
+    "build with thumb": "remotion render MyComp out/video.mp4 && ffmpeg -i out/video.mp4 -vf \"select=eq(n\\,135)\" -vframes 1 thumbnail.png",
     "build": "remotion render MyComp out/video.mp4",
     "upgrade": "remotion upgrade",
     "test": "eslint src --ext ts,tsx,js,jsx && tsc"
