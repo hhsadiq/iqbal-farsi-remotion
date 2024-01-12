@@ -4,8 +4,37 @@
 
 
 @font-face {
-  font-family: 'Jameel Noori Nastaleeq';
+  font-family: 'Noto Sans Old Persian';
+  src: url('../public/fonts/NotoSansOldPersian-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Iran Nastaleeq';
+  src: url('../public/fonts/IranNastaliqRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jameel Noori Nastaleeq Regular';
   src: url('../public/fonts/JameelNooriNastaleeqRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jameel Noori Nastaleeq';
+  src: url('../public/fonts/JameelNooriNastaleeq.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jameel Noori Nastaleeq Kasheeda';
+  src: url('../public/fonts/JameelNooriNastaleeqKasheeda.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -45,53 +74,57 @@
   font-weight: 100 900;
 }
 
-.rtl {
-  direction: rtl;
-}
-
-.urdu-small {
-  letter-spacing: 0.025em;
-  direction: rtl;
-  font-family: 'Jameel Noori Nastaleeq', 'sans-serif';
-}
-
-
-.urdu-jameel {
-  line-height: 4.5rem;
- /* Adjust this value as needed */
-  letter-spacing: 0.045em;
-  direction: rtl;
-  font-family: 'Jameel Noori Nastaleeq', 'sans-serif';
-  font-size: 28px;
-}
-
 .urdu {
-  line-height: 4.5rem;
+  line-height: 6.5rem;
  /* Adjust this value as needed */
-  letter-spacing: 0.045em;
+  letter-spacing: 0.06em;
   direction: rtl;
-  font-family: 'Noto Nastaliq Urdu', 'sans-serif';
-  font-size: 28px;
+  font-family: 'Jameel Noori Nastaleeq', 'sans-serif';
 }
 
 .persian {
-  line-height: 6rem;
+  line-height: 8rem;
   /* Adjust this value as needed */
   letter-spacing: 0.03em;
   direction: rtl;
   font-family: 'Noto Nastaliq Urdu', 'sans-serif';
-  font-size: 40px;
 }
 
-.persian-small {
-  direction: rtl;
-  font-family: 'Noto Nastaliq Urdu', 'sans-serif';
+
+.persian-intro {
+  font-size: 64px;
 }
+
+.urdu-intro {
+  font-size: 56px;
+}
+
+.persian-couplet {
+  font-size: 56px;
+}
+
+.english-couplet {
+  font-size: 44px;
+}
+
+.urdu-couplet {
+  font-size: 56px; 
+}
+
+.urdu-outro {
+  font-size: 72px;
+}
+
+
+.english-outro {
+  font-size: 48px;
+}
+
 
 .typing-cursor {
   display: inline-block;
-  width: 4px;
-  height: 64px;
+  width: 6px;
+  height: 96px;
   background-color: rgba(220, 38, 38, var(--tw-text-opacity));
   margin-right: 16px;
   margin-bottom: -16px;

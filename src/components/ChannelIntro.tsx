@@ -17,14 +17,14 @@ export const ChannelInro: React.FC<{}> = () => {
         </div>
       </div>
       {/* Row 2 */}
-      <div className="flex items-top justify-center w-full px-20 rtl -mt-8 pt-16 urdu-jameel">
-        <p className="text-center text-[48px]">
+      <div className="flex items-top justify-center w-full px-24 rtl -mt-8 pt-40 urdu urdu-outro">
+        <p className="text-center">
           آئیے اقبال کا ایک فارسی شعر روزانہ سیکھیں
         </p>
       </div>
       {/* Row 4 */}
-      <div className="flex items-top justify-center w-full px-24 pt-8">
-        <p className="text-[32px] text-center leading-relaxed"
+      <div className="flex items-top justify-center w-full px-32 pt-12">
+        <p className="english-outro text-center leading-relaxed"
           style={{
             fontFamily,
           }}
@@ -33,7 +33,7 @@ export const ChannelInro: React.FC<{}> = () => {
         </p>
       </div>
       {/* Row 5 */}
-      <div className="flex items-top justify-center w-full px-24 pt-16">
+      <div className="flex items-top justify-center w-full h-[50%] px-36 mt-[-256px]">
         <img alt="Rectangle" src={staticFile('img/channel-icons-and-names.svg')} />
       </div>
     </div>

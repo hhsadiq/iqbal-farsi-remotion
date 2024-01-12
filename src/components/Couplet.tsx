@@ -74,13 +74,13 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
       {/* Row 1 with two columns */}
       <div className="flex items-center justify-center w-full pt-4">
         {/* Right Column 40% */}
-        <div className="w-[35%]">
+        <div className="w-[40%]">
           <Img src={staticFile('img/logo.png')} placeholder={'logo'} />
         </div>
       </div>
 
       {/* Row 2: Verses with Cursor */}
-      <div className="flex items-top justify-center w-full px-8 persian h-1/6">
+      <div className="flex items-top justify-center w-full px-8 persian persian-couplet h-1/6">
         <p className="text-red-600 text-center">
           {textToShowPersian1}
           {(!isTypingSecondVerse && !isSecondVerseComplete) && (
@@ -102,7 +102,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
 
       {/* Row 3: Urdu Translation */}
       <div
-        className="flex items-top justify-center w-full px-20 rtl -mt-8 pt-16 urdu"
+        className="flex items-top justify-center w-full px-28 rtl urdu urdu-couplet"
         style={{ opacity: translationOpacity }}
       >
         <p className="text-center">
@@ -112,10 +112,10 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
 
       {/* Row 4: English Translation */}
       <div
-        className="flex items-top justify-center w-full px-20 pt-12"
+        className="flex items-top justify-center w-full px-28 pt-16"
         style={{ opacity: translationOpacity, fontFamily }}
       >
-        <p className="text-[30px] text-center leading-relaxed">
+        <p className="english-couplet text-center leading-relaxed">
           {couplet.english}
         </p>
       </div>

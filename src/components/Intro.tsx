@@ -20,31 +20,31 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
         </div>
       </div>
       {/* Row 2 */}
-      <div className="flex items-top justify-center w-full px-16 -mt-8 pt-16 persian">
+      <div className="flex items-top justify-center w-full px-24 -mt-8 pt-24 persian persian-intro">
         <p className="text-center text-red-600">
           {data.poemType}: {data.poemName}
         </p>
       </div>
       {/* Row 4 */}
-      <div className="flex items-top justify-center w-full px-16 -mt-8 pt-16 urdu">
-        <p className="text-center">
+      <div className="flex items-top justify-center w-full px-24 mt-48 persian">
+        <p className="text-center text-[45px] text-red-600">
           بحوالہ:&nbsp;&nbsp; {data.bookName}
         </p>
       </div>
-      {/* Row 5 */}
-      <div className="flex items-top justify-center w-full px-16 -mt-8 pt-12 urdu">
+      {/* Horizontal Line */}
+      <div className="w-[60%] border-t-2 border-red-600 my-8 mx-auto"></div>
+
+      {/* Row 6 */}
+      <div className="flex items-top justify-center w-full px-24 urdu urdu-intro">
         <p className="text-center">
-          صدا: حسان لاھوری
+          فارسی کلام اقبال - اردو / Eng
         </p>
       </div>
 
-      {/* Horizontal Line */}
-      <div className="w-[60%] border-t border-black mt-24 mb-4 mx-auto"></div>
-
-      {/* Row 6 */}
-      <div className="flex items-top justify-center w-full px-16 urdu">
-        <p className="text-center font-bold text-black text-stroke">
-          فارسی کلامِ اقبال - اردو / Eng
+      {/* Row 5 */}
+      <div className="flex items-top justify-center w-full px-24 pt-4 urdu urdu-intro">
+        <p className="text-center">
+          صدا: حسان لاھوری
         </p>
       </div>
     </div>
