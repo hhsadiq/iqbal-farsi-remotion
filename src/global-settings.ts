@@ -1,7 +1,10 @@
 import { springTiming } from "@remotion/transitions";
 
 // const poemBasePath = 'poems/zabur/hissa-e-awal/6 - man agarche tera khakam/';
-const poemBasePath = 'poems/payam-e-mashriq/lala-e-toor/rubai-1/';
+const poemBasePath = 'poems/payam-e-mashriq/lala-e-toor/rubai-2/';
+
+// const poemBasePath = 'poems/zabur/hissa-e-awal/0 - bikhawanda e kitab/';
+
 const fps = 60;
 
 const transitionSpringTime = springTiming({
