@@ -92,32 +92,36 @@
 
 
 .persian-intro {
-  font-size: 64px;
+  font-size: 60px;
 }
 
 .urdu-intro {
-  font-size: 56px;
+  font-size: 52px;
+}
+
+.persian-intro-ref {
+  font-size: 41px;
 }
 
 .persian-couplet {
-  font-size: 56px;
+  font-size: 52px;
 }
 
 .english-couplet {
-  font-size: 44px;
+  font-size: 42px;
 }
 
 .urdu-couplet {
-  font-size: 56px; 
+  font-size: 52px; 
 }
 
 .urdu-outro {
-  font-size: 72px;
+  font-size: 70px;
 }
 
 
 .english-outro {
-  font-size: 48px;
+  font-size: 46px;
 }
 
 

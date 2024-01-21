@@ -26,8 +26,8 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
         </p>
       </div>
       {/* Row 4 */}
-      <div className="flex items-top justify-center w-full px-24 mt-8 persian">
-        <p className="text-center text-[45px] text-red-600">
+      <div className="flex items-top justify-center w-full px-24 mt-8 persian persian-intro-ref">
+        <p className="text-center text-red-600">
           بحوالہ:&nbsp;&nbsp; {data.bookName}
         </p>
       </div>
