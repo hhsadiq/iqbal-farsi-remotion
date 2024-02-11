@@ -74,7 +74,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
       {/* Row 1 with two columns */}
       <div className="flex items-center justify-center w-full pt-4">
         {/* Right Column 40% */}
-        <div className="w-[28%]">
+        <div className="w-[30%]">
           <Img src={staticFile('img/logo.png')} placeholder={'logo'} />
         </div>
       </div>
@@ -103,7 +103,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
       {/* Row 3: Urdu Translation */}
       <div
         className="flex items-top justify-center w-full px-44 rtl urdu urdu-couplet"
-        style={{ opacity: translationOpacity }}
+        
       >
         <p className="text-center">
           {couplet.urdu}
@@ -113,7 +113,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
       {/* Row 4: English Translation */}
       <div
         className="flex items-top justify-center w-full px-44 pt-8"
-        style={{ opacity: translationOpacity, fontFamily }}
+        style={{ fontFamily }}
       >
         <p className="english-couplet text-center leading-relaxed">
           {couplet.english}

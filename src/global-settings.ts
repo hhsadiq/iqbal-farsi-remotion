@@ -1,7 +1,7 @@
 import { springTiming } from "@remotion/transitions";
 
 // const poemBasePath = 'poems/zabur/hissa-e-awal/6 - man agarche tera khakam/';
-const poemBasePath = 'poems/payam-e-mashriq/lala-e-toor/rubai-3/';
+const poemBasePath = 'poems/payam-e-mashriq/lala-e-toor/rubai-26/';
 
 // const poemBasePath = 'poems/zabur/hissa-e-awal/0 - bikhawanda e kitab/';
 

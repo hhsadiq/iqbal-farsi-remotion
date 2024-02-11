@@ -92,43 +92,43 @@
 
 
 .persian-intro {
-  font-size: 60px;
+  font-size: 54px;
 }
 
 .urdu-intro {
-  font-size: 52px;
+  font-size: 46px;
 }
 
 .persian-intro-ref {
-  font-size: 41px;
+  font-size: 35px;
 }
 
 .persian-couplet {
-  font-size: 52px;
+  font-size: 48px;
 }
 
 .english-couplet {
-  font-size: 42px;
+  font-size: 38px;
 }
 
 .urdu-couplet {
-  font-size: 52px; 
+  font-size: 48px; 
 }
 
 .urdu-outro {
-  font-size: 70px;
+  font-size: 64px;
 }
 
 
 .english-outro {
-  font-size: 46px;
+  font-size: 40px;
 }
 
 
 .typing-cursor {
   display: inline-block;
   width: 6px;
-  height: 96px;
+  height: 92px;
   background-color: rgba(220, 38, 38, var(--tw-text-opacity));
   margin-right: 16px;
   margin-bottom: -16px;
@@ -137,7 +137,7 @@
 .typing-cursor-static {
   @apply inline-block bg-black;
   width: 4px;
-  height: 64px;
+  height: 60px;
   margin-right: 16px;
   margin-bottom: -16px;
   background-color: rgba(220, 38, 38, var(--tw-text-opacity));
