@@ -2,36 +2,148 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+  font-family: 'Noto Sans Old Persian';
+  src: url('../public/fonts/NotoSansOldPersian-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Iran Nastaleeq';
+  src: url('../public/fonts/IranNastaliqRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jameel Noori Nastaleeq Regular';
+  src: url('../public/fonts/JameelNooriNastaleeqRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jameel Noori Nastaleeq';
+  src: url('../public/fonts/JameelNooriNastaleeq.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Jameel Noori Nastaleeq Kasheeda';
+  src: url('../public/fonts/JameelNooriNastaleeqKasheeda.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 @font-face {
   font-family: 'Noto Nastaliq Urdu';
-  src: url('../public/NotoNastaliqUrdu-Regular.ttf') format('truetype');
+  src: url('../public/fonts/NotoNastaliqUrdu-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Noto Nastaliq Urdu Medium';
-  src: url('../public/NotoNastaliqUrdu-Medium.ttf') format('truetype');
+  src: url('../public/fonts/NotoNastaliqUrdu-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Noto Nastaliq Urdu SemiBold';
-  src: url('../public/NotoNastaliqUrdu-SemiBold.ttf') format('truetype');
+  src: url('../public/fonts/NotoNastaliqUrdu-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Noto Nastaliq Urdu Bold';
-  src: url('../public/NotoNastaliqUrdu-Bold.ttf') format('truetype');
+  src: url('../public/fonts/NotoNastaliqUrdu-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Noto Nastaliq Urdu Variable';
-  src: url('../public/NotoNastaliqUrdu-VariableFont_wght.ttf') format('truetype');
+  src: url('../public/fonts/NotoNastaliqUrdu-VariableFont_wght.ttf') format('truetype');
   font-weight: 100 900;
+}
+
+.urdu {
+  line-height: 6.5rem;
+ /* Adjust this value as needed */
+  letter-spacing: 0.06em;
+  direction: rtl;
+  font-family: 'Jameel Noori Nastaleeq', 'sans-serif';
+}
+
+.persian {
+  line-height: 8rem;
+  /* Adjust this value as needed */
+  letter-spacing: 0.03em;
+  direction: rtl;
+  font-family: 'Noto Nastaliq Urdu', 'sans-serif';
+}
+
+
+.persian-intro {
+  font-size: 54px;
+}
+
+.urdu-intro {
+  font-size: 46px;
+}
+
+.persian-intro-ref {
+  font-size: 35px;
+}
+
+.persian-couplet {
+  font-size: 48px;
+}
+
+.english-couplet {
+  font-size: 38px;
+}
+
+.urdu-couplet {
+  font-size: 48px; 
+}
+
+.urdu-outro {
+  font-size: 64px;
+}
+
+
+.english-outro {
+  font-size: 40px;
+}
+
+
+.typing-cursor {
+  display: inline-block;
+  width: 6px;
+  height: 92px;
+  background-color: rgba(220, 38, 38, var(--tw-text-opacity));
+  margin-right: 16px;
+  margin-bottom: -16px;
+}
+
+.typing-cursor-static {
+  @apply inline-block bg-black;
+  width: 4px;
+  height: 60px;
+  margin-right: 16px;
+  margin-bottom: -16px;
+  background-color: rgba(220, 38, 38, var(--tw-text-opacity));
+}
+
+.text-stroke {
+  -webkit-text-stroke: 0.75px black; /* For WebKit browsers */
+  text-stroke: 0.75px black; /* Standard syntax; currently only supported in Chrome */
 }
