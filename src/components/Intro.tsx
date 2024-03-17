@@ -44,7 +44,7 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
       {/* Row 5 */}
       <div className="flex items-top justify-center w-full px-24 pt-4 urdu urdu-intro">
         <p className="text-center">
-          صدا: حسان لاھوری
+          صدا: مخدوم حسان لاهوری
         </p>
       </div>
     </div>
