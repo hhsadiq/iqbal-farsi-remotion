@@ -7,8 +7,9 @@
   ],
   "scripts": {
     "start": "remotion studio",
+    "build": "node generate-videos.js",
+    "build1": "REMOTION_POEM_BASE_PATH=$npm_config_poemBase remotion render MyComp $npm_config_poemBase/upload/video.mp4",
     "build with thumb": "remotion render MyComp out/video.mp4 && ffmpeg -i out/video.mp4 -vf \"select=eq(n\\,135)\" -vframes 1 thumbnail.png",
-    "build": "remotion render MyComp out/video.mp4",
     "upgrade": "remotion upgrade",
     "test": "eslint src --ext ts,tsx,js,jsx && tsc"
   },
@@ -38,6 +39,7 @@
     "@remotion/tailwind": "^4.0.81",
     "@types/react": "^18.0.26",
     "@types/web": "^0.0.86",
+    "cross-env": "^7.0.3",
     "eslint": "^8.43.0",
     "prettier": "^2.8.8",
     "typescript": "^4.9.4"
