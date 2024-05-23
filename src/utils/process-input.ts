@@ -24,8 +24,10 @@ export async function processPoemDocument2(path: string) {
     const verseEndTime = parseFloat(verseEndTimeStr) + introSlideTime;
     const persian1 = lines[1];
     const persian2 = lines[2]
-    const urdu = lines[3];
-    const english = lines[4];
+    const urdu1 = lines[2];
+    const urdu2 = lines[3];
+    const english1 = lines[4];
+    const english2 = lines[5];
 
     return {
       number: index + 1, // Calculate the couplet number based on the index
@@ -35,9 +37,11 @@ export async function processPoemDocument2(path: string) {
       verseEndTime,
       persian1,
       persian2,
-      urdu,
-      english
-    };
+      urdu1,
+      urdu2,
+      english1,
+      english2,
+  };
   });
 
   const poemData = {

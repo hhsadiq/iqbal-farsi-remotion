@@ -81,6 +81,12 @@
   direction: rtl;
   font-family: 'Jameel Noori Nastaleeq', 'sans-serif';
 }
+.urdu2 {
+ /* Adjust this value as needed */
+  letter-spacing: 0.06em;
+  direction: rtl;
+  font-family: 'Jameel Noori Nastaleeq', 'sans-serif';
+}
 
 .persian {
   line-height: 8rem;

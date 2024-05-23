@@ -15,8 +15,10 @@ export type CoupletType = {
   verseEndTime: number;
   persian1: string;
   persian2: string;
-  urdu: string;
-  english: string;
+  urdu1: string;
+  urdu2: string;
+  english1: string;
+  english2: string;
 };
 
 export type PoemDataType = {
@@ -74,8 +76,10 @@ export async function processPoemDocumentv2(): Promise<PoemDataType> {
       const lines = coupletMatch.trim().split('\n').map(line => line.trim());
       const persian1 = lines[0];
       const persian2 = lines[1];
-      const urdu = lines[2];
-      const english = lines[3];
+      const urdu1 = lines[2];
+      const urdu2 = lines[3];
+      const english1 = lines[4];
+      const english2 = lines[5];
 
       return {
         number: index + 1,
@@ -85,8 +89,10 @@ export async function processPoemDocumentv2(): Promise<PoemDataType> {
         verseEndTime: markerTimes[`${index + 1}c`],
         persian1,
         persian2,
-        urdu,
-        english
+        urdu1,
+        urdu2,
+        english1,
+        english2,
       };
     });
 

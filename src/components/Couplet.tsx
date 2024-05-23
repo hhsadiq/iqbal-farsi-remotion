@@ -100,23 +100,38 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
         </p>
       </div>
 
-      {/* Row 3: Urdu Translation */}
+      {/* Urdu Translation */}
       <div
         className="flex items-top justify-center w-full px-44 rtl urdu urdu-couplet"
         
       >
         <p className="text-center">
-          {couplet.urdu}
+          {couplet.urdu1}
+        </p>
+      </div>
+      <div
+        className="flex items-top justify-center w-full px-44 rtl urdu2 urdu-couplet" 
+      >
+        <p className="text-center">
+          {couplet.urdu2}
         </p>
       </div>
 
-      {/* Row 4: English Translation */}
+      {/* English Translation */}
       <div
         className="flex items-top justify-center w-full px-44 pt-8"
         style={{ fontFamily }}
       >
         <p className="english-couplet text-center leading-relaxed">
-          {couplet.english}
+          {couplet.english1}
+        </p>
+      </div>
+      <div
+        className="flex items-top justify-center w-full px-44"
+        style={{ fontFamily }}
+      >
+        <p className="english-couplet text-center leading-relaxed">
+          {couplet.english2}
         </p>
       </div>
 
