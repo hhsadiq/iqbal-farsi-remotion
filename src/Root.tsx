@@ -25,7 +25,7 @@ const calculateMetadata: CalculateMetadataFunction<PoemDataSingleObjType> = asyn
 		console.error("Error fetching poem data:", error);
 		// Fallback values if data fetching fails
 		return {
-			durationInFrames: 300, // default duration
+			durationInFrames: 300, // Default duration
 			fps,
 			width: globalSettings.video.width,
 			height: globalSettings.video.height,
