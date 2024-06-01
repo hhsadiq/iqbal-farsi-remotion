@@ -12,7 +12,7 @@ type coupletCompSchema = {
 
 const { fontFamily } = loadFont();
 
-const ENG1_FONT_SIZE = '9px';
+const ENG1_FONT_SIZE = '8.98px';
 const ENG1_FONT_FAMILY = fontFamily;
 
 const URDU1_FONT_SIZE = '11.41px';
