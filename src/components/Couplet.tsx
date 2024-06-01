@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
 import { CoupletType } from '../utils/process-inputv2';
 import { globalSettings } from '../global-settings';
+const TextMetrics = require('text-metrics');
 
 type coupletCompSchema = {
   couplet: CoupletType;
@@ -11,111 +12,57 @@ type coupletCompSchema = {
 
 const { fontFamily } = loadFont();
 
+const ENG1_FONT_SIZE = '9px';
+const ENG1_FONT_FAMILY = fontFamily;
+
+const URDU1_FONT_SIZE = '11.41px';
+const URDU1_FONT_FAMILY = 'Jameel Noori Nastaleeq';
+
+// Mock container width as we cannot measure it without the actual DOM
+const ENG1_SPAN_MAX_WIDTH = 171.1;
+const URDU1_SPAN_MAX_WIDTH = 171.1;
+
+
+const measureTextWidth = (text: string, fontSize: string, fontFamily: string) => {
+  const metrics = TextMetrics.init({
+    fontSize,
+    fontFamily,
+  });
+
+  return metrics.width(text);
+};
+
+const adjustDivPadding = (text: string, containerWidth: number, fontSize: string, fontFamily: string) => {
+  const words = text.split(' ');
+  let currentLine = '';
+  let lines = [];
+
+  words.forEach((word) => {
+    const testLine = currentLine + (currentLine ? ' ' : '') + word;
+    const testLineWidth = measureTextWidth(testLine, fontSize, fontFamily);
+    if (testLineWidth > containerWidth) {
+      lines.push(currentLine.trim());
+      currentLine = word;
+    } else {
+      currentLine = testLine;
+    }
+  });
+
+  lines.push(currentLine.trim());
+  const lastLineContent = lines[lines.length - 1];
+  console.log('lines', lines);
+
+  if (lastLineContent === "—") {
+    return 'px-42';
+  }
+  return 'px-44';
+};
+
 export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
   const frame = useCurrentFrame();
 
-  const urdu1RefSpan = useRef<HTMLDivElement>(null);
-  const urdu1RefDiv = useRef<HTMLDivElement>(null);
-
-  const eng1RefSpan = useRef<HTMLDivElement>(null);
-  const eng1RefDiv = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (eng1RefSpan.current) {
-      const containerRect = eng1RefSpan.current.getBoundingClientRect();
-      const containerWidth = containerRect.width;
-      const content = eng1RefSpan.current.textContent || '';
-      const words = content.split(' ');
-  
-      console.log('Eng container width:', containerWidth);
-  
-      const tempElement = document.createElement('span');
-      tempElement.style.position = 'fixed';
-      tempElement.style.bottom = '10px';
-      tempElement.style.left = '10px';
-      tempElement.style.whiteSpace = 'nowrap';
-      tempElement.style.backgroundColor = 'yellow'; // Added background color for visibility
-      tempElement.style.color = 'red';
-      tempElement.style.fontSize = '8px';
-      tempElement.style.zIndex = '1000'; // Ensure it's on top of other elements
-  
-      document.body.appendChild(tempElement);
-  
-      let currentLineWidth = 0;
-      let currentLine = '';
-      let lines = [];
-  
-      words.forEach((word, index) => {
-        tempElement.textContent = currentLine + (currentLine ? ' ' : '') + word;
-        const textWidth = tempElement.getBoundingClientRect().width;
-  
-        if (textWidth > containerWidth) {
-          lines.push(currentLine.trim());
-          currentLine = word;
-          currentLineWidth = tempElement.getBoundingClientRect().width;
-        } else {
-          currentLine += (currentLine ? ' ' : '') + word;
-          currentLineWidth = textWidth;
-        }  
-      });
-  
-      lines.push(currentLine.trim());
-      document.body.removeChild(tempElement);
-  
-      const lastLineContent = lines[lines.length - 1];
-      console.log('Eng Lines:', lines);
-  
-      if (lastLineContent === "—" && eng1RefDiv.current) {
-        eng1RefDiv.current.classList.replace('px-44', 'px-42');
-      }
-    }
-  }, []);
-  
-  // Measure and log the number of lines after the component is rendered
-  useEffect(() => {
-    if (urdu1RefSpan.current) {
-      const containerRect = urdu1RefSpan.current.getBoundingClientRect();
-      const containerWidth = containerRect.width;
-      console.log('Urdu containerWidth', containerWidth);
-      const content = urdu1RefSpan.current.textContent || '';
-      const words = content.split(' ');
-    
-      const tempElement = document.createElement('span');
-      tempElement.style.fontSize = '10.5px';
-
-      document.body.appendChild(tempElement);
-  
-      let currentLineWidth = 0;
-      let currentLine = '';
-      let lines = [];
-  
-      words.forEach((word, index) => {
-        tempElement.textContent = currentLine + (currentLine ? ' ' : '') + word;
-        const textWidth = tempElement.getBoundingClientRect().width;
-  
-        if (textWidth > containerWidth) {
-          lines.push(currentLine.trim());
-          currentLine = word;
-          currentLineWidth = tempElement.getBoundingClientRect().width;
-        } else {
-          currentLine += (currentLine ? ' ' : '') + word;
-          currentLineWidth = textWidth;
-        }
-      });
-  
-      lines.push(currentLine.trim());
-      document.body.removeChild(tempElement);
-  
-      const lastLineContent = lines[lines.length - 1];
-
-      console.log('Urdu lines', lines);
-
-      if (lastLineContent === "—" && urdu1RefDiv.current) {
-        urdu1RefDiv.current.classList.replace('px-44', 'px-42');
-      }      
-    }
-  }, []);
-                                  
+  const englishDivClass = adjustDivPadding(couplet.english1, ENG1_SPAN_MAX_WIDTH, ENG1_FONT_SIZE, ENG1_FONT_FAMILY);
+  const urduDivClass = adjustDivPadding(couplet.urdu1, URDU1_SPAN_MAX_WIDTH, URDU1_FONT_SIZE, URDU1_FONT_FAMILY);
  
   // Adjust verse start and end frames relative to the start of the couplet
   const verseRelativeStartFrame = (couplet.verseStartTime - couplet.coupletStartTime) * fps;
@@ -205,10 +152,9 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
 
       {/* Urdu Translation */}
       <div
-        ref={urdu1RefDiv}
-        className="flex items-top justify-center w-full px-44 rtl urdu urdu-couplet"        
+        className={`flex items-top justify-center w-full ${urduDivClass} rtl urdu urdu-couplet`}
       >
-        <p ref={urdu1RefSpan} className="text-center">
+        <p className="text-center">
           {couplet.urdu1}
         </p>
       </div>
@@ -222,11 +168,10 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
 
       {/* English Translation */}
       <div
-        ref={eng1RefDiv}
-        className="flex items-top justify-center w-full px-44 pt-8"
+        className={`flex items-top justify-center w-full ${englishDivClass} pt-8`}
         style={{ fontFamily }}
       >
-        <p ref={eng1RefSpan} className="english-couplet text-center leading-relaxed">
+        <p className="english-couplet text-center leading-relaxed">
           {couplet.english1}
         </p>
       </div>
