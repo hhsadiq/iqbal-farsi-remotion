@@ -22,7 +22,7 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
       {/* Row 2 */}
       <div className="flex items-top justify-center w-full px-24 -mt-8 pt-24 persian persian-intro">
         <p className="text-center text-red-600">
-          {data.poemType}: {data.poemName}
+          {data.poemName}
         </p>
       </div>
       {/* Row 4 */}
