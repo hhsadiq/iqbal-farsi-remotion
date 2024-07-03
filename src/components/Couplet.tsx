@@ -15,7 +15,7 @@ const { fontFamily } = loadFont();
 const ENG1_FONT_SIZE = '8.98px';
 const ENG1_FONT_FAMILY = fontFamily;
 
-const URDU1_FONT_SIZE = '11.41px';
+const URDU1_FONT_SIZE = '11.37px';
 const URDU1_FONT_FAMILY = 'Jameel Noori Nastaleeq';
 
 // Mock container width as we cannot measure it without the actual DOM
