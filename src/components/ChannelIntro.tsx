@@ -33,7 +33,7 @@ export const ChannelInro: React.FC<{}> = () => {
         </p>
       </div>
       {/* Row 5 */}
-      <div className="flex items-top justify-center w-full h-[50%] px-36 mt-[-256px]">
+      <div className="flex items-top justify-center w-full h-[20%] px-36 mt-[116px]">
         <img alt="Rectangle" src={staticFile('img/channel-icons-and-names.svg')} />
       </div>
     </div>
