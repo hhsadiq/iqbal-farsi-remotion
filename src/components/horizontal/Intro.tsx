@@ -15,8 +15,8 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
     <div className="flex flex-col w-full h-full bg-white">
       {/* Two columns layout */}
       <div className="flex w-full">
-        {/* Left Column - 70% width */}
-        <div className="w-[70%] flex flex-col">
+        {/* Left Column */}
+        <div className="w-[60%] flex flex-col">
           {/* Poem Name */}
           
           <div className="flex items-top justify-center w-full pt-44 persian persian-intro">
@@ -50,8 +50,8 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
           </div>
         </div>
 
-        {/* Right Column - 30% width */}
-        <div className="w-[30%] flex flex-col items-center justify-center p-4">
+        {/* Right Column */}
+        <div className="w-[40%] flex flex-col items-center justify-center p-4">
           <OffthreadVideo muted src={staticFile(globalSettings.logo.videoComplete)} />
         </div>
       </div>
