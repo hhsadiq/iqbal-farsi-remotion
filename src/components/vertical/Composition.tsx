@@ -4,7 +4,7 @@ import {
 import { fade } from "@remotion/transitions/fade";
 import React from 'react';
 import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from 'remotion';
-import { Audiograms } from '../Audiograms';
+import { Audiograms } from './Audiograms';
 import { Outro } from "./Outro";
 import { Intro } from "./Intro";
 import { globalSettings } from "../../global-settings";
