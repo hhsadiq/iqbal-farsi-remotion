@@ -1,6 +1,7 @@
 import React from 'react';
 import { Composition, CalculateMetadataFunction } from 'remotion';
-import { MyComposition } from './components/Composition';
+import { VerticalComposition } from './components/vertical/Composition';
+import { HorizontalComposition } from './components/horizontal/Composition';
 import './style.css';
 import { globalSettings } from './global-settings';
 import { PoemDataType, processPoemDocument, PoemDataSingleObjType } from './utils/process-input';
@@ -71,7 +72,7 @@ const calculateMetadataForHorizontal: CalculateMetadataFunction<PoemDataSingleOb
 export const RemotionRoot: React.FC = () => {
 	const vertical = <Composition
 		id="MyComp"
-		component={MyComposition}
+		component={VerticalComposition}
 		defaultProps={{
 			data: null
 		}}
@@ -80,7 +81,7 @@ export const RemotionRoot: React.FC = () => {
 
 	const horizontal = <Composition
 		id="MyComp"
-		component={MyComposition}
+		component={HorizontalComposition}
 		defaultProps={{
 			data: null
 		}}

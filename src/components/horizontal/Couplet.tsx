@@ -1,8 +1,8 @@
 import React from 'react';
 import { Img, staticFile, useCurrentFrame } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
-import { CoupletType } from '../utils/process-input';
-import { globalSettings } from '../global-settings';
+import { CoupletType } from '../../utils/process-input';
+import { globalSettings } from '../../global-settings';
 const TextMetrics = require('text-metrics');
 
 type coupletCompSchema = {
