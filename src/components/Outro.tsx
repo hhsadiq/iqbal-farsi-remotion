@@ -6,7 +6,7 @@ import { globalSettings } from '../global-settings';
 
 const { fontFamily } = loadFont();
 
-export const ChannelInro: React.FC<{}> = () => {
+export const Outro: React.FC<{}> = () => {
 
   return (
     <div className="flex flex-col w-full h-full bg-white">

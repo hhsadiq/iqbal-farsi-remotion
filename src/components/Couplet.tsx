@@ -1,7 +1,7 @@
 import React from 'react';
-import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { Img, staticFile, useCurrentFrame } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
-import { CoupletType } from '../utils/process-inputv2';
+import { CoupletType } from '../utils/process-input';
 import { globalSettings } from '../global-settings';
 const TextMetrics = require('text-metrics');
 
@@ -103,29 +103,13 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
     }
   }
 
-  // Create a spring animation value for translation reveal
-
-  const { fps: fpsV } = useVideoConfig();
-  const fadeStartFrame = verseRelativeEndFrame + couplet.persian2.length * 7;
-  const driver = spring({
-    frame: frame - fadeStartFrame, // Delaying the start of the spring
-    fps: fpsV,
-    config: {
-      damping: 10,
-      stiffness: 5,
-    },
-  });
-
-  // Calculate the current opacity using interpolate
-  const translationOpacity = interpolate(driver, [0, 1], [0, 1]);
-
   return (
     <div className="flex flex-col w-full h-full bg-white">
       {/* Row 1 with two columns */}
       <div className="flex items-center justify-center w-full pt-1">
         {/* Right Column 40% */}
         <div className="w-[38%]">
-          <Img src={staticFile('img/logo.png')} placeholder={'logo'} />
+          <Img src={staticFile('img/logo.png')} placeholder='logo' />
         </div>
       </div>
 
@@ -137,7 +121,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
             <span
               className="typing-cursor"
               style={{ opacity: cursorOpacityFirst }}
-            ></span>
+            />
           )}
           <br />
           {textToShowPersian2}
@@ -145,7 +129,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
             <span
               className="typing-cursor"
               style={{ opacity: cursorOpacitySecond }}
-            ></span> 
+            />
           )}
         </p>
       </div>

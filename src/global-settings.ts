@@ -27,11 +27,11 @@ export const globalSettings = {
   video: {
     width: 1080,
     height: 1920,
-    fps: fps,
+    fps,
     springTransition: transitionSpringTime,
-    transitionDurationFrames: transitionDurationFrames,
+    transitionDurationFrames,
     springTransitionFirst: transitionSpringTimeFirst,
-    transitionDurationFramesFirst: transitionDurationFramesFirst
+    transitionDurationFramesFirst
   },
   introDurationFPS: 200,
   outroDurationFPS: 250,

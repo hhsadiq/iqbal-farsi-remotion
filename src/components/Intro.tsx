@@ -1,6 +1,6 @@
 import React from 'react';
 import { OffthreadVideo, staticFile } from 'remotion';
-import { PoemDataSingleObjType } from '../utils/process-inputv2';
+import { PoemDataSingleObjType } from '../utils/process-input';
 import { globalSettings } from '../global-settings';
 
 export const Intro: React.FC<PoemDataSingleObjType> = ({
@@ -32,7 +32,7 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
         </p>
       </div>
       {/* Horizontal Line */}
-      <div className="w-[60%] border-t-2 border-red-600 my-8 mx-auto"></div>
+      <div className="w-[60%] border-t-2 border-red-600 my-8 mx-auto" />
 
       {/* Row 6 */}
       <div className="flex items-top justify-center w-full px-24 urdu urdu-intro">

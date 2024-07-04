@@ -3,13 +3,13 @@ import { Composition, CalculateMetadataFunction } from 'remotion';
 import { MyComposition } from './components/Composition';
 import './style.css';
 import { globalSettings } from './global-settings';
-import { PoemDataType, processPoemDocumentv2, PoemDataSingleObjType } from './utils/process-inputv2';
+import { PoemDataType, processPoemDocument, PoemDataSingleObjType } from './utils/process-input';
 
 const calculateMetadata: CalculateMetadataFunction<PoemDataSingleObjType> = async () => {
-	const fps = globalSettings.video.fps;
+	const {fps} = globalSettings.video;
 
 	try {
-		const poemData: PoemDataType = await processPoemDocumentv2();
+		const poemData: PoemDataType = await processPoemDocument();
 		const durationInFrames = Math.ceil(poemData.outroEnd * fps);
 
 		return {
