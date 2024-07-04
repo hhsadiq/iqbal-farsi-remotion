@@ -25,8 +25,14 @@ const transitionDurationFramesFirst = transitionSpringTimeFirst.getDurationInFra
 
 export const globalSettings = {
   video: {
-    width: 1080,
-    height: 1920,
+    vertical: {
+      width: 1080,
+      height: 1920,        
+    },
+    horizontal: {
+      width: 1920,
+      height: 1080,
+    },
     fps,
     springTransition: transitionSpringTime,
     transitionDurationFrames,
@@ -45,5 +51,6 @@ export const globalSettings = {
     audioFile: poemBasePath + 'audio.wav',
     textFile: poemBasePath + 'poem.txt',
     markersFile: poemBasePath + 'markers.csv',
-  }
+  },
+  layout: 'vertical'
 }
