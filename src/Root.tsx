@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Composition, CalculateMetadataFunction } from 'remotion';
 import { VerticalComposition } from './components/vertical/Composition';
 import { HorizontalComposition } from './components/horizontal/Composition';
-import './style.css';
 import { globalSettings } from './global-settings';
 import { PoemDataType, processPoemDocument, PoemDataSingleObjType } from './utils/process-input';
 
 const calculateMetadataForVertical: CalculateMetadataFunction<PoemDataSingleObjType> = async () => {
-	const {fps} = globalSettings.video;
+	const { fps } = globalSettings.video;
 
 	try {
 		const poemData: PoemDataType = await processPoemDocument();
@@ -38,7 +37,7 @@ const calculateMetadataForVertical: CalculateMetadataFunction<PoemDataSingleObjT
 };
 
 const calculateMetadataForHorizontal: CalculateMetadataFunction<PoemDataSingleObjType> = async () => {
-	const {fps} = globalSettings.video;
+	const { fps } = globalSettings.video;
 
 	try {
 		const poemData: PoemDataType = await processPoemDocument();
@@ -70,6 +69,18 @@ const calculateMetadataForHorizontal: CalculateMetadataFunction<PoemDataSingleOb
 
 
 export const RemotionRoot: React.FC = () => {
+	useEffect(() => {
+		const loadCSS = async () => {
+			if (globalSettings.layout === 'vertical') {
+				await import('./vertical-style.css');
+			} else {
+				await import('./horizontal-style.css');
+			}
+		};
+
+		loadCSS();
+	}, []); // Empty dependency array ensures this runs once on mount
+
 	const vertical = <Composition
 		id="MyComp"
 		component={VerticalComposition}
