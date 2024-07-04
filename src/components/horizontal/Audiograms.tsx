@@ -39,7 +39,7 @@ export const Audiograms: React.FC<audiogramSchema> = ({
   });
   
   return (
-    <div className="absolute -bottom-40 index w-full h-[600px] flex flex-row items-center justify-center ml-48 pr-48">
+    <div className="absolute -bottom-48 index w-full h-[600px] flex flex-row items-center justify-center ml-48 pr-48">
       {transformedVisualization.map((v, i) => {
         let barHeight = Math.max(16, v * 200000); // Height calculation
         barHeight = Math.min(barHeight, 800);

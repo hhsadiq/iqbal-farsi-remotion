@@ -63,7 +63,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
 
   const englishDivClass = adjustDivPadding(couplet.english1, ENG1_SPAN_MAX_WIDTH, ENG1_FONT_SIZE, ENG1_FONT_FAMILY);
   const urduDivClass = adjustDivPadding(couplet.urdu1, URDU1_SPAN_MAX_WIDTH, URDU1_FONT_SIZE, URDU1_FONT_FAMILY);
- 
+
   // Adjust verse start and end frames relative to the start of the couplet
   const verseRelativeStartFrame = (couplet.verseStartTime - couplet.coupletStartTime) * fps;
   const verseRelativeEndFrame = (couplet.verseEndTime - couplet.coupletStartTime) * fps;
@@ -104,71 +104,74 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
   }
 
   return (
-    <div className="flex flex-col w-full h-full bg-white">
-      {/* Row 1 with two columns */}
-      <div className="flex items-center justify-center w-full pt-1">
-        {/* Right Column 40% */}
-        <div className="w-[38%]">
-          <Img src={staticFile('img/logo.png')} placeholder='logo' />
+    <div className="flex flex-row w-full h-full bg-white">
+      {/* Left Column - 60% width */}
+      <div className="w-[70%] flex flex-col mt-16">
+        {/* Row 2: Verses with Cursor */}
+        <div className="flex items-top justify-center w-full px-8 persian persian-couplet h-[28%]">
+          <p className="text-red-600 text-center">
+            {textToShowPersian1}
+            {(!isTypingSecondVerse && !isSecondVerseComplete) && (
+              <span
+                className="typing-cursor"
+                style={{ opacity: cursorOpacityFirst }}
+              />
+            )}
+            <br />
+            {textToShowPersian2}
+            {(isTypingSecondVerse || isSecondVerseComplete) && (
+              <span
+                className="typing-cursor"
+                style={{ opacity: cursorOpacitySecond }}
+              />
+            )}
+          </p>
+        </div>
+
+        {/* Urdu Translation */}
+        <div
+          className="flex items-top justify-center w-full rtl urdu urdu-couplet"
+        >
+          <p className="text-center">
+            {couplet.urdu1}
+          </p>
+        </div>
+        <div
+          className="flex items-top justify-center w-full px-44 rtl urdu2 urdu-couplet"
+        >
+          <p className="text-center">
+            {couplet.urdu2}
+          </p>
+        </div>
+
+        {/* English Translation */}
+        <div
+          className="flex items-top justify-center w-full pt-8"
+          style={{ fontFamily }}
+        >
+          <p className="english-couplet text-center leading-relaxed">
+            {couplet.english1}
+          </p>
+        </div>
+        <div
+          className="flex items-top justify-center w-full px-44"
+          style={{ fontFamily }}
+        >
+          <p className="english-couplet text-center leading-relaxed">
+            {couplet.english2}
+          </p>
         </div>
       </div>
 
-      {/* Row 2: Verses with Cursor */}
-      <div className="flex items-top justify-center w-full px-8 persian persian-couplet h-1/6">
-        <p className="text-red-600 text-center">
-          {textToShowPersian1}
-          {(!isTypingSecondVerse && !isSecondVerseComplete) && (
-            <span
-              className="typing-cursor"
-              style={{ opacity: cursorOpacityFirst }}
-            />
-          )}
-          <br />
-          {textToShowPersian2}
-          {(isTypingSecondVerse || isSecondVerseComplete) && (
-            <span
-              className="typing-cursor"
-              style={{ opacity: cursorOpacitySecond }}
-            />
-          )}
-        </p>
+      {/* Right Column - 40% width */}
+      <div className="w-[30%] flex flex-col items-center justify-center">
+        {/* Logo Area */}
+        <div className="w-full flex flex-col justify-start" style={{ height: '90%' }}>
+          <div className="w-full pt-12">
+            <Img src={staticFile('img/logo.png')} placeholder='logo' className="ml-[-132px]" />
+          </div>
+        </div>
       </div>
-
-      {/* Urdu Translation */}
-      <div
-        className={`flex items-top justify-center w-full ${urduDivClass} rtl urdu urdu-couplet`}
-      >
-        <p className="text-center">
-          {couplet.urdu1}
-        </p>
-      </div>
-      <div
-        className="flex items-top justify-center w-full px-44 rtl urdu2 urdu-couplet" 
-      >
-        <p className="text-center">
-          {couplet.urdu2}
-        </p>
-      </div>
-
-      {/* English Translation */}
-      <div
-        className={`flex items-top justify-center w-full ${englishDivClass} pt-8`}
-        style={{ fontFamily }}
-      >
-        <p className="english-couplet text-center leading-relaxed">
-          {couplet.english1}
-        </p>
-      </div>
-      <div
-        className="flex items-top justify-center w-full px-44"
-        style={{ fontFamily }}
-      >
-        <p className="english-couplet text-center leading-relaxed">
-          {couplet.english2}
-        </p>
-      </div>
-
-      {/* Additional rows can be added here */}
     </div>
   );
 };
