@@ -19,9 +19,15 @@ const transitionSpringTimeFirst = springTiming({
     stiffness: 5,
   }
 });
-
 const transitionDurationFramesFirst = transitionSpringTimeFirst.getDurationInFrames({ fps });
 
+const transitionSpringTimeThumbnail = springTiming({
+  config: {
+    damping: 10,
+    stiffness: 20,
+  }
+});
+const transitionDurationFramesThumbnail = transitionSpringTimeThumbnail.getDurationInFrames({ fps });
 
 export const globalSettings = {
   video: {
@@ -37,7 +43,9 @@ export const globalSettings = {
     springTransition: transitionSpringTime,
     transitionDurationFrames,
     springTransitionFirst: transitionSpringTimeFirst,
-    transitionDurationFramesFirst
+    transitionDurationFramesFirst,
+    transitionSpringTimeThumbnail,
+    transitionDurationFramesThumbnail
   },
   introDurationFPS: 200,
   outroDurationFPS: 250,
