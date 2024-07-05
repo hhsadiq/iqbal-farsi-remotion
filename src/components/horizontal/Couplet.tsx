@@ -106,9 +106,9 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
   return (
     <div className="flex flex-row w-full h-full bg-white">
       {/* Left Column - 60% width */}
-      <div className="w-[70%] flex flex-col mt-16">
+      <div className="w-[70%] flex flex-col mt-44">
         {/* Row 2: Verses with Cursor */}
-        <div className="flex items-top justify-center w-full px-8 persian persian-couplet h-[28%]">
+        <div className="flex items-top justify-center w-full px-8 persian persian-couplet h-[30%]">
           <p className="text-red-600 text-center">
             {textToShowPersian1}
             {(!isTypingSecondVerse && !isSecondVerseComplete) && (
@@ -166,9 +166,9 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
       {/* Right Column - 40% width */}
       <div className="w-[30%] flex flex-col items-center justify-center">
         {/* Logo Area */}
-        <div className="w-full flex flex-col justify-start" style={{ height: '90%' }}>
-          <div className="w-full pt-12">
-            <Img src={staticFile('img/logo.png')} placeholder='logo' className="ml-[-13px]" />
+        <div className="w-[148%] flex flex-col justify-start" style={{ height: '90%' }}>
+          <div className="w-full">
+            <Img src={staticFile('img/logo-horizontal.png')} placeholder='logo' className="w-full h-auto ml-[-96px]" />
           </div>
         </div>
       </div>

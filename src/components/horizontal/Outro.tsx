@@ -11,7 +11,7 @@ export const Outro: React.FC<object> = () => {
   return (
     <div className="flex flex-row w-full h-full bg-white">
       {/* Left Column - 70% width */}
-      <div className="w-[60%] flex flex-col justify-start pt-12 mt-32">
+      <div className="w-[60%] flex flex-col justify-start pt-12 mt-40 ml-48">
         {/* Urdu Outro */}
         <div className="flex items-center justify-center w-full px-24 mt-8">
           <p className="text-center urdu urdu-outro">
@@ -25,8 +25,8 @@ export const Outro: React.FC<object> = () => {
           </p>
         </div>
         {/* Social Media Icons */}
-        <div className="flex items-center justify-center w-full mt-24 px-96">
-          <img alt="Social Media Icons" src={staticFile('img/channel-icons-and-names.svg')} className="w-full h-auto" />
+        <div className="flex items-center justify-center w-full mt-24 px-80">
+          <img alt="Social Media Icons" src={staticFile('img/channel-icons-and-names.svg')} className="w-[80%] h-auto" />
         </div>
       </div>
 
