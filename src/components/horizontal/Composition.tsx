@@ -27,7 +27,7 @@ export const HorizontalComposition: React.FC<PoemDataSingleObjType> = ({ data })
 
 	const firstCoupletStartFrame = Math.ceil((time * fps));
 
-	const thumbnailDurationFrames = 3 * fps; // 3 seconds for the thumbnail slide
+	const thumbnailDurationFrames = 2 * fps; // 3 seconds for the thumbnail slide
 	const { springTransition } = globalSettings.video;
 	const { transitionDurationFrames } = globalSettings.video;
 	const outroDurationFrames = (data.outroEnd - data.outroStart) * fps + transitionDurationFrames;

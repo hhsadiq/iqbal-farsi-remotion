@@ -26,14 +26,14 @@ export const Thumbnail: React.FC<PoemDataSingleObjType> = ({
           </div>
 
           {/* Persian */}
-          <div className="flex items-top justify-center w-full pt-48 english english-thumbnail">
+          <div className="flex items-top justify-center w-full pt-32 english english-thumbnail">
             <p className="text-center text-red-600 font-bold">
               {data.thumbnailEnglish}
             </p>
           </div>
 
-          {/* Book Name in a Black Rectangle */}
-          <div className="flex flex-col justify-center items-start w-full pt-28 px-24">
+          {/* Book Name in a Rectangle */}
+          <div className="flex flex-col justify-center items-start w-full pt-28 px-32">
             <div className="text-black text-left px-8 pb-4 border-4 border-black persian persian-thumbnail-ref">
               <p>
                 <span className="text-red-600">بحوالہ:</span>&nbsp;&nbsp;&nbsp;&nbsp;{data.bookName}
