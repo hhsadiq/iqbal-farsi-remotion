@@ -60,6 +60,6 @@ export const globalSettings = {
     textFile: poemBasePath + 'poem.txt',
     markersFile: poemBasePath + 'markers.csv',
   },
-  layout: 'horizontal',
+  Layout: 'horizontal',
   // layout: 'vertical'
 }
