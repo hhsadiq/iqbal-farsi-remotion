@@ -25,6 +25,8 @@ export type PoemDataType = {
   bookName: string;
   poemName: string;
   poemType: string;
+  thumbnailPersian: string;
+  thumbnailEnglish: string;
   couplets: CoupletType[];
   totalCouplets: number;
   outroStart: number;
@@ -66,9 +68,13 @@ export async function processPoemDocument(): Promise<PoemDataType> {
     const bookNameMatch = inputText.match(/#BookName:\s*([\s\S]*?)\n/);
     const poemNameMatch = inputText.match(/#PoemName:\s*([\s\S]*?)\n/);
     const poemTypeMatch = inputText.match(/#PoemType:\s*([\s\S]*?)\n/);
+    const thumbnailPersianMatch = inputText.match(/#ThumbnailPersian:\s*([\s\S]*?)\n/);
+    const thumbnailEnglishMatch = inputText.match(/#ThumbnailEnglish:\s*([\s\S]*?)\n/);
     const bookName = bookNameMatch ? bookNameMatch[1].trim() : "Book Name Not Found";
     const poemName = poemNameMatch ? poemNameMatch[1].trim() : "Poem Name Not Found";
     const poemType = poemTypeMatch ? poemTypeMatch[1].trim() : "Poem Type Not Found";
+    const thumbnailPersian = thumbnailPersianMatch ? thumbnailPersianMatch[1].trim() : "thumbnailEnglishMatch Not Found";
+    const thumbnailEnglish = thumbnailEnglishMatch ? thumbnailEnglishMatch[1].trim() : "thumbnailEnglishMatch Not Found";
 
     // Processing couplets
     const coupletMatches = inputText.split('#v').slice(1);
@@ -102,6 +108,8 @@ export async function processPoemDocument(): Promise<PoemDataType> {
       poemName,
       poemType,
       couplets,
+      thumbnailPersian,
+      thumbnailEnglish,
       totalCouplets: couplets.length,
       outroStart: markerTimes.ea,
       outroEnd: markerTimes.eb
