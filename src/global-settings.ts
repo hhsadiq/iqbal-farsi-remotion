@@ -3,6 +3,8 @@ import { getConfig } from './config';
 
 const { poemBasePath } = getConfig();
 
+const { layout } = getConfig();
+
 const fps = 60;
 
 const transitionSpringTime = springTiming({
@@ -60,6 +62,5 @@ export const globalSettings = {
     textFile: poemBasePath + 'poem.txt',
     markersFile: poemBasePath + 'markers.csv',
   },
-  Layout: 'horizontal',
-  // layout: 'vertical'
+  layout
 }
