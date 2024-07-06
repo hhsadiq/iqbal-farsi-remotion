@@ -109,7 +109,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
       <div className="flex items-center justify-center w-full pt-1">
         {/* Right Column 40% */}
         <div className="w-[38%]">
-          <Img src={staticFile('img/logo-vertical.png')} placeholder='logo' />
+          <Img src={staticFile(globalSettings.logo.vertical.img)} placeholder='logo' />
         </div>
       </div>
 

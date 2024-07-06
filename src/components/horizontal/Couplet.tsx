@@ -168,7 +168,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
         {/* Logo Area */}
         <div className="w-[148%] flex flex-col justify-start" style={{ height: '90%' }}>
           <div className="w-full">
-            <Img src={staticFile('img/logo-horizontal.png')} placeholder='logo' className="w-full h-auto ml-[-96px]" />
+            <Img src={staticFile(globalSettings.logo.horizontal.img)} placeholder='logo' className="w-full h-auto ml-[-96px]" />
           </div>
         </div>
       </div>

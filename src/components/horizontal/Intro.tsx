@@ -18,7 +18,7 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
         {/* Left Column */}
         <div className="w-[60%] flex flex-col">
           {/* Poem Name */}
-          
+
           <div className="flex items-top justify-center w-full pt-44 persian persian-intro">
             <p className="text-center text-red-600">
               {data.poemName}
@@ -52,7 +52,10 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
 
         {/* Right Column */}
         <div className="w-[40%] flex flex-col items-center justify-center p-4">
-          <OffthreadVideo muted src={staticFile(globalSettings.logo.videoComplete)} />
+          <OffthreadVideo
+            muted
+            src={staticFile(globalSettings.logo.horizontal.video)}
+          />
         </div>
       </div>
     </div>

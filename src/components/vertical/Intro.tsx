@@ -16,7 +16,7 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
       {/* Row 1 with two columns */}
       <div className="flex items-center justify-center w-full pt-12">
         <div className="w-full h-full">
-          <OffthreadVideo muted src={staticFile(globalSettings.logo.videoComplete)} />
+          <OffthreadVideo muted src={staticFile(globalSettings.logo.vertical.video)} />
         </div>
       </div>
       {/* Row 2 */}

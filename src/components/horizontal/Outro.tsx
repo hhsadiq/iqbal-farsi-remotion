@@ -32,7 +32,7 @@ export const Outro: React.FC<object> = () => {
 
       {/* Right Column */}
       <div className="w-[40%] flex flex-col items-center justify-center p-4">
-        <OffthreadVideo muted src={staticFile(globalSettings.logo.videoComplete)} className='mt-[-296px]'/>
+        <OffthreadVideo muted src={staticFile(globalSettings.logo.horizontal.video)} className='mt-[-296px]'/>
       </div>
     </div>
   );

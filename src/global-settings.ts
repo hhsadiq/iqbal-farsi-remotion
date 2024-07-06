@@ -52,9 +52,14 @@ export const globalSettings = {
   introDurationFPS: 200,
   outroDurationFPS: 250,
   logo: {
-    videoComplete: 'videos/full-logo-with-intro.mp4',
-    videoTrimmed: 'videos/logo.mp4',
-    img: 'img/logo.png',
+    vertical: {
+      video: 'videos/logo-vertical.mp4',
+      img: 'img/logo-vertical.png',  
+    },
+    horizontal: {
+      video: 'videos/logo-horizontal.mp4',
+      img: 'img/logo-horizontal.png',
+    },
   },
   poem: {
     cursorBlinkCycleFrames: fps,

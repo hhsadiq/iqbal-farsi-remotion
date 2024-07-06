@@ -13,7 +13,7 @@ export const Outro: React.FC<object> = () => {
       {/* Row 1 with two columns */}
       <div className="flex items-center justify-center w-full pt-12">
         <div className="w-full">
-          <OffthreadVideo muted src={staticFile(globalSettings.logo.videoComplete)} />
+          <OffthreadVideo muted src={staticFile(globalSettings.logo.vertical.video)} />
         </div>
       </div>
       {/* Row 2 */}
