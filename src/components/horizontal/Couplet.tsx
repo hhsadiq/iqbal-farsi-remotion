@@ -8,6 +8,7 @@ const TextMetrics = require('text-metrics');
 type coupletCompSchema = {
   couplet: CoupletType;
   fps: number;
+  bookName: string;
 };
 
 const { fontFamily } = loadFont();
@@ -58,7 +59,7 @@ const adjustDivPadding = (text: string, containerWidth: number, fontSize: string
   return 'px-44';
 };
 
-export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
+export const Couplet: React.FC<coupletCompSchema> = ({ couplet, bookName, fps }) => {
   const frame = useCurrentFrame();
 
   const englishDivClass = adjustDivPadding(couplet.english1, ENG1_SPAN_MAX_WIDTH, ENG1_FONT_SIZE, ENG1_FONT_FAMILY);
@@ -166,9 +167,18 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
       {/* Right Column - 40% width */}
       <div className="w-[30%] flex flex-col items-center justify-center">
         {/* Logo Area */}
-        <div className="w-[158%] flex flex-col justify-start" style={{ height: '90%' }}>
+        <div className="w-[158%] flex flex-col mt-[-132px] justify-start" style={{ height: '90%' }}>
           <div className="w-full">
             <Img src={staticFile(globalSettings.logo.horizontal.img)} placeholder='logo' className="w-full h-auto ml-[-96px]" />
+          </div>
+        </div>
+
+        {/* Book Name in a Rectangle */}
+        <div className="absolute w-full flex mt-[660px] mr-[208px] justify-center items-center">
+          <div className="text-black bg-white px-8 pb-4 border-4 border-red-500 rounded-xl persian persian-ref-rect">
+            <p>
+              <span className="text-red-600">بحوالہ:</span>&nbsp;&nbsp;{bookName}
+            </p>
           </div>
         </div>
       </div>

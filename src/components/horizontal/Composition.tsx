@@ -60,7 +60,7 @@ export const HorizontalComposition: React.FC<PoemDataSingleObjType> = ({
 								durationInFrames={durationInFrames}
 								layout="none"
 							>
-								<Couplet couplet={couplet} fps={fps} />
+								<Couplet couplet={couplet} bookName={data.bookName} fps={fps} />
 							</TransitionSeries.Sequence>
 							<TransitionSeries.Transition
 								key={i + 2}

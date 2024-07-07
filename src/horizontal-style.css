@@ -113,6 +113,11 @@
   font-size: 48px;
 }
 
+.persian-ref-rect {
+  font-size: 32px;
+  line-height: 6.5rem;
+}
+
 .english-couplet {
   font-size: 42px;
 }
