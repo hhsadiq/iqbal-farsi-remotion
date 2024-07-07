@@ -14,8 +14,14 @@ function renderRubai(rubaiNumber, layout) {
     const renderCommand = `REMOTION_POEM_BASE_PATH=${poemBasePath} REMOTION_LAYOUT=${layout} remotion render MyComp public/${poemBasePath}${outputFileName}`;
     console.log(`Executing: ${renderCommand}`);
 
-    const child = exec(renderCommand);
-
+    const child = exec(renderCommand, {
+      env: {
+        ...process.env,
+        REMOTION_POEM_BASE_PATH: poemBasePath,
+        REMOTION_LAYOUT: layout
+      }
+    });
+    
     child.stdout.on('data', (data) => {
       console.log(data);
     });
@@ -39,7 +45,9 @@ function renderRubai(rubaiNumber, layout) {
 async function processRubais() {
   for (let i = startRubai; i <= endRubai; i++) {
     await renderRubai(i, 'vertical');
+    console.log("Finished vertical layout");
     await renderRubai(i, 'horizontal');
+    console.log("Finished horizontal layout");
   }
 }
 

@@ -13,26 +13,34 @@ export const Outro: React.FC<object> = () => {
       {/* Left Column - 70% width */}
       <div className="w-[60%] flex flex-col justify-start pt-12 mt-40 ml-48">
         {/* Urdu Outro */}
-        <div className="flex items-center justify-center w-full px-24 mt-8">
+        <div className="flex items-center justify-center w-full mt-8">
           <p className="text-center urdu urdu-outro">
             آئیے اقبال کا ایک فارسی شعر روزانہ سیکھیں
           </p>
         </div>
         {/* English Outro */}
-        <div className="flex items-center justify-center w-full px-32 mt-8">
+        <div className="flex items-center justify-center w-full px-16 mt-8">
           <p className="text-center english-outro leading-relaxed" style={{ fontFamily }}>
             Unveil Iqbal's Persian Poetry: One Verse a Day
           </p>
         </div>
         {/* Social Media Icons */}
-        <div className="flex items-center justify-center w-full mt-24 px-80">
+        <div className="flex items-center justify-center w-full mt-24 px-48">
           <img alt="Social Media Icons" src={staticFile('img/channel-icons-and-names.svg')} className="w-[80%] h-auto" />
         </div>
       </div>
 
       {/* Right Column */}
-      <div className="w-[40%] flex flex-col items-center justify-center p-4">
-        <OffthreadVideo muted src={staticFile(globalSettings.logo.horizontal.video)} className='mt-[-296px]'/>
+      <div className="w-[70%] flex flex-col items-center justify-center">
+        {/* Logo Area */}
+        <div className="flex flex-col justify-start">
+          <div className="w-full">
+            <OffthreadVideo
+              muted
+              src={staticFile(globalSettings.logo.horizontal.video)}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
         <div className="w-[60%] flex flex-col">
           {/* Poem Name */}
 
-          <div className="flex items-top justify-center w-full pt-44 persian persian-intro">
+          <div className="flex items-top justify-center w-full pt-44 px-32 persian persian-intro">
             <p className="text-center text-red-600">
               {data.poemName}
             </p>
@@ -43,7 +43,7 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
           </div>
 
           {/* Narrator */}
-          <div className="flex items-top justify-center w-full px-24 pt-4 urdu urdu-intro">
+          <div className="flex items-top justify-center w-full px-24 pt-1 urdu urdu-intro">
             <p className="text-center">
               صدا: مخدوم حسان لاهوری
             </p>
@@ -51,11 +51,16 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
         </div>
 
         {/* Right Column */}
-        <div className="w-[40%] flex flex-col items-center justify-center p-4">
-          <OffthreadVideo
-            muted
-            src={staticFile(globalSettings.logo.horizontal.video)}
-          />
+        <div className="w-[40%] flex flex-col items-center justify-center">
+          {/* Logo Area */}
+          <div className="w-[148%] flex flex-col justify-start" style={{ height: '50%' }}>
+            <div className="w-full">
+              <OffthreadVideo
+                muted
+                src={staticFile(globalSettings.logo.horizontal.video)}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

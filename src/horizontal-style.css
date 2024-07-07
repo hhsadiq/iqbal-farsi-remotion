@@ -98,49 +98,36 @@
 
 
 .persian-intro {
-  font-size: 52px;
+  font-size: 58px;
 }
-
-.persian-thumbnail {
-  font-size: 176px;
-}
-
-.persian-thumbnail-ref {
-  font-size: 36px;
-}
-
-.english-thumbnail {
-  font-size: 112px;
-}
-
 
 .urdu-intro {
-  font-size: 36px;
+  font-size: 48px;
 }
 
 .persian-intro-ref {
-  font-size: 32px;
+  font-size: 40px;
 }
 
 .persian-couplet {
-  font-size: 44px;
+  font-size: 48px;
 }
 
 .english-couplet {
-  font-size: 38px;
+  font-size: 42px;
 }
 
 .urdu-couplet {
-  font-size: 48px; 
+  font-size: 56px; 
 }
 
 .urdu-outro {
-  font-size: 56px;
+  font-size: 60px;
 }
 
 
 .english-outro {
-  font-size: 36px;
+  font-size: 44px;
 }
 
 

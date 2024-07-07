@@ -99,5 +99,6 @@ export const RemotionRoot: React.FC = () => {
 		calculateMetadata={calculateMetadataForHorizontal}
 	/>
 
+	console.log('layout', globalSettings.layout);
 	return globalSettings.layout === 'vertical' ? vertical : horizontal;
 };
