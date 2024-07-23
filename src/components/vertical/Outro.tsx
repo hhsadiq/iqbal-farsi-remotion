@@ -1,19 +1,19 @@
 import React from 'react';
 import { OffthreadVideo, staticFile } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
-import { globalSettings } from '../global-settings';
+import { globalSettings } from '../../global-settings';
 
 
 const { fontFamily } = loadFont();
 
-export const ChannelInro: React.FC<{}> = () => {
+export const Outro: React.FC<object> = () => {
 
   return (
     <div className="flex flex-col w-full h-full bg-white">
       {/* Row 1 with two columns */}
       <div className="flex items-center justify-center w-full pt-12">
         <div className="w-full">
-          <OffthreadVideo muted src={staticFile(globalSettings.logo.videoComplete)} />
+          <OffthreadVideo muted src={staticFile(globalSettings.logo.vertical.video)} />
         </div>
       </div>
       {/* Row 2 */}
@@ -33,7 +33,7 @@ export const ChannelInro: React.FC<{}> = () => {
         </p>
       </div>
       {/* Row 5 */}
-      <div className="flex items-top justify-center w-full h-[50%] px-36 mt-[-256px]">
+      <div className="flex items-top justify-center w-full h-[15%] px-36 mt-[132px]">
         <img alt="Rectangle" src={staticFile('img/channel-icons-and-names.svg')} />
       </div>
     </div>

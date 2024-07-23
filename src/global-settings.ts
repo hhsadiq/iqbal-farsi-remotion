@@ -3,6 +3,8 @@ import { getConfig } from './config';
 
 const { poemBasePath } = getConfig();
 
+const { layout } = getConfig();
+
 const fps = 60;
 
 const transitionSpringTime = springTiming({
@@ -19,31 +21,51 @@ const transitionSpringTimeFirst = springTiming({
     stiffness: 5,
   }
 });
-
 const transitionDurationFramesFirst = transitionSpringTimeFirst.getDurationInFrames({ fps });
 
+const transitionSpringTimeThumbnail = springTiming({
+  config: {
+    damping: 10,
+    stiffness: 20,
+  }
+});
+const transitionDurationFramesThumbnail = transitionSpringTimeThumbnail.getDurationInFrames({ fps });
 
 export const globalSettings = {
   video: {
-    width: 1080,
-    height: 1920,
-    fps: fps,
+    vertical: {
+      width: 1080,
+      height: 1920,        
+    },
+    horizontal: {
+      width: 1920,
+      height: 1080,
+    },
+    fps,
     springTransition: transitionSpringTime,
-    transitionDurationFrames: transitionDurationFrames,
+    transitionDurationFrames,
     springTransitionFirst: transitionSpringTimeFirst,
-    transitionDurationFramesFirst: transitionDurationFramesFirst
+    transitionDurationFramesFirst,
+    transitionSpringTimeThumbnail,
+    transitionDurationFramesThumbnail
   },
   introDurationFPS: 200,
   outroDurationFPS: 250,
   logo: {
-    videoComplete: 'videos/full-logo-with-intro.mp4',
-    videoTrimmed: 'videos/logo.mp4',
-    img: 'img/logo.png',
+    vertical: {
+      video: 'videos/logo-vertical.mp4',
+      img: 'img/logo-vertical.png',  
+    },
+    horizontal: {
+      video: 'videos/logo-horizontal.mp4',
+      img: 'img/logo-horizontal.png',
+    },
   },
   poem: {
     cursorBlinkCycleFrames: fps,
     audioFile: poemBasePath + 'audio.wav',
     textFile: poemBasePath + 'poem.txt',
     markersFile: poemBasePath + 'markers.csv',
-  }
+  },
+  layout
 }
