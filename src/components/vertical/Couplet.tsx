@@ -1,8 +1,9 @@
 import React from 'react';
-import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from 'remotion';
+import { Img, staticFile, useCurrentFrame } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
-import { CoupletType } from '../utils/process-inputv2';
-import { globalSettings } from '../global-settings';
+import { CoupletType } from '../../utils/process-input';
+import { globalSettings } from '../../global-settings';
+const TextMetrics = require('text-metrics');
 
 type coupletCompSchema = {
   couplet: CoupletType;
@@ -11,9 +12,58 @@ type coupletCompSchema = {
 
 const { fontFamily } = loadFont();
 
+const ENG1_FONT_SIZE = '8.98px';
+const ENG1_FONT_FAMILY = fontFamily;
+
+const URDU1_FONT_SIZE = '11.37px';
+const URDU1_FONT_FAMILY = 'Jameel Noori Nastaleeq';
+
+// Mock container width as we cannot measure it without the actual DOM
+const ENG1_SPAN_MAX_WIDTH = 171.1;
+const URDU1_SPAN_MAX_WIDTH = 171.1;
+
+
+const measureTextWidth = (text: string, fontSize: string, fontFamily: string) => {
+  const metrics = TextMetrics.init({
+    fontSize,
+    fontFamily,
+  });
+
+  return metrics.width(text);
+};
+
+const adjustDivPadding = (text: string, containerWidth: number, fontSize: string, fontFamily: string) => {
+  const words = text.split(' ');
+  let currentLine = '';
+  let lines = [];
+
+  words.forEach((word) => {
+    const testLine = currentLine + (currentLine ? ' ' : '') + word;
+    const testLineWidth = measureTextWidth(testLine, fontSize, fontFamily);
+    if (testLineWidth > containerWidth) {
+      lines.push(currentLine.trim());
+      currentLine = word;
+    } else {
+      currentLine = testLine;
+    }
+  });
+
+  lines.push(currentLine.trim());
+  const lastLineContent = lines[lines.length - 1];
+  console.log('lines', lines);
+
+  if (lastLineContent === "—") {
+    return 'px-42';
+  }
+  return 'px-44';
+};
+
 export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
   const frame = useCurrentFrame();
 
+  const englishDivClass = adjustDivPadding(couplet.english1, ENG1_SPAN_MAX_WIDTH, ENG1_FONT_SIZE, ENG1_FONT_FAMILY);
+  const urduDivClass = adjustDivPadding(couplet.urdu1, URDU1_SPAN_MAX_WIDTH, URDU1_FONT_SIZE, URDU1_FONT_FAMILY);
+ 
   // Adjust verse start and end frames relative to the start of the couplet
   const verseRelativeStartFrame = (couplet.verseStartTime - couplet.coupletStartTime) * fps;
   const verseRelativeEndFrame = (couplet.verseEndTime - couplet.coupletStartTime) * fps;
@@ -53,29 +103,13 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
     }
   }
 
-  // Create a spring animation value for translation reveal
-
-  const { fps: fpsV } = useVideoConfig();
-  const fadeStartFrame = verseRelativeEndFrame + couplet.persian2.length * 7;
-  const driver = spring({
-    frame: frame - fadeStartFrame, // Delaying the start of the spring
-    fps: fpsV,
-    config: {
-      damping: 10,
-      stiffness: 5,
-    },
-  });
-
-  // Calculate the current opacity using interpolate
-  const translationOpacity = interpolate(driver, [0, 1], [0, 1]);
-
   return (
     <div className="flex flex-col w-full h-full bg-white">
       {/* Row 1 with two columns */}
-      <div className="flex items-center justify-center w-full pt-4">
+      <div className="flex items-center justify-center w-full pt-1">
         {/* Right Column 40% */}
-        <div className="w-[30%]">
-          <Img src={staticFile('img/logo.png')} placeholder={'logo'} />
+        <div className="w-[38%]">
+          <Img src={staticFile(globalSettings.logo.vertical.img)} placeholder='logo' />
         </div>
       </div>
 
@@ -87,7 +121,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
             <span
               className="typing-cursor"
               style={{ opacity: cursorOpacityFirst }}
-            ></span>
+            />
           )}
           <br />
           {textToShowPersian2}
@@ -95,28 +129,42 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, fps }) => {
             <span
               className="typing-cursor"
               style={{ opacity: cursorOpacitySecond }}
-            ></span>
+            />
           )}
         </p>
       </div>
 
-      {/* Row 3: Urdu Translation */}
+      {/* Urdu Translation */}
       <div
-        className="flex items-top justify-center w-full px-44 rtl urdu urdu-couplet"
-        
+        className={`flex items-top justify-center w-full ${urduDivClass} rtl urdu urdu-couplet`}
       >
         <p className="text-center">
-          {couplet.urdu}
+          {couplet.urdu1}
+        </p>
+      </div>
+      <div
+        className="flex items-top justify-center w-full px-44 rtl urdu2 urdu-couplet" 
+      >
+        <p className="text-center">
+          {couplet.urdu2}
         </p>
       </div>
 
-      {/* Row 4: English Translation */}
+      {/* English Translation */}
       <div
-        className="flex items-top justify-center w-full px-44 pt-8"
+        className={`flex items-top justify-center w-full ${englishDivClass} pt-8`}
         style={{ fontFamily }}
       >
         <p className="english-couplet text-center leading-relaxed">
-          {couplet.english}
+          {couplet.english1}
+        </p>
+      </div>
+      <div
+        className="flex items-top justify-center w-full px-44"
+        style={{ fontFamily }}
+      >
+        <p className="english-couplet text-center leading-relaxed">
+          {couplet.english2}
         </p>
       </div>
 

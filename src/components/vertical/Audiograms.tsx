@@ -34,7 +34,7 @@ export const Audiograms: React.FC<audiogramSchema> = ({
     const mirroredIndex = i > middleIndex ? arr.length - i : i;
     const distanceFromMiddle = Math.abs(mirroredIndex - middleIndex);
     // Gaussian-like transformation
-    const scaleFactor = Math.exp(-Math.pow(distanceFromMiddle / middleIndex, 2) * 4);
+    const scaleFactor = Math.exp(-((distanceFromMiddle / middleIndex)**2) * 4);
     return v * scaleFactor;
   });
   
