@@ -7,7 +7,8 @@
   ],
   "scripts": {
     "start": "remotion studio",
-    "build": "node generate-videos.js",
+    "build-rubai": "node generate-rubai.js",
+    "build-poem": "node generate-poem.js",
     "build1": "REMOTION_POEM_BASE_PATH=$npm_config_poemBase remotion render MyComp $npm_config_poemBase/upload/video.mp4",
     "build with thumb": "remotion render MyComp out/video.mp4 && ffmpeg -i out/video.mp4 -vf \"select=eq(n\\,135)\" -vframes 1 thumbnail.png",
     "upgrade": "remotion upgrade",
