@@ -131,7 +131,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, bookName, fps })
 
         {/* Urdu Translation */}
         <div
-          className="flex items-top justify-center w-full rtl urdu urdu-couplet pt-8"
+          className="flex items-top justify-center w-full rtl urdu urdu-couplet pt-8 px-16"
         >
           <p className="text-center">
             {couplet.urdu1}
@@ -147,7 +147,7 @@ export const Couplet: React.FC<coupletCompSchema> = ({ couplet, bookName, fps })
 
         {/* English Translation */}
         <div
-          className="flex items-top justify-center w-full pt-8"
+          className="flex items-top justify-center w-full pt-8 px-20"
           style={{ fontFamily }}
         >
           <p className="english-couplet text-center leading-relaxed">

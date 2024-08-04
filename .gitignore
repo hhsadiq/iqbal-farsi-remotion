@@ -9,3 +9,5 @@ public/poems
 *.m4a
 *.mp3
 *.wav
+
+.env
