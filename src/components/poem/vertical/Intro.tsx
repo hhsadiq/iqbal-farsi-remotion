@@ -24,18 +24,18 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({data}) => {
 			</div>
 			{/* Row 2 */}
 			<div className="flex items-top justify-center w-full px-24 -mt-8 pt-24 persian persian-intro">
-				<b>
-					<p className="text-center text-red-600">{data.thumbnailPersian}</p>
-				</b>
+				<p className="text-center text-red-600 font-bold">
+					{data.thumbnailPersian}
+				</p>
 			</div>
 			{/* Row 2 */}
 			<div
 				className="flex items-top justify-center w-full px-24 -mt-8 pt-24 english-intro"
 				style={{fontFamily}}
 			>
-				<b>
-					<p className="text-center text-red-600">{data.thumbnailEnglish}</p>
-				</b>
+				<p className="text-center text-red-600 font-bold">
+					{data.thumbnailEnglish}
+				</p>
 			</div>{' '}
 			{/* Horizontal Line */}
 			<div className="w-[60%] border-t-2 border-red-600 mt-20 mb-12 mx-auto" />
@@ -46,7 +46,7 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({data}) => {
 				</p>
 			</div>
 			{/* Row 5 */}
-			<div className="flex items-top justify-center w-full px-24 urdu urdu-intro">
+			<div className="flex items-top justify-center w-full px-24 persian persian-intro-ref">
 				<p className="text-center">صدا: مخدوم حسان لاهوری</p>
 			</div>
 		</div>
