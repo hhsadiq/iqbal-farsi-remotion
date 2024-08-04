@@ -1,7 +1,7 @@
 import React from 'react';
 import { OffthreadVideo, staticFile } from 'remotion';
-import { PoemDataSingleObjType } from '../../utils/process-input';
-import { globalSettings } from '../../global-settings';
+import { PoemDataSingleObjType } from '../../../utils/process-input';
+import { globalSettings } from '../../../global-settings';
 
 export const Intro: React.FC<PoemDataSingleObjType> = ({
   data,

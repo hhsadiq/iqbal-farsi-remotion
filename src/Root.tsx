@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Composition, CalculateMetadataFunction } from 'remotion';
-import { VerticalComposition } from './components/vertical/Composition';
-import { HorizontalComposition } from './components/horizontal/Composition';
+import { VerticalRubaiComposition } from './components/rubai/vertical/Composition';
+import { HorizontalRubaiComposition } from './components/rubai/horizontal/Composition';
 import { globalSettings } from './global-settings';
 import { PoemDataType, processPoemDocument, PoemDataSingleObjType } from './utils/process-input';
 
@@ -83,7 +83,7 @@ export const RemotionRoot: React.FC = () => {
 
 	const vertical = <Composition
 		id="MyComp"
-		component={VerticalComposition}
+		component={VerticalRubaiComposition}
 		defaultProps={{
 			data: null
 		}}
@@ -92,7 +92,7 @@ export const RemotionRoot: React.FC = () => {
 
 	const horizontal = <Composition
 		id="MyComp"
-		component={HorizontalComposition}
+		component={HorizontalRubaiComposition}
 		defaultProps={{
 			data: null
 		}}

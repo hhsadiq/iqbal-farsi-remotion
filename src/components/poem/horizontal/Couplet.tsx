@@ -1,9 +1,8 @@
 import React from 'react';
 import { Img, staticFile, useCurrentFrame } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
-import { CoupletType } from '../../utils/process-input';
-import { globalSettings } from '../../global-settings';
-const TextMetrics = require('text-metrics');
+import { CoupletType } from '../../../utils/process-input';
+import { globalSettings } from '../../../global-settings';
 
 type coupletCompSchema = {
   couplet: CoupletType;
@@ -13,57 +12,9 @@ type coupletCompSchema = {
 
 const { fontFamily } = loadFont();
 
-const ENG1_FONT_SIZE = '8.98px';
-const ENG1_FONT_FAMILY = fontFamily;
-
-const URDU1_FONT_SIZE = '11.37px';
-const URDU1_FONT_FAMILY = 'Jameel Noori Nastaleeq';
-
-// Mock container width as we cannot measure it without the actual DOM
-const ENG1_SPAN_MAX_WIDTH = 171.1;
-const URDU1_SPAN_MAX_WIDTH = 171.1;
-
-
-const measureTextWidth = (text: string, fontSize: string, fontFamily: string) => {
-  const metrics = TextMetrics.init({
-    fontSize,
-    fontFamily,
-  });
-
-  return metrics.width(text);
-};
-
-const adjustDivPadding = (text: string, containerWidth: number, fontSize: string, fontFamily: string) => {
-  const words = text.split(' ');
-  let currentLine = '';
-  let lines = [];
-
-  words.forEach((word) => {
-    const testLine = currentLine + (currentLine ? ' ' : '') + word;
-    const testLineWidth = measureTextWidth(testLine, fontSize, fontFamily);
-    if (testLineWidth > containerWidth) {
-      lines.push(currentLine.trim());
-      currentLine = word;
-    } else {
-      currentLine = testLine;
-    }
-  });
-
-  lines.push(currentLine.trim());
-  const lastLineContent = lines[lines.length - 1];
-  console.log('lines', lines);
-
-  if (lastLineContent === "—") {
-    return 'px-42';
-  }
-  return 'px-44';
-};
 
 export const Couplet: React.FC<coupletCompSchema> = ({ couplet, bookName, fps }) => {
   const frame = useCurrentFrame();
-
-  const englishDivClass = adjustDivPadding(couplet.english1, ENG1_SPAN_MAX_WIDTH, ENG1_FONT_SIZE, ENG1_FONT_FAMILY);
-  const urduDivClass = adjustDivPadding(couplet.urdu1, URDU1_SPAN_MAX_WIDTH, URDU1_FONT_SIZE, URDU1_FONT_FAMILY);
 
   // Adjust verse start and end frames relative to the start of the couplet
   const verseRelativeStartFrame = (couplet.verseStartTime - couplet.coupletStartTime) * fps;
