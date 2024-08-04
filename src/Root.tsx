@@ -80,28 +80,25 @@ const calculateMetadataForHorizontal: CalculateMetadataFunction<
 export const RemotionRoot: React.FC = () => {
 	useEffect(() => {
 		const loadCSS = async () => {
-			let cssPath;
-
-			switch (globalSettings.layout) {
-				case 'vertical':
-					cssPath =
-						globalSettings.type === 'poem'
-							? './components/poem/vertical/style.css'
-							: './components/rubai/vertical/style.css';
-					break;
-				case 'horizontal':
-					cssPath =
-						globalSettings.type === 'poem'
-							? './components/poem/horizontal/style.css'
-							: './components/rubai/horizontal/style.css';
-					break;
-				default:
-					console.error('Invalid layout or type');
-					return;
-			}
-
 			try {
-				await import(`${cssPath}`); // Strange behaviour: when directly using the variable in lazy loading, it won't work
+				switch (globalSettings.layout) {
+					case 'vertical':
+						if (globalSettings.type === 'poem') {
+							await import('./components/poem/vertical/style.css');
+						} else {
+							await import('./components/rubai/vertical/style.css');
+						}
+						break;
+					case 'horizontal':
+						if (globalSettings.type === 'poem') {
+							await import('./components/poem/horizontal/style.css');
+						} else {
+							await import('./components/rubai/horizontal/style.css');
+						}
+						break;
+					default:
+						console.error('Invalid layout or type');
+				}
 			} catch (error) {
 				console.error('Error loading CSS:', error);
 			}
