@@ -4,6 +4,8 @@ import { VerticalRubaiComposition } from './components/rubai/vertical/Compositio
 import { HorizontalRubaiComposition } from './components/rubai/horizontal/Composition';
 import { globalSettings } from './global-settings';
 import { PoemDataType, processPoemDocument, PoemDataSingleObjType } from './utils/process-input';
+import { VerticalPoemComposition } from './components/poem/vertical/Composition';
+import { HorizontalPoemComposition } from './components/poem/horizontal/Composition';
 
 const calculateMetadataForVertical: CalculateMetadataFunction<PoemDataSingleObjType> = async () => {
 	const { fps } = globalSettings.video;
@@ -71,17 +73,35 @@ const calculateMetadataForHorizontal: CalculateMetadataFunction<PoemDataSingleOb
 export const RemotionRoot: React.FC = () => {
 	useEffect(() => {
 		const loadCSS = async () => {
-			if (globalSettings.layout === 'vertical') {
-				await import('./vertical-style.css');
-			} else {
-				await import('./horizontal-style.css');
+			let cssPath;
+			
+			switch (globalSettings.layout) {
+				case 'vertical':
+					cssPath = globalSettings.type === 'poem' 
+						? './components/poem/vertical/style.css'
+						: './components/rubai/vertical/style.css';
+					break;
+				case 'horizontal':
+					cssPath = globalSettings.type === 'poem' 
+						? './components/poem/horizontal/style.css' 
+						: './components/rubai/horizontal/style.css';
+					break;
+				default:
+					console.error('Invalid layout or type');
+					return;
+			}
+	
+			try {
+				await import(`${cssPath}`); // Strange behaviour: when directly using the variable in lazy loading, it won't work
+			} catch (error) {
+				console.error('Error loading CSS:', error);
 			}
 		};
-
+	
 		loadCSS();
 	}, []); // Empty dependency array ensures this runs once on mount
-
-	const vertical = <Composition
+		
+	const verticalRubai = <Composition
 		id="MyComp"
 		component={VerticalRubaiComposition}
 		defaultProps={{
@@ -90,7 +110,7 @@ export const RemotionRoot: React.FC = () => {
 		calculateMetadata={calculateMetadataForVertical}
 	/>
 
-	const horizontal = <Composition
+	const horizontalRubai = <Composition
 		id="MyComp"
 		component={HorizontalRubaiComposition}
 		defaultProps={{
@@ -99,6 +119,32 @@ export const RemotionRoot: React.FC = () => {
 		calculateMetadata={calculateMetadataForHorizontal}
 	/>
 
-	console.log('layout', globalSettings.layout);
-	return globalSettings.layout === 'vertical' ? vertical : horizontal;
+	const verticalPoem = <Composition
+		id="MyComp"
+		component={VerticalPoemComposition}
+		defaultProps={{
+			data: null
+		}}
+		calculateMetadata={calculateMetadataForVertical}
+	/>
+
+	const horizontalPoem = <Composition
+		id="MyComp"
+		component={HorizontalPoemComposition}
+		defaultProps={{
+			data: null
+		}}
+		calculateMetadata={calculateMetadataForHorizontal}
+	/>	
+
+	console.log('layout', globalSettings.layout, 'type', globalSettings.type);
+
+	let selectedComposition;
+	if (globalSettings.layout === 'vertical') {
+		selectedComposition = globalSettings.type === 'poem' ? verticalPoem : verticalRubai;
+	} else {
+		selectedComposition = globalSettings.type === 'poem' ? horizontalPoem : horizontalRubai;
+	}
+
+	return selectedComposition;
 };

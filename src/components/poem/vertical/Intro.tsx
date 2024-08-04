@@ -22,10 +22,15 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({
       {/* Row 2 */}
       <div className="flex items-top justify-center w-full px-24 -mt-8 pt-24 persian persian-intro">
         <p className="text-center text-red-600">
-          {data.poemName}
+          {data.thumbnailPersian}
         </p>
       </div>
-      {/* Row 4 */}
+      {/* Row 2 */}
+      <div className="flex items-top justify-center w-full px-24 -mt-8 pt-24 persian persian-intro">
+        <p className="text-center text-red-600">
+          {data.thumbnailEnglish}
+        </p>
+      </div>      {/* Row 4 */}
       <div className="flex items-top justify-center w-full px-24 mt-8 persian persian-intro-ref">
         <p className="text-center text-red-600">
           بحوالہ:&nbsp;&nbsp; {data.bookName}
