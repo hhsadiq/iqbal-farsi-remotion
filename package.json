@@ -1,50 +1,50 @@
 {
-  "name": "iqbal-farsi-remotion",
-  "version": "1.0.0",
-  "description": "My Remotion video",
-  "sideEffects": [
-    "*.css"
-  ],
-  "scripts": {
-    "start": "remotion studio",
-    "build-rubai": "node generate-rubai.js",
-    "build-poem": "node generate-poem.js",
-    "build1": "REMOTION_POEM_BASE_PATH=$npm_config_poemBase remotion render MyComp $npm_config_poemBase/upload/video.mp4",
-    "build with thumb": "remotion render MyComp out/video.mp4 && ffmpeg -i out/video.mp4 -vf \"select=eq(n\\,135)\" -vframes 1 thumbnail.png",
-    "upgrade": "remotion upgrade",
-    "test": "eslint src --ext ts,tsx,js,jsx && tsc"
-  },
-  "repository": {},
-  "license": "UNLICENSED",
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "webpack"
-      ]
-    }
-  },
-  "dependencies": {
-    "@remotion/bundler": "^4.0.81",
-    "@remotion/cli": "^4.0.81",
-    "@remotion/google-fonts": "^4.0.81",
-    "@remotion/media-utils": "^4.0.81",
-    "@remotion/transitions": "^4.0.81",
-    "@remotion/zod-types": "^4.0.81",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "remotion": "^4.0.81",
-    "zod": "^3.21.4"
-  },
-  "devDependencies": {
-    "@remotion/eslint-config": "^4.0.81",
-    "@remotion/tailwind": "^4.0.81",
-    "@types/react": "^18.0.26",
-    "@types/web": "^0.0.86",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.43.0",
-    "prettier": "^2.8.8",
-    "text-metrics": "^4.0.1",
-    "typescript": "^4.9.4"
-  },
-  "packageManager": "npm@8.19.3"
+	"name": "iqbal-farsi-remotion",
+	"version": "1.0.0",
+	"description": "My Remotion video",
+	"sideEffects": [
+		"*.css"
+	],
+	"scripts": {
+		"start": "remotion studio",
+		"build-rubai": "node generate-rubai.js",
+		"build-poem": "node generate-poem.js",
+		"build1": "REMOTION_POEM_BASE_PATH=$npm_config_poemBase remotion render MyComp $npm_config_poemBase/upload/video.mp4",
+		"build with thumb": "remotion render MyComp out/video.mp4 && ffmpeg -i out/video.mp4 -vf \"select=eq(n\\,135)\" -vframes 1 thumbnail.png",
+		"upgrade": "remotion upgrade",
+		"test": "eslint src --ext ts,tsx,js,jsx && tsc"
+	},
+	"repository": {},
+	"license": "UNLICENSED",
+	"pnpm": {
+		"peerDependencyRules": {
+			"ignoreMissing": [
+				"webpack"
+			]
+		}
+	},
+	"dependencies": {
+		"@remotion/bundler": "^4.0.206",
+		"@remotion/cli": "^4.0.206",
+		"@remotion/google-fonts": "^4.0.206",
+		"@remotion/media-utils": "^4.0.206",
+		"@remotion/transitions": "^4.0.206",
+		"@remotion/zod-types": "^4.0.206",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+		"remotion": "^4.0.206",
+		"zod": "^3.21.4"
+	},
+	"devDependencies": {
+		"@remotion/eslint-config": "^4.0.206",
+		"@remotion/tailwind": "^4.0.206",
+		"@types/react": "^18.0.26",
+		"@types/web": "^0.0.86",
+		"cross-env": "^7.0.3",
+		"eslint": "^8.43.0",
+		"prettier": "^2.8.8",
+		"text-metrics": "^4.0.1",
+		"typescript": "^4.9.4"
+	},
+	"packageManager": "npm@8.19.3"
 }
