@@ -29,12 +29,17 @@ export const Intro: React.FC<PoemDataSingleObjType> = ({data}) => {
 						className="flex items-top justify-center w-full px-24 -mt-8 pt-24 english-intro"
 						style={{fontFamily}}
 					>
-						<p className="text-center text-red-600 font-bold">
+						<p className="text-center text-black-600">
 							{data.thumbnailEnglish}
+						</p>
+					</div>
+					<div className="flex items-top justify-center w-full px-24 -mt-8 pt-12 urdu2 urdu-intro">
+						<p className="text-center text-black font-bold">
+							{data.thumbnailUrdu}
 						</p>
 					</div>{' '}
 					{/* Horizontal Line */}
-					<div className="w-[80%] border-t-2 border-red-600 mt-20 mb-8 mx-auto" />
+					<div className="w-[80%] border-t-2 border-red-600 mt-16 mx-auto" />
 					{/* Book Name */}
 					<div className="flex items-top justify-center w-full px-24 mt-8 persian persian-intro-ref">
 						<p className="text-center text-black-600">
