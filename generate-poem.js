@@ -1,7 +1,7 @@
 const {exec} = require('child_process');
 
-const basePath = 'poems/masnavi-pas-cheh-bayad/';
-const poemName = '08-faqr-45-68';
+const basePath = 'poems/masnavi/';
+const poemName = '00-bikhawnda-e-kitab';
 
 function renderPoem(poemName, layout, type) {
 	return new Promise((resolve, reject) => {

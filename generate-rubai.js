@@ -1,8 +1,8 @@
 const {exec} = require('child_process');
 
 const basePath = 'poems/payam-e-mashriq/lala-e-toor/';
-const startRubai = 71; // Start of the range
-const endRubai = 91; // End of the range
+const startRubai = 33; // Start of the range
+const endRubai = 33; // End of the range
 
 function renderRubai(rubaiNumber, layout) {
 	return new Promise((resolve, reject) => {
