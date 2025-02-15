@@ -7,13 +7,13 @@ import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from 'remot
 import { Audiograms } from './Audiograms';
 import { Outro } from "./Outro";
 import { Intro } from "./Intro";
-import { globalSettings } from "../../global-settings";
-import { PoemDataSingleObjType } from "../../utils/process-input";
+import { globalSettings } from "../../../global-settings";
+import { PoemDataSingleObjType } from "../../../utils/process-input";
 import { Couplet } from "./Couplet";
 
 const {fps} = globalSettings.video;
 
-export const HorizontalComposition: React.FC<PoemDataSingleObjType> = ({
+export const HorizontalRubaiComposition: React.FC<PoemDataSingleObjType> = ({
 	data
 }) => {
 	if (!data) {

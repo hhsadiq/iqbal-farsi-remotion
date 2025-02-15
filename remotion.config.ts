@@ -10,5 +10,6 @@ import {webpackOverride} from './src/webpack-override';
 
 Config.setVideoImageFormat('jpeg');
 Config.setOverwriteOutput(true);
+Config.setStudioPort(3003);
 
 Config.overrideWebpackConfig(webpackOverride);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { OffthreadVideo, staticFile } from 'remotion';
 import { loadFont } from "@remotion/google-fonts/Roboto";
-import { globalSettings } from '../../global-settings';
+import { globalSettings } from '../../../global-settings';
 
 
 const { fontFamily } = loadFont();

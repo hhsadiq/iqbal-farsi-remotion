@@ -1,12 +1,20 @@
-import React, { useEffect } from 'react';
-import { Composition, CalculateMetadataFunction } from 'remotion';
-import { VerticalComposition } from './components/vertical/Composition';
-import { HorizontalComposition } from './components/horizontal/Composition';
-import { globalSettings } from './global-settings';
-import { PoemDataType, processPoemDocument, PoemDataSingleObjType } from './utils/process-input';
+import React, {useEffect} from 'react';
+import {Composition, CalculateMetadataFunction} from 'remotion';
+import {VerticalRubaiComposition} from './components/rubai/vertical/Composition';
+import {HorizontalRubaiComposition} from './components/rubai/horizontal/Composition';
+import {globalSettings} from './global-settings';
+import {
+	PoemDataType,
+	processPoemDocument,
+	PoemDataSingleObjType,
+} from './utils/process-input';
+import {VerticalPoemComposition} from './components/poem/vertical/Composition';
+import {HorizontalPoemComposition} from './components/poem/horizontal/Composition';
 
-const calculateMetadataForVertical: CalculateMetadataFunction<PoemDataSingleObjType> = async () => {
-	const { fps } = globalSettings.video;
+const calculateMetadataForVertical: CalculateMetadataFunction<
+	PoemDataSingleObjType
+> = async () => {
+	const {fps} = globalSettings.video;
 
 	try {
 		const poemData: PoemDataType = await processPoemDocument();
@@ -22,7 +30,7 @@ const calculateMetadataForVertical: CalculateMetadataFunction<PoemDataSingleObjT
 			},
 		};
 	} catch (error) {
-		console.error("Error fetching poem data:", error);
+		console.error('Error fetching poem data:', error);
 		// Fallback values if data fetching fails
 		return {
 			durationInFrames: 300, // Default duration
@@ -36,8 +44,10 @@ const calculateMetadataForVertical: CalculateMetadataFunction<PoemDataSingleObjT
 	}
 };
 
-const calculateMetadataForHorizontal: CalculateMetadataFunction<PoemDataSingleObjType> = async () => {
-	const { fps } = globalSettings.video;
+const calculateMetadataForHorizontal: CalculateMetadataFunction<
+	PoemDataSingleObjType
+> = async () => {
+	const {fps} = globalSettings.video;
 
 	try {
 		const poemData: PoemDataType = await processPoemDocument();
@@ -53,7 +63,7 @@ const calculateMetadataForHorizontal: CalculateMetadataFunction<PoemDataSingleOb
 			},
 		};
 	} catch (error) {
-		console.error("Error fetching poem data:", error);
+		console.error('Error fetching poem data:', error);
 		// Fallback values if data fetching fails
 		return {
 			durationInFrames: 300, // Default duration
@@ -66,39 +76,91 @@ const calculateMetadataForHorizontal: CalculateMetadataFunction<PoemDataSingleOb
 		};
 	}
 };
-
 
 export const RemotionRoot: React.FC = () => {
 	useEffect(() => {
 		const loadCSS = async () => {
-			if (globalSettings.layout === 'vertical') {
-				await import('./vertical-style.css');
-			} else {
-				await import('./horizontal-style.css');
+			try {
+				switch (globalSettings.layout) {
+					case 'vertical':
+						if (globalSettings.type === 'poem') {
+							await import('./components/poem/vertical/style.css');
+						} else {
+							await import('./components/rubai/vertical/style.css');
+						}
+						break;
+					case 'horizontal':
+						if (globalSettings.type === 'poem') {
+							await import('./components/poem/horizontal/style.css');
+						} else {
+							await import('./components/rubai/horizontal/style.css');
+						}
+						break;
+					default:
+						console.error('Invalid layout or type');
+				}
+			} catch (error) {
+				console.error('Error loading CSS:', error);
 			}
 		};
 
 		loadCSS();
 	}, []); // Empty dependency array ensures this runs once on mount
 
-	const vertical = <Composition
-		id="MyComp"
-		component={VerticalComposition}
-		defaultProps={{
-			data: null
-		}}
-		calculateMetadata={calculateMetadataForVertical}
-	/>
+	const verticalRubai = (
+		<Composition
+			id="MyComp"
+			component={VerticalRubaiComposition}
+			defaultProps={{
+				data: null,
+			}}
+			calculateMetadata={calculateMetadataForVertical}
+		/>
+	);
 
-	const horizontal = <Composition
-		id="MyComp"
-		component={HorizontalComposition}
-		defaultProps={{
-			data: null
-		}}
-		calculateMetadata={calculateMetadataForHorizontal}
-	/>
+	const horizontalRubai = (
+		<Composition
+			id="MyComp"
+			component={HorizontalRubaiComposition}
+			defaultProps={{
+				data: null,
+			}}
+			calculateMetadata={calculateMetadataForHorizontal}
+		/>
+	);
 
-	console.log('layout', globalSettings.layout);
-	return globalSettings.layout === 'vertical' ? vertical : horizontal;
+	const verticalPoem = (
+		<Composition
+			id="MyComp"
+			component={VerticalPoemComposition}
+			defaultProps={{
+				data: null,
+			}}
+			calculateMetadata={calculateMetadataForVertical}
+		/>
+	);
+
+	const horizontalPoem = (
+		<Composition
+			id="MyComp"
+			component={HorizontalPoemComposition}
+			defaultProps={{
+				data: null,
+			}}
+			calculateMetadata={calculateMetadataForHorizontal}
+		/>
+	);
+
+	console.log('layout', globalSettings.layout, 'type', globalSettings.type);
+
+	let selectedComposition;
+	if (globalSettings.layout === 'vertical') {
+		selectedComposition =
+			globalSettings.type === 'poem' ? verticalPoem : verticalRubai;
+	} else {
+		selectedComposition =
+			globalSettings.type === 'poem' ? horizontalPoem : horizontalRubai;
+	}
+
+	return selectedComposition;
 };

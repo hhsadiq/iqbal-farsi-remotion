@@ -7,13 +7,13 @@ import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from 'remot
 import { Audiograms } from './Audiograms';
 import { Outro } from "./Outro";
 import { Intro } from "./Intro";
-import { globalSettings } from "../../global-settings";
-import { PoemDataSingleObjType } from "../../utils/process-input";
+import { globalSettings } from "../../../global-settings";
+import { PoemDataSingleObjType } from "../../../utils/process-input";
 import { Couplet } from "./Couplet";
 
 const {fps} = globalSettings.video;
 
-export const VerticalComposition: React.FC<PoemDataSingleObjType> = ({
+export const HorizontalPoemComposition: React.FC<PoemDataSingleObjType> = ({
 	data
 }) => {
 	if (!data) {
@@ -60,7 +60,7 @@ export const VerticalComposition: React.FC<PoemDataSingleObjType> = ({
 								durationInFrames={durationInFrames}
 								layout="none"
 							>
-								<Couplet couplet={couplet} fps={fps} />
+								<Couplet couplet={couplet} bookName={data.bookName} fps={fps} />
 							</TransitionSeries.Sequence>
 							<TransitionSeries.Transition
 								key={i + 2}
