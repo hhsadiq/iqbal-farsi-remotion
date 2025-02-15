@@ -1,7 +1,7 @@
 const {exec} = require('child_process');
 
 const basePath = 'poems/masnavi/';
-const poemName = '00-bikhawnda-e-kitab';
+const poemName = '01';
 
 function renderPoem(poemName, layout, type) {
 	return new Promise((resolve, reject) => {
@@ -47,8 +47,8 @@ function renderPoem(poemName, layout, type) {
 }
 
 async function processPoems() {
-	await renderPoem(poemName, 'vertical', 'poem');
-	console.log('Finished vertical poem layout');
+	// await renderPoem(poemName, 'vertical', 'poem');
+	// console.log('Finished vertical poem layout');
 	await renderPoem(poemName, 'horizontal', 'poem');
 	console.log('Finished horizontal poem layout');
 }
